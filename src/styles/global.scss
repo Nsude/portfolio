@@ -2,11 +2,12 @@
 @use "mixins" as *;
 
 body {
-  font-size: $header;
+  font-size: $body-copy;
   letter-spacing: 0.02ch;
-  font-family: "HaasBold";
+  font-family: "MontRegular";
   overflow-x: hidden;
   margin: 0;
+  color: $black;
 }
 
 p {

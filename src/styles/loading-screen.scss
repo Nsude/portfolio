@@ -1,0 +1,17 @@
+@use "variables" as *;
+
+.loading-screen-container {
+  text-align: center;
+  height: 100vh;
+  width: 100%;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+
+  .polygon {
+    grid-column: 1;
+    grid-row: 1;
+  }
+}

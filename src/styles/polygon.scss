@@ -1,0 +1,29 @@
+@use "variables" as *;
+
+
+.polygon-icon-container {
+  overflow: hidden;
+  position: relative;
+  z-index: 900;
+
+  .logo {
+    position: fixed;
+    top: -110%;
+    left: 50%;
+    transform: translateX(-50%);
+
+  }
+}
+
+.polygon-icon {
+  position: relative;
+
+  p {
+    font-family: "MontMedium";
+    font-size: $title;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -55%);
+  }
+}

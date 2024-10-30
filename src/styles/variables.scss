@@ -1,10 +1,22 @@
 /* Colors */
-$off-white: #faf9f6;
+$ivory: #fffff0;
 $white: #fff;
 $black: #171717;
-$accent: #f060e2;
-$error: #d33232;
-$green: #60f0c5;
+$grey: #D9D9D9;
+$gBlue: #758DB4;
+$gBlueOverlay: #B0B5BC;
+$gBlueBlop1: #29303D;
+$gBlueBlop2: #282A2D;
+
+// pink gradient
+$g-pink-body: #F9CADA;
+$g-pink-overlay: #F2C4B1;
+$g-pink-blop1: #ec3883;
+$g-pink-blop2: #f7cb3b;
+
+// ivory gradient
+$g-ivory-blop1: #213943;
+$g-ivory-blop2: #959997;
 
 /* Padding */
 $M-body-padding: 0px 20px;
@@ -23,12 +35,6 @@ $border: 1.25px solid
     $color: $black,
     $alpha: 0.3,
   );
-$valid-input-border: 2.25px solid $black;
-$light-border: 1.25px solid
-  rgba(
-    $color: $off-white,
-    $alpha: 0.6,
-  );
 $border-radius: 8px;
 
 
@@ -39,19 +45,19 @@ $d-section-margin: 150px;
 
 /* Fonts */ 
 @font-face {
-  font-family: "HaasRegular";
-  src: url("../assets/fonts/NHG-reg.TTF");
+  font-family: "MontRegular";
+  src: url("../assets/fonts/neue-montreal/NeueMontreal-Regular.otf");
   font-weight: 400;
 }
 
 @font-face {
-  font-family: "HaasMedium";
-  src: url("../assets/fonts/NHG-medium.TTF");
+  font-family: "MontMedium";
+  src: url("../assets/fonts/neue-montreal/NeueMontreal-Medium.otf");
   font-weight: 500;
 }
 
 @font-face {
-  font-family: "HaasBold";
-  src: url("../assets/fonts/NHG-bold.TTF");
+  font-family: "MontBold";
+  src: url("../assets/fonts/neue-montreal/NeueMontreal-Bold.otf");
   font-weight: 700;
 }

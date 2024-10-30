@@ -1,0 +1,10 @@
+@use "variables" as *;
+
+.app-container {
+  background-color: $ivory;
+
+  &.pink-bg {
+    background-color: $g-pink-body;
+  }
+  
+}

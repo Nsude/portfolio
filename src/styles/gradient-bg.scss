@@ -1,0 +1,50 @@
+@use "variables" as *;
+
+
+.background-container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  right: 0;
+  z-index: 900;
+
+  .blur-overlay {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(0px);
+    transition: backdrop-filter 600ms linear, background 600ms linear;
+  }
+
+  .blur-overlay::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: inherit;
+  }
+
+  .blur-overlay.make-blur {
+    backdrop-filter: blur(60px);
+  }
+
+  .blur-overlay.blue-bg {
+    background: rgba($color: $gBlue, $alpha: .4);
+  }
+
+  .blur-overlay.blue-bg::after {
+    background: rgba($color: $black, $alpha: .2)
+  }
+
+  .blur-overlay.pink-bg::after {
+    background: rgba($color: $g-pink-overlay, $alpha: .4)
+  }
+
+  .blur-overlay.ivory-bg {
+    background: rgba($color: $ivory, $alpha: .4);
+  }
+
+}

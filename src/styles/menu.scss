@@ -1,0 +1,62 @@
+@use "variables" as *;
+
+.menu-container {
+  position: absolute;
+  bottom: 70px;
+  left: 30px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  text-align: left;
+  align-items: center;
+  z-index: 1000;
+
+  
+  .details, .shape {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  
+  .shape {
+    position: relative;
+    height: 55px;
+  }
+  
+  .bottom, .top {
+    position: absolute;
+    left: 0;
+    right: 0;
+  }
+  
+  .bottom {
+    bottom: -47px;
+  }
+  
+  .top {
+    top: -10px;
+  }
+  
+  .details {
+    margin-left: 15px;
+    position: relative;
+    top: 40%;
+  
+    p {
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      font-size: 10px;
+      letter-spacing: 0.08ch;
+      position: relative;
+      z-index: 10;
+    }
+  
+    h2 {
+      font-family: "MontRegular";
+      font-weight: 400;
+      position: relative;
+      font-size: 25px;
+      z-index: 10;
+    };
+  
+  }
+}

@@ -1,0 +1,50 @@
+@use "variables" as *;
+
+
+.blur-blops-container {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  z-index: -1;
+
+  .blops {
+    position: relative;
+    top: 0;
+    left: 0;
+    opacity: 0;
+  }
+
+  .blop {
+    position: absolute;
+    width: 200px; 
+    height: 200px; 
+    border-radius: 30%;
+    filter: blur(30px);
+    opacity: 1; 
+    transform-origin: center;
+    mix-blend-mode: luminosity;
+  }
+
+  .blop:nth-child(odd) {
+    width: 300px;
+    height: 300px;
+    right: 0;
+    bottom: 0;
+  }
+
+  .blop.blue-bg {
+    background: radial-gradient(circle, rgba($color: $gBlueBlop1, $alpha: 1) 60%, rgba($color: $gBlueBlop2, $alpha: 1));
+  }
+
+  .blop.pink-bg {
+    background: radial-gradient(circle, rgba($color: $g-pink-blop1, $alpha: 1) 40%, rgba($color: $g-pink-blop2, $alpha: 1));
+  }
+
+  .blop.ivory-bg {
+    background: radial-gradient(circle, rgba($color: $g-ivory-blop1, $alpha: 1) 63%, rgb(236, 182, 32), rgba($color: $g-ivory-blop2, $alpha: 1));
+    mix-blend-mode: multiply;
+  }
+}
