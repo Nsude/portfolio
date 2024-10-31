@@ -47,7 +47,8 @@ export const scaleMenuSvg = (target: SVGSVGElement | null, scaleUp?: boolean) =>
   } else {
     gsap.to(target, {
       scaleX: 1,
-      transformOrigin: "left"
+      transformOrigin: "left",
+      duration: .4,
     })
   }
 }

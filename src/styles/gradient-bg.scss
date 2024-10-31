@@ -47,4 +47,27 @@
     background: rgba($color: $ivory, $alpha: .4);
   }
 
+
+  .overlay {
+    position: absolute;
+    top: -200%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 400px;
+    background: #2c2c2c;
+    // background: linear-gradient(#F4C373 0%, $ivory);
+
+    &:nth-child(2) {
+      background: $black;
+      // background: linear-gradient($g-pink-body 0%, $ivory);
+    }
+
+    &:nth-child(3) {
+      background: #000;
+      // background: linear-gradient($gBlue 0%, $ivory);
+    }
+  }
+  
+
 }

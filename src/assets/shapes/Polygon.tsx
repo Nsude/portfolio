@@ -11,7 +11,7 @@ interface Props {
 export const polygonAnimDuration = .4;
 
 const Polygon:React.FC<Props> = ({size}) => {
-  const {killAnim, setKillAnim, setLoaded} = useGlobalContext(); 
+  const {killAnim, setKillAnim, loaded} = useGlobalContext(); 
   const [progress, setProgress] = useState("000");
   const pathRef = useRef<SVGPathElement | null>(null);
   const animationRef = useRef<GSAPTween>();
@@ -56,8 +56,6 @@ const Polygon:React.FC<Props> = ({size}) => {
     gsap.set(".polygon p", {
       opacity: 0, 
       delay: polygonAnimDuration
-    }).then(() => {
-      setLoaded(true)
     })
 
     // animate loader out
@@ -69,13 +67,17 @@ const Polygon:React.FC<Props> = ({size}) => {
       delay: polygonAnimDuration - .1
     })
 
-    // animate logo in
+  }, [killAnim])
+
+  // animate logo in
+  useCustomEffect(() => {
+    if (!loaded) return;
     gsap.to(logoRef.current, {
       top: 20,
-      duration: .6,
+      duration: .4,
     })
 
-  }, [killAnim])
+  }, [loaded])
 
   // update progress
   useCustomEffect(() => {

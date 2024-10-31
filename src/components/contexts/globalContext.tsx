@@ -30,6 +30,7 @@ const GlobalContextProvider:React.FC<PropsWithChildren>= ({children}) => {
   const [loaded, setLoaded] = useState(false);
   const [killAnim, setKillAnim] = useState(false);
   const [bgTheme, setBGTheme] = useState("blue");
+
   return (
     <globalContext.Provider 
       value={{

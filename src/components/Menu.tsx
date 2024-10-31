@@ -58,7 +58,8 @@ const Menu = () => {
       })
     } else {
       gsap.to(".menu-container .shape", {
-        width: 351
+        width: 351,
+        duration: .4
       })
     }
   }, [loaded])
