@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 
-const useCustomEffect = (callback: () => void, dependecies?: any[]) => {
+const useCustomEffect = (callback: () => void, dependencies?: any[]) => {
   const runRef = useRef(false);
   useEffect(() => {
     if (runRef.current) {
@@ -8,7 +8,7 @@ const useCustomEffect = (callback: () => void, dependecies?: any[]) => {
     }
 
     return () => { runRef.current = true };
-  }, dependecies || []);
+  }, dependencies || []);
 }
 
 export default useCustomEffect;
