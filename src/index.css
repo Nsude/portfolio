@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "HaasRegular";
+  src: url("./assets/fonts/NHG-reg.TTF");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Garamond";
+  src: url("./assets/fonts/GARA.TTF");
+  font-weight: 400;
+  font-style: normal;
+}
