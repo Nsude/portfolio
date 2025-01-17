@@ -1,9 +1,10 @@
 import gsap from 'gsap';
 import useCustomEffect from '../../components/hooks/useCustomEffect';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
+import { useNavContext } from '../../components/contexts/NavContext';
 
 const Hamburger = () => {
-  const [open, setOpen] = useState(false);
+  const {open, setOpen} = useNavContext();
   const topBar = useRef(null);
   const middleBar = useRef(null);
   const lastBar = useRef(null);
