@@ -1,8 +1,9 @@
+import Homepage from "./components/home/Homepage"
 
 function App() {
   return (
     <div>
-      You got bare trust issues mate!
+      <Homepage />
     </div>
   )
 }

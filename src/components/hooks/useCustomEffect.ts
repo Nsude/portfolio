@@ -7,7 +7,9 @@ const useCustomEffect = (callback: () => void, dependencies?: any[]) => {
       callback();
     }
 
+    if (runRef.current) return;
     return () => { runRef.current = true };
+
   }, dependencies || []);
 }
 

@@ -5,18 +5,21 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    colors: {
-      gray: {
-        100: '#DDDDDD', // bg
-        200: '#EDEDED' // lighter gray
-      },
-      'black': '#0A0A0A'
-    },
     fontFamily: {
-      haas: ['HaasRegular', 'sans-serif'],
-      garamond: ['Garamond', 'serif']
+      sans: ['HaasRegular', 'sans-serif'],
+      serif: ['Garamond', 'serif']
     },
+    fontSize: {
+      base: '14px'
+    }, 
     extend: {
+      colors: {
+        myGray: {
+          100: '#DDDDDD', // bg
+          200: '#EDEDED' // lighter gray
+        },
+        'myblack': '#0A0A0A'
+      },
       borderRadius: {
         'lg': '15px',
         'sm': '5px',
