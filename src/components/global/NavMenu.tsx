@@ -4,6 +4,7 @@ import useCustomEffect from "../hooks/useCustomEffect";
 import gsap from 'gsap';
 import SocialLink from "./SocialLink";
 import slideup from "../utils/SlideUp";
+import BracesHeaderText from "./BracesHeaderText";
 
 const NavMenu = () => {
   const {open, pages, socialLinks} = useNavContext();
@@ -53,29 +54,29 @@ const NavMenu = () => {
   return (
     <div ref={container} 
       className="text-base w-full h-[100vh] pointer-events-none text-myblack p-[20px] bg-myGray-100 fixed opacity-0 z-10">
-      <div ref={innerCon} className="grid grid-rows-8 h-[100%] w-full ">
+      <div ref={innerCon} className="grid grid-rows-9 h-[100%] w-full">
         <div ref={(el) => addElem(el)} className="row-start-2">
           <p>@{new Date().getFullYear()}</p>
         </div>
 
-        {/* ===== pAGE LINKS ===== */}
-        <div className="row-start-5">
+        {/* ===== PAGE LINKS ===== */}
+        <div className="row-start-6">
           {
             pages.map((page, i) => (
               <button ref={(el) => addElem(el)} key={i} className="mb-[5px] last:mb-[0] block">
-                <h2 className="text-[40px] opacity-50 leading-[1.1] tracking-tight" >{page.name}</h2>
+                <BracesHeaderText text={page.name} />
               </button>
             ))
           }
         </div>
 
         {/* ===== SOCIAL LINKS ===== */}
-        <div className="row-start-9 flex gap-[20px]">
+        <div className="row-start-10 flex gap-[20px]">
           {
             socialLinks.map((link, i) => (
-              <div ref={(el) => addElem(el)} key={i}>
+              <button ref={(el) => addElem(el)} key={i}>
                 <SocialLink title={link} trigger={open} iconSize={13} />
-              </div>
+              </button>
             ))
           }
         </div>
