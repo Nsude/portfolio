@@ -59,14 +59,14 @@ const NavMenu = () => {
 
   return (
     <div ref={container} 
-      className="text-base w-full h-[100vh] pointer-events-none text-myblack bg-myGray-100 fixed opacity-0 z-10">
+      className="text-base w-full h-[100dvh] lg:h-[100vh] pointer-events-none text-myblack bg-myGray-100 fixed opacity-0 z-10">
       <div ref={innerCon} className="grid grid-rows-9 lg:grid-cols-8 p-[20px] h-[100%] w-full">
         <div ref={(el) => addElem(el)} className="row-start-2 lg:hidden">
           <p>@{new Date().getFullYear()}</p>
         </div>
 
         {/* ===== PAGE LINKS ===== */}
-        <div className="row-start-6 lg:row-start-4 lg:col-start-2 lg:col-span-3">
+        <div className="row-start-5 lg:row-start-4 lg:col-start-2 lg:col-span-3">
           {
             pages.map((page, i) => (
               <button 
