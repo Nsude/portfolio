@@ -1,10 +1,14 @@
 import { useState } from "react";
 import Hamburger from "../../assets/icons/Hamburger";
 import useCustomEffect from "../hooks/useCustomEffect";
+import NavMenu from "./NavMenu";
+import DarkOverlay from "../animation-helpers/DarkOverlay";
+import { useNavContext } from "../contexts/NavContext";
 
 
 const NavBar = () => {
   const [time, setTime] = useState('00:00');
+  const { open } = useNavContext();
 
   useCustomEffect(() => {
     const interval = setInterval(() => {
@@ -21,7 +25,10 @@ const NavBar = () => {
   }, []);
 
   return (
-    <nav className="text-base fixed top-0 text-white mix-blend-difference w-full px-[20px] py-[25px] grid grid-cols-8">
+    <>
+    <NavMenu />
+    <DarkOverlay trigger={open} />
+    <nav className="text-base fixed z-10 top-0 text-white mix-blend-difference w-full px-[20px] py-[25px] grid grid-cols-8">
       <div className="flex items-center justify-between w-fit col-span-1">
         <span className="leading-[1]">M</span>
         <span className="leading-[0.5]">&mdash;</span>
@@ -33,13 +40,14 @@ const NavBar = () => {
       </div>
 
       <div className="hidden lg:block uppercase w-fit col-start-6"> 
-        <p>Scroll</p> 
+        <p className={`transition-opacity duration-[400ms] ${open ? 'opacity-40' : 'duration-[800ms] opacity-100'}`}>Scroll</p> 
       </div>
 
       <div className="w-fit col-start-9">
         <Hamburger />
       </div>
     </nav>
+    </>
   )
 }
 
