@@ -22,7 +22,6 @@ const NavMenuImage:React.FC<Props> = ({page}) => {
     gsap.killTweensOf(newImage.current);
 
     if (!newImage.current || !imageRef.current || !page?.image) return;
-    console.log("here here")
     
     gsap.set(newImage.current, {opacity: 1});
     gsap.fromTo(newImage.current, {
@@ -50,15 +49,6 @@ const NavMenuImage:React.FC<Props> = ({page}) => {
     gsap.killTweensOf(imageRef.current);
 
     if (open) {
-      // gsap.fromTo(imageRef.current, {
-      //   clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)"
-      // }, {
-      //   clipPath: "polygon(0 100%, 100% 100%, 100% 0%, 0 0%)",
-      //   duration,
-      //   ease,
-      //   delay
-      // })
-
       gsap.to([imageRef.current, newImage.current], {scale: 1.3, duration, ease, delay})
     } else {
       gsap.to([imageRef.current, newImage.current], {scale: 1, duration, ease})
