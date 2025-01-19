@@ -3,8 +3,9 @@ import { useNavContext } from "../contexts/NavContext";
 import useCustomEffect from "../hooks/useCustomEffect";
 import gsap from 'gsap';
 import SocialLink from "./SocialLink";
-import slideup from "../utils/SlideUp";
+import slideup from "../utils/slideUp";
 import BracesHeaderText from "./BracesHeaderText";
+import NavMenuImage from "./NavMenuImage";
 
 const NavMenu = () => {
   const {open, pages, socialLinks} = useNavContext();
@@ -15,7 +16,9 @@ const NavMenu = () => {
   const ease = "expo.inOut";
 
   useCustomEffect(() => {
-    
+    // Kill any active animations on container and innerCon to prevent conflicts
+    gsap.killTweensOf([container.current, innerCon.current]);
+
     if (open) {
       gsap.set(container.current, {opacity: 1, pointerEvents: 'all'});
       gsap.set(innerCon.current, { yPercent: 0}); //reset inner con
@@ -37,10 +40,11 @@ const NavMenu = () => {
 
       // move innercon on close
       gsap.to(innerCon.current, {
-        yPercent: -10,
+        yPercent: -6,
         delay: .1,
         duration: 1
       })
+      
     }
 
   }, [open])
@@ -53,17 +57,17 @@ const NavMenu = () => {
 
   return (
     <div ref={container} 
-      className="text-base w-full h-[100vh] pointer-events-none text-myblack p-[20px] bg-myGray-100 fixed opacity-0 z-10">
-      <div ref={innerCon} className="grid grid-rows-9 h-[100%] w-full">
-        <div ref={(el) => addElem(el)} className="row-start-2">
+      className="text-base w-full h-[100vh] pointer-events-none text-myblack bg-myGray-100 fixed opacity-0 z-10">
+      <div ref={innerCon} className="grid grid-rows-9 lg:grid-cols-8 p-[20px] h-[100%] w-full">
+        <div ref={(el) => addElem(el)} className="row-start-2 lg:row-start-10 lg:col-start-9">
           <p>@{new Date().getFullYear()}</p>
         </div>
 
         {/* ===== PAGE LINKS ===== */}
-        <div className="row-start-6">
+        <div className="row-start-6 lg:row-start-4 lg:col-start-2 lg:col-span-3">
           {
             pages.map((page, i) => (
-              <button ref={(el) => addElem(el)} key={i} className="mb-[5px] last:mb-[0] block">
+              <button ref={(el) => addElem(el)} key={i} className="mb-[5px] text-left last:mb-[0] block">
                 <BracesHeaderText text={page.name} />
               </button>
             ))
@@ -71,7 +75,8 @@ const NavMenu = () => {
         </div>
 
         {/* ===== SOCIAL LINKS ===== */}
-        <div className="row-start-10 flex gap-[20px]">
+        <p ref={(el) => addElem(el)} className="hidden lg:inline-block uppercase lg:row-start-10 lg:col-span-1">Reach Out</p>
+        <div className="row-start-10 flex gap-[20px] lg:col-start-2 lg:col-span-3">
           {
             socialLinks.map((link, i) => (
               <button ref={(el) => addElem(el)} key={i}>
@@ -79,6 +84,11 @@ const NavMenu = () => {
               </button>
             ))
           }
+        </div>
+
+        {/* ===== IMAGE CONTAINER ===== */}
+        <div className="hidden lg:block lg:col-start-6 lg:col-span-3 lg:row-start-2">
+          <NavMenuImage />
         </div>
       </div>
     </div>

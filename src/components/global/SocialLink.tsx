@@ -13,7 +13,7 @@ const SocialLink:React.FC<Props> = ({title, trigger, iconSize}) => {
 
   const animateIcon = (mouseIn?: boolean) => {
     const tl = gsap.timeline();
-    const duration = 0.6;
+    const duration = 0.3;
 
     if (mouseIn) {
       tl.to(iconRef.current, {

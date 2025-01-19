@@ -10,7 +10,7 @@ const slideup = (elements: HTMLElement[], duration: number, stagger: number, del
       y: 40
     },
     {
-      clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+      clipPath: "polygon(-15% -15%, 115% -10%, 110% 115%, -15% 110%)",
       duration,
       y: 0,
       ease: "expo.inOut",
