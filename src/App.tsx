@@ -1,6 +1,7 @@
 import gsap from "gsap";
 import Homepage from "./components/home/Homepage"
 import useCustomEffect from "./components/hooks/useCustomEffect"
+import CarouselContextProvider from "./components/contexts/CarouselContext";
 
 function App() {
 
@@ -12,7 +13,9 @@ function App() {
 
   return (
     <div>
-      <Homepage />
+      <CarouselContextProvider>
+        <Homepage />
+      </CarouselContextProvider>
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import React, { createContext, PropsWithChildren, useContext, useState } from "react";
+import React, { createContext, ReactNode, useContext, useState } from "react";
 
 interface Props {
   open: boolean;
@@ -91,7 +91,7 @@ const pages: Page[] = [
 
 const socialLinks = ['LinkedIn', 'Twitter', 'Email'];
 
-const NavContextProvider:React.FC<PropsWithChildren> = ({children}) => {
+const NavContextProvider:React.FC<{children: ReactNode}> = ({children}) => {
   const [open, setOpen] = useState(false);
 
   return (

@@ -9,10 +9,14 @@ const Layout = () => {
   
   return (
     <div className='bg-myGray-100'>
-        <NavContextProvider>
-          <NavBar />
-        </NavContextProvider>
-      <Outlet />
+      <NavContextProvider>
+        <NavBar />
+      </NavContextProvider>
+
+      <NavContextProvider>
+        <Outlet />
+      </NavContextProvider>
+      
       <div>
         { !hideFooter &&<Footer /> }
       </div>
