@@ -34,7 +34,7 @@ const pages: Page[] = [
     name: 'Index',
     index: '001',
     image: 'assets/images/index-image.webp',
-    video: '',
+    video: 'assets/videos/index.mp4',
     title: 'the projects',
     description: 'Here’s where the magic happens. From e-commerce brilliance to immersive digital experiences.',
     cheekyLine: "There's no place like home",
@@ -44,7 +44,7 @@ const pages: Page[] = [
     name: 'Projects',
     index: '002',
     image: 'assets/images/projects-image.webp',
-    video: '',
+    video: 'assets/videos/projects.mp4',
     title: 'the projects',
     description: 'Here’s where the magic happens. From e-commerce brilliance to immersive digital experiences.',
     cheekyLine: 'Where ideas go to get built (and occasionally break)',
@@ -66,7 +66,7 @@ const pages: Page[] = [
     name: 'User interfaces',
     index: '004',
     image: 'assets/images/interfaces-image.webp',
-    video: '',
+    video: 'assets/videos/interfaces.mp4',
     title: 'The interfaces',
     description: `This is where ideas meet design. A showcase of interfaces that blur the line between functional and beautiful. 
     
@@ -78,7 +78,7 @@ const pages: Page[] = [
     name: 'Junk lab',
     index: '005',
     image: 'assets/images/junklab-image.webp',
-    video: '',
+    video: 'assets/videos/junk-lab.mp4',
     title: 'The junk lab',
     description: `Step into the chaos. This isn’t design—it’s anarchy on a canvas. A no-rules, all-guts curation of my wildest poster layouts. 
 
