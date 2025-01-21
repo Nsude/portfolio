@@ -24,7 +24,7 @@ const Carousel = () => {
 
   return (
     <div
-    className='relative w-full h-full sm:max-w-[450px]'
+    className='relative w-full h-full max-w-[350px] sm:max-w-[450px]'
     >
       {/* ====== OUTER CONTAINER ====== */}
       <div className='w-full h-full text-white leading-[1] '>
@@ -53,7 +53,7 @@ const Carousel = () => {
           </div>
         </div>
 
-        <div className='mt-5 text-myblack'>
+        <div className='mt-2 text-myblack'>
           <CarouselSelector />
         </div>
         
