@@ -87,6 +87,23 @@ const CarouselSelector = () => {
     setCurrentIndex((+i) - 1) // if i is zero we have to make the currentIndex i - 1 in order to move the track left
   }
 
+  // ===== NAVIGATE CAROUSEL USING SCROLL =====
+  useCustomEffect(() => {
+    const handleScroll = (e: WheelEvent) => {
+      if (e.deltaY > 0) {
+        console.log('scrolling down')
+      } else if (e.deltaY < 0) {
+        console.log('scrolling up')
+      }
+    }
+
+    window.addEventListener("wheel", handleScroll);
+
+    return () => (
+      window.removeEventListener("wheel", handleScroll)
+    )
+  })
+
   return (
     <div className="h-[50px] w-full overflow-hidden">
       <div className="relative w-full h-full flex gap-x-5 items-center justify-center">
@@ -113,7 +130,7 @@ const CarouselSelector = () => {
                 key={i} 
                 data-index={i} 
                 onClick={(e) => handleClick(e)}
-                className="min-w-[30px] w-[30px] aspect-square rounded-lg overflow-hidden">
+                className="min-w-[30px] w-[30px] aspect-square rounded-lg overflow-hidden cursor-pointer">
                 <img className="w-full h-full" src={slide.image} alt={`${slide.name}`} />
               </div>
             ))}

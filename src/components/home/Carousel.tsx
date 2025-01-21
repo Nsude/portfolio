@@ -24,7 +24,7 @@ const Carousel = () => {
 
   return (
     <div
-    className='relative w-full h-full'
+    className='relative w-full h-full sm:max-w-[450px]'
     >
       {/* ====== OUTER CONTAINER ====== */}
       <div className='w-full h-full text-white leading-[1] '>
@@ -48,7 +48,7 @@ const Carousel = () => {
             {/* ====== BG GRADIENT ====== */}
             <div className='absolute left-0 top-0 w-full h-full z-[1] bg-gradient-to-t from-myblack to-transparent' />
             <div className='w-full h-full'>
-              <ImageReveal page={selected} delay={.2} carousel />
+              <ImageReveal page={selected} delay={.2} carousel={true} />
             </div>
           </div>
         </div>

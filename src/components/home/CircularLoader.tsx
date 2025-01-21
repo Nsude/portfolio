@@ -92,7 +92,9 @@ const CircularLoader = ({
   }, [isLoading, isPaused, duration, handleComplete]);
 
   return (
-    <div className="absolute z-[2] left-[50%] top-0 translate-x-[-50%] w-[50px] h-full flex justify-center items-center">
+    <div 
+      onClick={(e) => e.stopPropagation()}
+      className="absolute z-[2] left-[50%] top-0 translate-x-[-50%] w-[50px] h-full flex justify-center items-center">
       <svg className="absolute w-full h-full -rotate-90" viewBox="0 0 100 100">
         {/* Background path circle */}
         <circle
