@@ -1,13 +1,13 @@
 import gsap from "gsap";
 
-const slideup = (elements: HTMLElement[], duration: number, stagger: number, ease?: string, invertReveal?: boolean,delay?: number) => {
+const slideup = (elements: HTMLElement[], duration: number, stagger: number, ease?: string, slideFast?: boolean,delay?: number) => {
   if (!elements || elements.length === 0) throw new Error("slide up elements are undefined");
 
   gsap.fromTo(
     elements,
     {
       clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)", 
-      y: invertReveal ? -40 : 40
+      y: slideFast ? 60 : 40
     },
     {
       clipPath: "polygon(-20% -20%, 120% -10%, 120% 120%, -20% 110%)",

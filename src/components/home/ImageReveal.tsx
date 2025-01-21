@@ -10,70 +10,86 @@ interface Props {
 }
 
 const ImageReveal = ({page, delay, carousel}: Props) => {
-
   const { open } = useNavContext();
   const [prevImage, setPrevImage] = useState('assets/images/index-image.webp');
-  const imageRef = useRef(null);
-  const newImage = useRef(null);
+  const currentImageRef = useRef(null);
+  const newImageRef = useRef(null);
+  const [key, setKey] = useState(0);
 
   // ===== REVEAL SELECTED IMAGE OVER PREV IMAGE =====
   useCustomEffect(() => {
     const duration = 1;
     const ease = "power2.out";
 
-    gsap.killTweensOf(newImage.current);
+    if (!newImageRef.current || !currentImageRef.current || !page?.image) return;
 
-    if (!newImage.current || !imageRef.current || !page?.image) return;
+    gsap.killTweensOf([newImageRef.current, currentImageRef.current]);
 
-    gsap.set(newImage.current, {opacity: 1});
-    gsap.fromTo(newImage.current, {
+    gsap.set(newImageRef.current, {
+      opacity: 1,
+      scale: 3.5,
       clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)"
-    }, {
+    });
+
+    const tl = gsap.timeline({
+      onComplete: () => {
+        setPrevImage(page.image);
+        setKey(prev => prev + 1);
+      }
+    });
+
+    tl.to(newImageRef.current, {
       clipPath: "polygon(0 100%, 100% 100%, 100% 0%, 0 0%)",
       duration,
       ease,
       delay
-    }).then(() => {
-      setPrevImage(page.image);
-    })
+    }).to(newImageRef.current, {
+      scale: 1,
+      duration,
+      ease,
+    }, "<");
 
-    gsap.fromTo(newImage.current, {scale: 2.5}, {scale: 1, duration});
-
-  }, [page])
+  }, [page, delay])
 
   // ===== ANIMATE IMAGE ON MENU OPEN AND CLOSE =====
   useCustomEffect(() => {
-    if (!imageRef.current) return;
+    if (!currentImageRef.current) return;
     const duration = 1.5;
     const ease = "power2.out";
-    const delay = .2;
+    const menuDelay = .2;
 
-    gsap.killTweensOf(imageRef.current);
-
-    if (open) {
-      gsap.to([imageRef.current, newImage.current], {scale: 1.3, duration, ease, delay})
-    } else {
-      gsap.to([imageRef.current, newImage.current], {scale: 1, duration, ease})
+    const elements = [currentImageRef.current];
+    if (newImageRef.current) {
+      elements.push(newImageRef.current);
     }
 
+    gsap.killTweensOf(elements);
+
+    if (open) {
+      gsap.to(elements, {scale: 1.3, duration, ease, delay: menuDelay})
+    } else {
+      gsap.to(elements, {scale: 1, duration, ease})
+    }
   }, [open])
 
   return (
     <div className={`relative overflow-hidden w-full bg-myGray-100 ${!carousel ? 'h-[88%]' : 'h-full'} rounded-lg`}>
       <img
-        ref={imageRef}
+        ref={currentImageRef}
         className="absolute top-0 left-0 h-full w-full object-cover"
         src={prevImage || "assets/images/index-image.webp"}
         alt="Default image"
       />
-      {/* New Image */}
-      <img
-        ref={newImage}
-        className="absolute top-0 left-0 h-full w-full object-cover opacity-0"
-        src={page?.image}
-        alt="New hovered image"
-      />
-      </div>
+      {page?.image && (
+        <img
+          key={key}
+          ref={newImageRef}
+          className="absolute top-0 left-0 h-full w-full object-cover opacity-0"
+          src={page?.image}
+          alt="New hovered image"
+        />
+      )}
+    </div>
   )
 }
 

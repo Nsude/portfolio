@@ -19,20 +19,20 @@ const CarouselSelector = () => {
   const itemWidth = 30;
   const itemGap = 20;
   const totalSlides = slides.length;
-  const loaderDuration = 3000;
 
   const containerWidth = (itemsPerSlide * (itemWidth + itemGap)) - itemGap;
   const selectedSlideIndex = (currentIndex + Math.floor(itemsPerSlide / 2)) % totalSlides;
   const slideDuration = 600;
   const trackRef = useRef(null);
 
+  // ===== SET SELECTED SLIDE =====
   useCustomEffect(() => {
     const normalizedIndex = ((selectedSlideIndex % totalSlides) + totalSlides) % totalSlides;
     setSelected(slides[normalizedIndex]);
   }, [currentIndex]);
 
   useCustomEffect(() => {
-    if (isAnimating) return;
+    if (isAnimating) return; // PREVENT ANIMATION CLASHES 
 
     const track = trackRef.current;
     gsap.killTweensOf(track);
@@ -46,6 +46,7 @@ const CarouselSelector = () => {
       ease: 'expo.inOut',
       onComplete: () => {
         if (currentIndex >= totalSlides) {
+          // reset carousel if user is at the last slide in the first slides list
           gsap.set(track, { x: 0 });
           setCurrentIndex(0);
         } else if (currentIndex < 0) {
@@ -61,23 +62,36 @@ const CarouselSelector = () => {
     });
   }, [currentIndex, totalSlides, itemWidth, itemGap]);
 
+  // ===== NAVIGATE TO NEXT =====
   const handleNext = () => {
     if (isAnimating) return;
     setIsLoading(false);
     setCurrentIndex(prev => prev + 1);
   };
 
+  // ===== NAVIGATE TO PREV =====
   const handlePrev = () => {
     if (isAnimating) return;
     setIsLoading(false);
     setCurrentIndex(prev => prev - 1);
   };
 
+  // ===== NAVIGATE CAROUSEL BY CLICKING ON ITEMS =====
+  const handleClick = (e: React.MouseEvent) => {
+    if (isAnimating) return;
+
+    const target = e.currentTarget;
+    const i = target.getAttribute('data-index');
+    if (!i) return;
+    
+    setCurrentIndex((+i) - 1) // if i is zero we have to make the currentIndex i - 1 in order to move the track left
+  }
+
   return (
     <div className="h-[50px] w-full overflow-hidden">
       <div className="relative w-full h-full flex gap-x-5 items-center justify-center">
         <CircularLoader
-          duration={loaderDuration}
+          duration={3000}
           handleComplete={handleNext}
           isLoading={isLoading}
           isPaused={isAnimating}
@@ -92,9 +106,14 @@ const CarouselSelector = () => {
         </div>
         
         <div style={{ width: `${containerWidth}px` }} className="h-full overflow-hidden">
-          <div ref={trackRef} className="flex gap-x-5 h-full w-fit items-center justify-center">
+          <div 
+            ref={trackRef} className="flex gap-x-5 h-full w-fit items-center justify-center">
             {[...slides, ...slides].map((slide, i) => (
-              <div key={i} className="min-w-[30px] w-[30px] aspect-square rounded-lg overflow-hidden">
+              <div 
+                key={i} 
+                data-index={i} 
+                onClick={(e) => handleClick(e)}
+                className="min-w-[30px] w-[30px] aspect-square rounded-lg overflow-hidden">
                 <img className="w-full h-full" src={slide.image} alt={`${slide.name}`} />
               </div>
             ))}

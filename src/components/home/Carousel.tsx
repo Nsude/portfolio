@@ -12,7 +12,7 @@ const Carousel = () => {
   useCustomEffect(() => {
     if (!slideUpElems.current) return;
 
-    slideup(slideUpElems.current, .6, .02);
+    slideup(slideUpElems.current, .6, .02, '', true );
 
   }, [selected]);
 

@@ -48,7 +48,7 @@ const pages: Page[] = [
     title: 'the projects',
     description: 'Here’s where the magic happens. From e-commerce brilliance to immersive digital experiences.',
     cheekyLine: 'Where ideas go to get built (and occasionally break)',
-    tags: ['Designer', 'Developer']
+    tags: ['Code Conjurer', 'Creator']
   },
   {
     name: 'About me',
@@ -72,7 +72,7 @@ const pages: Page[] = [
     
     Every layout tells a story—some bold, some subtle, all uniquely mine.`,
     cheekyLine: 'Interfaces so smooth, they practically flirt.',
-    tags: ['Designer', 'Developer']
+    tags: ['Clicksmith', 'Pixel Pusher']
   },
   {
     name: 'Junk lab',
@@ -84,7 +84,7 @@ const pages: Page[] = [
 
     Bold, brash, and unhinged. Enter if you dare, and don’t say I didn’t warn you.`,
     cheekyLine: 'Creative menace—step into the mind of lil ol me.',
-    tags: ['Designer', 'Developer']
+    tags: ['Type Geek', 'Tinker']
   },
 
 ];
