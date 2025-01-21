@@ -25,25 +25,10 @@ const CarouselSelector = () => {
   const selectedSlideIndex = (currentIndex + Math.floor(itemsPerSlide / 2)) % totalSlides;
   const slideDuration = 600;
   const trackRef = useRef(null);
-  const animationRef = useRef<any>();
 
   useCustomEffect(() => {
-    return () => {
-      if (animationRef.current) {
-        clearTimeout(animationRef.current);
-      }
-    };
-  }, []);
-
-  useCustomEffect(() => {
-    if (animationRef.current) {
-      clearTimeout(animationRef.current);
-    }
-
-    animationRef.current = setTimeout(() => {
-      const normalizedIndex = ((selectedSlideIndex % totalSlides) + totalSlides) % totalSlides;
-      setSelected(slides[normalizedIndex]);
-    }, slideDuration / 2);
+    const normalizedIndex = ((selectedSlideIndex % totalSlides) + totalSlides) % totalSlides;
+    setSelected(slides[normalizedIndex]);
   }, [currentIndex]);
 
   useCustomEffect(() => {
