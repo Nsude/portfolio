@@ -1,30 +1,42 @@
-import { useRef, useState } from 'react';
-import useCustomEffect from '../hooks/useCustomEffect';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
-import { Page, useNavContext } from '../contexts/NavContext';
+import { Page } from '../contexts/NavContext';
+import useCustomEffect from '../hooks/useCustomEffect';
 
 interface Props {
-  selected: Page | null
+  selected: Page | null;
   delay?: number;
 }
 
-const VideoReveal = ({ selected: page, delay }: Props) => {
-  const { open } = useNavContext();
-  const [prevVideo, setPrevVideo] = useState('assets/videos/index.mp4');
-  const currentVideoRef = useRef(null);
-  const newVideoRef = useRef(null);
-  const [key, setKey] = useState(0);
+const VideoReveal = ({ selected, delay = 0 }: Props) => {
+  const [prevVideo, setPrevVideo] = useState('assets/videos/default.mp4');
+  const currentVideoRef = useRef<HTMLVideoElement>(null);
+  const newVideoRef = useRef<HTMLVideoElement>(null);
 
-  // ===== REVEAL SELECTED VIDEO OVER PREV VIDEO =====
+  useEffect(() => {
+    // Ensure current video plays on mount
+    if (currentVideoRef.current) {
+      currentVideoRef.current.play().catch((err) =>
+        console.error('Error playing current video:', err)
+      );
+    }
+  }, [prevVideo]);
+
   useCustomEffect(() => {
+    if (!selected?.video || !newVideoRef.current || !currentVideoRef.current) return;
+
     const duration = 1;
     const ease = 'power2.out';
+    const newVideo = newVideoRef.current;
+    const currentVideo = currentVideoRef.current;
 
-    if (!newVideoRef.current || !currentVideoRef.current || !page?.video) return;
+    gsap.killTweensOf([newVideo, currentVideo]);
 
-    gsap.killTweensOf([newVideoRef.current, currentVideoRef.current]);
+    // Preload and reset the new video
+    newVideo.load();
+    newVideo.currentTime = 0;
 
-    gsap.set(newVideoRef.current, {
+    gsap.set(newVideo, {
       opacity: 1,
       scale: 3.5,
       clipPath: 'polygon(0 100%, 100% 100%, 100% 100%, 0 100%)',
@@ -32,68 +44,44 @@ const VideoReveal = ({ selected: page, delay }: Props) => {
 
     const tl = gsap.timeline({
       onComplete: () => {
-        setPrevVideo(page.video);
-        setKey((prev) => prev + 1);
+        setPrevVideo(selected.video); // Update `prevVideo` after animation
       },
     });
 
-    tl.to(newVideoRef.current, {
+    // Play the new video before starting the animation
+    newVideo.play().catch((err) => console.error('Error playing new video:', err));
+
+    tl.to(newVideo, {
       clipPath: 'polygon(0 100%, 100% 100%, 100% 0%, 0 0%)',
       duration,
       ease,
       delay,
-    }).to(newVideoRef.current, {
+    }).to(newVideo, {
       scale: 1,
       duration,
       ease,
     }, '<');
-  }, [page, delay]);
-
-  // ===== ANIMATE VIDEO ON MENU OPEN AND CLOSE =====
-  useCustomEffect(() => {
-    if (!currentVideoRef.current) return;
-    const duration = 1.5;
-    const ease = 'power2.out';
-    const menuDelay = 0.2;
-
-    const elements = [currentVideoRef.current];
-    if (newVideoRef.current) {
-      elements.push(newVideoRef.current);
-    }
-
-    gsap.killTweensOf(elements);
-
-    if (open) {
-      gsap.to(elements, { scale: 1.3, duration, ease, delay: menuDelay });
-    } else {
-      gsap.to(elements, { scale: 1, duration, ease });
-    }
-  }, [open]);
+  }, [selected, delay]);
 
   return (
-    <div className={`relative overflow-hidden w-full bg-myGray-100 h-full`}>
+    <div className="relative overflow-hidden w-full h-full bg-myGray-100">
       <video
         ref={currentVideoRef}
-        className="absolute top-0 left-0 h-full w-full object-cover"
+        className="absolute top-0 left-0 h-full z-[1] w-full object-cover"
+        src={prevVideo}
+        muted
         loop
         autoPlay
-        muted
-      >
-        <source src={prevVideo || 'assets/videos/index.mp4'} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-      {page?.video && (
+      />
+      {selected?.video && (
         <video
-          key={key}
           ref={newVideoRef}
-          className="absolute top-0 left-0 h-full w-full object-cover opacity-0"
+          className="absolute top-0 left-0 h-full w-full z-[2] object-cover"
+          src={selected.video}
+          muted
           loop
           autoPlay
-          muted
-        >
-          <source src={page?.video} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        />
       )}
     </div>
   );

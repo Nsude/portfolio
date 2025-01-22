@@ -31,7 +31,7 @@ const Carousel = () => {
         {/* ====== IMAGE CONTAINER ====== */}
         <div className='w-full aspect-square p-1 bg-white border-2'>
           {/* ====== ROUNDED CORNERS ====== */}
-          <div className='relative rounded-lg w-full h-full overflow-hidden lg:hidden'>
+          <div className='relative rounded-lg w-full h-full overflow-hidden'>
             <div className='absolute left-5 bottom-5 w-full z-[2]'>
               <p ref={(el) => addElem(el)} className='text-[10px] opacity-50 mb-[4px]'>PAGE</p>
               <h3 ref={(el) => addElem(el)} className='text-[30px] -tracking-[0.03ch]'>{selected?.name || 'Index'}</h3>
