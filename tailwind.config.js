@@ -25,6 +25,9 @@ export default {
         'lg': '15px',
         'sm': '5px',
         'full': '50%'
+      },
+      aspectRatio: {
+        myRatio: '0.87 / 1'
       }
     },
   },

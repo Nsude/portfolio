@@ -4,6 +4,7 @@ import useCustomEffect from '../hooks/useCustomEffect';
 import slideup from '../utils/slideUp';
 import CarouselSelector from './CarouselSelector';
 import ImageReveal from './ImageReveal';
+import FeaturedCardOne from './FeaturedCardOne';
 
 const Carousel = () => {
   const { selected } = useCarouselContext();
@@ -24,8 +25,13 @@ const Carousel = () => {
 
   return (
     <div
-    className='relative w-full h-full max-w-[350px] sm:max-w-[450px]'
+    className='relative w-full h-full min-w[350px] max-w-[350px] sm:min-w-[420px] sm:max-w-[450px]'
     >
+      {/* First Featured Card */}
+      <div className='hidden absolute z-[4] -right-[50%] top-[50%] -translate-y-[50%] -translate-x-[50%] lg:inline-block'>
+        <FeaturedCardOne />
+      </div>
+
       {/* ====== OUTER CONTAINER ====== */}
       <div className='w-full h-full text-white leading-[1] '>
         {/* ====== IMAGE CONTAINER ====== */}

@@ -54,7 +54,7 @@ const pages: Page[] = [
     name: 'About me',
     index: '003',
     image: 'assets/images/headshot.webp',
-    video: 'assets/videos/gray-bg.mp4',
+    video: 'assets/videos/about-poster.mp4',
     title: 'About lil ol me',
     description: `This isn’t just a portfolio—it’s a statement. Scroll, click, explore. 
 
