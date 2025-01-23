@@ -1,5 +1,6 @@
 import { useCarouselContext } from "../contexts/CarouselContext";
 import Carousel from "./Carousel";
+import FeaturedCardTwo from "./FeaturedCardTwo";
 
 const Homepage = () => {
   const { selected } = useCarouselContext();
@@ -8,6 +9,11 @@ const Homepage = () => {
     <div className="relative h-[100dvh] lg:h-[100vh] w-full px-5 grid grid-rows-10 justify-center overflow-hidden lg:grid-cols-8 lg:px-[20px]">    
       <div className="relative z-[3] row-start-3 row-span-5 flex justify-center lg:inline-block lg:col-start-2 lg:col-span-2">
         <Carousel />
+      </div>
+
+      {/* Second Featured Card */}
+      <div className='hidden relative z-[4] row-start-2 row-span-2 justify-center col-start-4 col-span-2 lg:flex'>
+        <FeaturedCardTwo />
       </div>
 
       <div className="hidden relative z-[4] row-start-6 col-start-4 lg:inline-block">

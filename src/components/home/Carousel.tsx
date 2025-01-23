@@ -54,7 +54,7 @@ const Carousel = () => {
             {/* ====== BG GRADIENT ====== */}
             <div className='absolute left-0 top-0 w-full h-full z-[1] bg-gradient-to-t from-myblack to-transparent' />
             <div className='w-full h-full'>
-              <ImageReveal page={selected} delay={.1} carousel={true} />
+              <ImageReveal page={selected} delay={.1} fullHeight={true} />
             </div>
           </div>
         </div>

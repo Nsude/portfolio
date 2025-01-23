@@ -6,12 +6,13 @@ import { Page, useNavContext } from '../contexts/NavContext';
 interface Props {
   page: Page | null;
   delay?: number;
-  carousel?: boolean
+  fullHeight?: boolean,
+  featured?: boolean
 }
 
-const ImageReveal = ({page, delay, carousel}: Props) => {
+const ImageReveal = ({page, delay, fullHeight, featured}: Props) => {
   const { open } = useNavContext();
-  const [prevImage, setPrevImage] = useState('assets/images/index-image.webp');
+  const [prevImage, setPrevImage] = useState( !featured ? 'assets/images/index-image.webp' : 'assets/images/posters/poster-image-21.webp');
   const currentImageRef = useRef(null);
   const newImageRef = useRef(null);
   const [key, setKey] = useState(0);
@@ -33,7 +34,7 @@ const ImageReveal = ({page, delay, carousel}: Props) => {
 
     const tl = gsap.timeline({
       onComplete: () => {
-        setPrevImage(page.image);
+        setPrevImage(!featured ? page.image : page.poster);
         setKey(prev => prev + 1);
       }
     });
@@ -73,11 +74,11 @@ const ImageReveal = ({page, delay, carousel}: Props) => {
   }, [open])
 
   return (
-    <div className={`relative overflow-hidden w-full bg-myGray-100 ${!carousel ? 'h-[88%]' : 'h-full'} rounded-lg`}>
+    <div className={`relative overflow-hidden w-full bg-myGray-100 ${!fullHeight ? 'h-[88%]' : 'h-full'} rounded-lg`}>
       <img
         ref={currentImageRef}
         className="absolute top-0 left-0 h-full w-full object-cover"
-        src={prevImage || "assets/images/index-image.webp"}
+        src={prevImage}
         alt="Default image"
       />
       {page?.image && (
@@ -85,7 +86,7 @@ const ImageReveal = ({page, delay, carousel}: Props) => {
           key={key}
           ref={newImageRef}
           className="absolute top-0 left-0 h-full w-full object-cover opacity-0"
-          src={page?.image}
+          src={!featured ? page?.image : page.poster}
           alt="New hovered image"
         />
       )}
