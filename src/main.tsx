@@ -4,6 +4,9 @@ import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Layout from './components/Layout.tsx'
 import App from './App.tsx'
+import AboutMe from './components/about/AboutMe.tsx'
+import Projects from './components/projects/Projects.tsx'
+import JunkLab from './components/junk-lab/JunkLab.tsx'
 
 const router = createBrowserRouter([
   {
@@ -13,6 +16,15 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <App />
+      }, {
+        path: "/about",
+        element: <AboutMe />
+      }, {
+        path: "/projects",
+        element: <Projects />
+      }, {
+        path: "/junk-lab",
+        element: <JunkLab />
       }
     ]
   }

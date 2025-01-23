@@ -13,7 +13,7 @@ const VideoReveal = ({ selected, delay = 0 }: Props) => {
   const currentVideoRef = useRef<HTMLVideoElement>(null);
   const newVideoRef = useRef<HTMLVideoElement>(null);
 
-  useEffect(() => {
+  useCustomEffect(() => {
     // Ensure current video plays on mount
     if (currentVideoRef.current) {
       currentVideoRef.current.play().catch((err) =>
