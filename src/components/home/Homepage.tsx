@@ -4,7 +4,6 @@ import useCustomEffect from "../hooks/useCustomEffect";
 import Carousel from "./Carousel";
 import FeaturedCardTwo from "./FeaturedCardTwo";
 import { addElem } from "../utils/utilityFunctions";
-import slideup from "../utils/slideUp";
 import gsap from "gsap";
 
 const Homepage = () => {
@@ -21,7 +20,7 @@ const Homepage = () => {
         y: 60 
       },
       {
-        clipPath: "polygon(-60% -60%, 160% -10%, 160% 160%, -60% 110%)",
+        clipPath: "polygon(-60% -60%, 160% -10%, 160% 160%, -60% 160%)",
         duration: 1,
         y: 0,
         ease: "expo.inOut",
