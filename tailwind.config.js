@@ -18,12 +18,16 @@ export default {
           100: '#DDDDDD', // bg
           200: '#EDEDED' // lighter gray
         },
-        'myblack': '#0A0A0A'
+        myblack: '#0A0A0A',
+        opacityBg: 'rgba(var(--opacity-color), 0.2)'
       },
       borderRadius: {
         'lg': '15px',
         'sm': '5px',
         'full': '50%'
+      },
+      aspectRatio: {
+        myRatio: '0.87 / 1'
       }
     },
   },

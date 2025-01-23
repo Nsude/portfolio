@@ -12,7 +12,7 @@ const NavMenu = () => {
   const container = useRef(null);
   const innerCon = useRef(null);
   const fadeInElems = useRef<HTMLElement[]>([]);
-  const duration = .8;
+  const duration = 1;
   const ease = "expo.inOut";
 
   const [seletedPage, setSelectedpage] = useState<Page | null>(null);

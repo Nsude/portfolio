@@ -10,12 +10,12 @@ const DarkOverlay:React.FC<Props> = ({trigger}) => {
   const container = useRef(null);
 
   useCustomEffect(() => {
-    const duration = 0.4
+    const duration = 0.5;
 
     if (trigger) {
       gsap.set(container.current, {display: 'block'});
       gsap.to(container.current, {
-        opacity: 0.4,
+        opacity: 0.6,
         duration
       })
     } else {

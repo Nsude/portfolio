@@ -10,7 +10,7 @@ const Hamburger = () => {
   const lastBar = useRef(null);
 
   useCustomEffect(() => {
-    const duration = .2;
+    const duration = .3;
     const transformOrigin = "center";
     const ease = "power2.inOut";
 

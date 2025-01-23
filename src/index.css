@@ -11,7 +11,13 @@
 
 @font-face {
   font-family: "Garamond";
-  src: url("./assets/fonts/GARA.TTF");
+  src: url("./assets/fonts/GARAIT.TTF");
   font-weight: 400;
   font-style: normal;
+}
+
+@layer base {
+  :root {
+    --opacity-color: 255, 255, 255;
+  }
 }
