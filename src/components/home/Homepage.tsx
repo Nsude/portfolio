@@ -21,11 +21,11 @@ const Homepage = () => {
       },
       {
         clipPath: "polygon(-60% -60%, 160% -10%, 160% 160%, -60% 160%)",
-        duration: 1,
+        duration: .8,
         y: 0,
         ease: "expo.inOut",
         stagger: .05,
-        repeat: 0
+        delay: .25
       }
     );
     
