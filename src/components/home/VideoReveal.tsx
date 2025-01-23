@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import gsap from 'gsap';
 import { Page } from '../contexts/NavContext';
 import useCustomEffect from '../hooks/useCustomEffect';
