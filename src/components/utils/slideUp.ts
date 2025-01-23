@@ -1,6 +1,6 @@
 import gsap from "gsap";
 
-const slideup = (elements: HTMLElement[], duration: number, stagger: number, ease?: string, slideFast?: boolean,delay?: number) => {
+const slideup = (elements: HTMLElement[], duration: number, stagger: number, ease?: string, slideFast?: boolean, delay?: number) => {
   if (!elements || elements.length === 0) throw new Error("slide up elements are undefined");
 
   gsap.fromTo(

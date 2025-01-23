@@ -35,7 +35,7 @@ const Carousel = () => {
       {/* ====== OUTER CONTAINER ====== */}
       <div className='w-full h-full text-white leading-[1] '>
         {/* ====== IMAGE CONTAINER ====== */}
-        <div className='w-full aspect-square p-1 bg-white border-2'>
+        <div className='w-full aspect-square p-1 bg-white'>
           {/* ====== ROUNDED CORNERS ====== */}
           <div className='relative rounded-lg w-full h-full overflow-hidden'>
             <div className='absolute left-5 bottom-5 w-full z-[2]'>

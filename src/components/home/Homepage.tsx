@@ -1,9 +1,36 @@
+import { useRef } from "react";
 import { useCarouselContext } from "../contexts/CarouselContext";
+import useCustomEffect from "../hooks/useCustomEffect";
 import Carousel from "./Carousel";
 import FeaturedCardTwo from "./FeaturedCardTwo";
+import { addElem } from "../utils/utilityFunctions";
+import slideup from "../utils/slideUp";
+import gsap from "gsap";
 
 const Homepage = () => {
   const { selected } = useCarouselContext();
+  const fadeInElems = useRef<HTMLElement[]>([]);
+
+  useCustomEffect(() => {
+    if (!fadeInElems.current) return;
+
+    gsap.fromTo(
+      fadeInElems.current,
+      {
+        clipPath: "polygon(-20% -20%, 100% -20%, 100% -20%, -20% -20%)", 
+        y: 60 
+      },
+      {
+        clipPath: "polygon(-60% -60%, 160% -10%, 160% 160%, -60% 110%)",
+        duration: 1,
+        y: 0,
+        ease: "expo.inOut",
+        stagger: .05,
+        repeat: 0
+      }
+    );
+    
+  }, [selected])
 
   return (
     <div className="relative h-[100dvh] lg:h-[100vh] w-full px-5 grid grid-rows-10 justify-center overflow-hidden lg:grid-cols-8 lg:px-[20px]">    
@@ -16,13 +43,13 @@ const Homepage = () => {
         <FeaturedCardTwo />
       </div>
 
-      <div className="hidden relative z-[4] row-start-6 col-start-4 lg:inline-block">
+      <div ref={(el) => addElem(el, fadeInElems.current)} className="hidden w-fit relative z-[4] row-start-6 col-start-4 lg:inline-block">
         <h2 className="text-[160px] font-serif lowercase leading-[0.5] text-nowrap -tracking-[0.06ch]">{ selected?.title || "The Title" }</h2>
       </div>
       
       <div className="hidden relative z-[2] uppercase text-base max-w-[450px] mt-5 row-start-7 col-start-6 col-span-2 lg:inline-block">
-        <p className="text-[10px] opacity-50 mb-[5px]">intro</p>
-        <h4 className="w-full"> {selected?.description} </h4>
+        <p ref={(el) => addElem(el, fadeInElems.current)} className="text-[10px] opacity-50 mb-[5px]">intro</p>
+        <h4 ref={(el) => addElem(el, fadeInElems.current)} className="w-full"> {selected?.description} </h4>
       </div>
 
       <div className="row-start-10 w-full lg:absolute z-[2] lg:bottom-5 lg:left-0 lg:px-5">
