@@ -111,7 +111,7 @@ const CarouselSelector = () => {
           triggered.current = true;
           handlePrev();
         }
-      }, 50);
+      }, 100);
     }
 
     window.addEventListener("wheel", handleScroll);
