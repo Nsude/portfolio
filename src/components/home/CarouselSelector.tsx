@@ -87,6 +87,7 @@ const CarouselSelector = () => {
     setCurrentIndex((+i) - 1) // if i is zero we have to make the currentIndex i - 1 in order to move the track left
   }
 
+  // ===== HANDLE SCROLL NAVIGATION =====
   const triggered = useRef(false);
   useCustomEffect(() => {
     let scrollTimeout: any;
