@@ -6,14 +6,16 @@ interface Props {
   duration: number,
   handleComplete: () => void,
   isLoading: boolean,
-  isPaused: boolean
+  isPaused: boolean,
+  resetTrigger?: any // Add a reset trigger
 }
 
 const CircularLoader = ({ 
   duration = 3000, 
   handleComplete, 
   isLoading, 
-  isPaused = false 
+  isPaused = false,
+  resetTrigger // New prop to force reset
 }: Props) => {
   const loaderRef = useRef(null);
   const loaderAnimationRef = useRef<GSAPAnimation>();
@@ -27,58 +29,32 @@ const CircularLoader = ({
         loaderAnimationRef.current.kill();
       }
 
-      if (!isReversing.current) {
-        gsap.set(loaderElement, {
-          strokeDasharray: '283',
-          strokeDashoffset: '283',
-        });
-      }
+      // Always reset to initial state when resetTrigger changes
+      gsap.set(loaderElement, {
+        strokeDasharray: '283',
+        strokeDashoffset: '283',
+      });
       
       loaderAnimationRef.current = gsap.to(loaderElement, {
-        strokeDashoffset: isReversing.current ? '283' : '0',
+        strokeDashoffset: '0',
         duration: duration / 1000,
         ease: 'linear',
         onComplete: () => {
           if (!isPaused) {
-            if (isReversing.current) {
-              isReversing.current = false;
-              if (handleComplete) {
-                handleComplete();
-              }
-              gsap.set(loaderElement, {
-                strokeDasharray: '283',
-                strokeDashoffset: '283',
-              });
-              loaderAnimationRef.current = gsap.to(loaderElement, {
-                strokeDashoffset: '0',
-                duration: duration / 1000,
-                ease: 'linear',
-              });
-            } else {
-              isReversing.current = true;
-              loaderAnimationRef.current = gsap.to(loaderElement, {
-                strokeDashoffset: '283',
-                duration: duration / 1000,
-                ease: 'linear',
-                onComplete: () => {
-                  if (!isPaused) {
-                    isReversing.current = false;
-                    if (handleComplete) {
-                      handleComplete();
-                    }
-                    gsap.set(loaderElement, {
-                      strokeDasharray: '283',
-                      strokeDashoffset: '283',
-                    });
-                    loaderAnimationRef.current = gsap.to(loaderElement, {
-                      strokeDashoffset: '0',
-                      duration: duration / 1000,
-                      ease: 'linear',
-                    });
+            isReversing.current = true;
+            loaderAnimationRef.current = gsap.to(loaderElement, {
+              strokeDashoffset: '283',
+              duration: duration / 1000,
+              ease: 'linear',
+              onComplete: () => {
+                if (!isPaused) {
+                  isReversing.current = false;
+                  if (handleComplete) {
+                    handleComplete();
                   }
                 }
-              });
-            }
+              }
+            });
           }
         }
       });
@@ -89,14 +65,13 @@ const CircularLoader = ({
         loaderAnimationRef.current.kill();
       }
     };
-  }, [isLoading, isPaused, duration, handleComplete]);
+  }, [isLoading, isPaused, duration, handleComplete, resetTrigger]); // Add resetTrigger to dependency array
 
   return (
     <div 
       onClick={(e) => e.stopPropagation()}
       className="absolute z-[2] left-[50%] top-0 translate-x-[-50%] w-[50px] h-full flex justify-center items-center">
       <svg className="absolute w-full h-full -rotate-90" viewBox="0 0 100 100">
-        {/* Background path circle */}
         <circle
           className="stroke-black/20 fill-none"
           cx="50"
@@ -104,7 +79,6 @@ const CircularLoader = ({
           r="45"
           strokeWidth="3"
         />
-        {/* Animated loader circle */}
         <circle
           ref={loaderRef}
           className="stroke-white fill-none"

@@ -25,7 +25,7 @@ const Homepage = () => {
         y: 0,
         ease: "expo.inOut",
         stagger: .05,
-        delay: .25
+        delay: .1
       }
     );
     

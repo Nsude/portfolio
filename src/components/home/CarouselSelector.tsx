@@ -87,31 +87,52 @@ const CarouselSelector = () => {
     setCurrentIndex((+i) - 1) // if i is zero we have to make the currentIndex i - 1 in order to move the track left
   }
 
-  // ===== NAVIGATE CAROUSEL USING SCROLL =====
+  const triggered = useRef(false);
   useCustomEffect(() => {
+    let scrollTimeout: any;
+    const scrollThreshold = 0; // Minimum scroll delta to trigger navigation
+
     const handleScroll = (e: WheelEvent) => {
-      if (e.deltaY > 0) {
-        console.log('scrolling down')
-      } else if (e.deltaY < 0) {
-        console.log('scrolling up')
+      // Clear previous timeout to prevent multiple triggers
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+        triggered.current = false;
       }
+
+      // Debounce scroll to prevent rapid scrolling
+      scrollTimeout = setTimeout(() => {
+        // Only navigate if not currently animating
+        if (isAnimating || triggered.current) return;
+
+        if (e.deltaY > scrollThreshold) {
+          triggered.current = true;
+          handleNext();
+        } else if (e.deltaY < -scrollThreshold) {
+          triggered.current = true;
+          handlePrev();
+        }
+      }, 50);
     }
 
     window.addEventListener("wheel", handleScroll);
 
-    return () => (
-      window.removeEventListener("wheel", handleScroll)
-    )
-  })
+    return () => {
+      window.removeEventListener("wheel", handleScroll);
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
+    }
+  }, []);
 
   return (
     <div className="h-[50px] w-full overflow-hidden">
       <div className="relative w-full h-full flex gap-x-5 items-center justify-center">
         <CircularLoader
-          duration={3000}
+          duration={5000}
           handleComplete={handleNext}
           isLoading={isLoading}
           isPaused={isAnimating}
+          resetTrigger={currentIndex}
         />
 
         <div className="">
