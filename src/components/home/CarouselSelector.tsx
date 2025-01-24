@@ -126,7 +126,10 @@ const CarouselSelector = () => {
   }, []);
 
   return (
-    <div className="h-[50px] w-full overflow-hidden">
+    <div 
+      onClick={(e) => e.stopPropagation()}
+      onTouchStart={(e) => e.stopPropagation()}
+      className="h-[50px] w-full overflow-hidden">
       <div className="relative w-full h-full flex gap-x-5 items-center justify-center">
         <CircularLoader
           duration={5000}

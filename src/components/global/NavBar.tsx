@@ -4,11 +4,13 @@ import useCustomEffect from "../hooks/useCustomEffect";
 import NavMenu from "./NavMenu";
 import DarkOverlay from "../animation-helpers/DarkOverlay";
 import { useNavContext } from "../contexts/NavContext";
+import { useNavigate } from "react-router-dom";
 
 
 const NavBar = () => {
   const [time, setTime] = useState('00:00');
   const { open } = useNavContext();
+  const navigate = useNavigate();
 
   useCustomEffect(() => {
     const interval = setInterval(() => {
@@ -24,16 +26,21 @@ const NavBar = () => {
     return () => clearInterval(interval);
   }, []);
 
+  const handleNavigation = () => {
+    navigate("/");
+    window.location.reload();
+  }
+
   return (
     <>
     <NavMenu />
     <DarkOverlay trigger={open} />
     <nav className="text-base fixed z-10 top-0 text-white mix-blend-difference w-full px-[20px] py-[25px] grid grid-cols-8">
-      <div className="flex items-center justify-between w-fit col-span-1">
+      <button onClick={handleNavigation} className="flex items-center justify-between w-fit col-span-1">
         <span className="leading-[1]">M</span>
         <span className="leading-[0.5]">&mdash;</span>
         <span className="leading-[1]">N</span>
-      </div>
+      </button>
       
       <div className="hidden lg:block w-fit col-start-2">
         <p> {time} </p>

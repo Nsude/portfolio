@@ -6,6 +6,7 @@ import SocialLink from "./SocialLink";
 import slideup from "../utils/slideUp";
 import BracesHeaderText from "./BracesHeaderText";
 import NavMenuImage from "./NavMenuImage";
+import { Link } from "react-router-dom";
 
 const NavMenu = () => {
   const {open, pages, socialLinks} = useNavContext();
@@ -84,10 +85,14 @@ const NavMenu = () => {
         <p ref={(el) => addElem(el)} className="hidden lg:inline-block uppercase lg:row-start-10 lg:col-span-1">Reach Out</p>
         <div className="row-start-10 flex gap-[20px] lg:col-start-2 lg:col-span-3">
           {
-            socialLinks.map((link, i) => (
-              <button ref={(el) => addElem(el)} key={i}>
-                <SocialLink title={link} trigger={open} iconSize={13} />
-              </button>
+            socialLinks.map((item, i) => (
+              <Link
+                to={item.link}
+                target="_blank"
+                ref={(el) => addElem(el)}
+                key={i}>
+                <SocialLink title={item.name} trigger={open} iconSize={13} />
+              </Link>
             ))
           }
         </div>

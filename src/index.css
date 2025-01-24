@@ -21,3 +21,13 @@
     --opacity-color: 255, 255, 255;
   }
 }
+
+body {
+  overflow: hidden;
+  height: 100%;
+  overflow-y: auto;
+}
+
+body, html {
+  overscroll-behavior: none;
+}

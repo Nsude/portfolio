@@ -4,7 +4,12 @@ interface Props {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   pages: Page[];
-  socialLinks: string[];
+  socialLinks: SocialLink[];
+}
+
+interface SocialLink {
+  name: string;
+  link: string
 }
 
 export interface Page {
@@ -16,7 +21,8 @@ export interface Page {
   description: string;
   cheekyLine: string;
   tags: string[];
-  poster: string
+  poster: string;
+  link: string
 }
 
 const NavContext = createContext<Props | null>(null);
@@ -40,7 +46,8 @@ const pages: Page[] = [
     description: 'Here’s where the magic happens. From e-commerce brilliance to immersive digital experiences.',
     cheekyLine: "There's no place like home",
     tags: ['Designer', 'Developer'],
-    poster: ''
+    poster: '',
+    link: '/',
   },
   {
     name: 'Projects',
@@ -51,7 +58,8 @@ const pages: Page[] = [
     description: 'Here’s where the magic happens. From e-commerce brilliance to immersive digital experiences.',
     cheekyLine: 'Where ideas go to get built (and occasionally break)',
     tags: ['Code Conjurer', 'Creator'],
-    poster: 'assets/images/posters/poster-image-10.webp'
+    poster: 'assets/images/posters/poster-image-10.webp',
+    link: '/projects'
   },
   {
     name: 'About me',
@@ -64,7 +72,8 @@ const pages: Page[] = [
     You’re about to step into my world of creativity, innovation, and unapologetic Digital brilliance.`,
     cheekyLine: 'All the gossip about your favorite dev.',
     tags: ['Designer', 'Developer'],
-    poster: 'assets/images/posters/poster-image-26.webp'
+    poster: 'assets/images/posters/poster-image-26.webp',
+    link: '/about'
   },
   {
     name: 'User interfaces',
@@ -77,7 +86,8 @@ const pages: Page[] = [
     Every layout tells a story—some bold, some subtle, all uniquely mine.`,
     cheekyLine: 'Interfaces so smooth, they practically flirt.',
     tags: ['Clicksmith', 'Pixel Pusher'],
-    poster: 'assets/images/posters/poster-image-27.webp'
+    poster: 'assets/images/posters/poster-image-27.webp',
+    link: '/projects'
   },
   {
     name: 'Junk lab',
@@ -90,12 +100,25 @@ const pages: Page[] = [
     Bold, brash, and unhinged. Enter if you dare, and don’t say I didn’t warn you.`,
     cheekyLine: 'Creative menace—step into the mind of lil ol me.',
     tags: ['Type Geek', 'Tinker'],
-    poster: 'assets/images/posters/poster-image-11.webp'
+    poster: 'assets/images/posters/poster-image-11.webp',
+    link: '/junk-lab'
   },
 
 ];
 
-const socialLinks = ['LinkedIn', 'Twitter', 'Email'];
+const socialLinks = [
+  {
+    name: 'LinkedIn',
+    link: 'https://www.linkedin.com/in/nsude-meshach/'
+  },
+  {
+    name: 'Twitter',
+    link: 'https://x.com/meshach_nsude'
+  },
+  {
+    name: 'Email',
+    link: 'mailto:meshachnsd@gmail.com'
+  }];
 
 const NavContextProvider:React.FC<{children: ReactNode}> = ({children}) => {
   const [open, setOpen] = useState(false);
