@@ -76,12 +76,12 @@ const PostersGrid = () => {
         {
           posters.map((image, i) => (
             <div ref={(el) => addElem(el, imagesRef.current)} key={i} 
-            className={`w-full min-h-full 
+            className={`w-full h-full 
             ${( device.width < 768 && i > 3 )? 'hidden' : 'inline-block'}
             ${(device.width < 1024 && i > 11) ? 'hidden' : 'inline-block'}
             ${(device.width < 1536 && i > 17) ? 'hidden' : 'inline-block'}
             `}>
-              <img className="w-full min-h-full object-cover" src={image} alt="poster image" />
+              <img className="w-full h-full object-cover" src={image} alt="poster image" />
             </div>
           ))
         }
