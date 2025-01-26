@@ -39,10 +39,6 @@ const Layout = () => {
   }, [location])
 
   useCustomEffect(() => {
-    console.log("i ran")
-    if (location.pathname.endsWith("/")) {
-      console.log("location")
-    }
     setHideFooter(routesToHideFooter.endsWith(location.pathname));
   }, [location])
 

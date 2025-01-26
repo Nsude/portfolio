@@ -1,4 +1,5 @@
 import { TriangleAlert } from "lucide-react";
+import PostersGrid from "./PostersGrid";
 
 const AboutMe = () => {
   return (
@@ -32,6 +33,7 @@ const AboutMe = () => {
       </div>
 
       {/* ===== FEATURED POSTERS ===== */}
+      <PostersGrid />
 
       {/* =====  ===== */}
     </div>

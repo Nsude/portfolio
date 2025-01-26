@@ -16,7 +16,7 @@ const Footer = () => {
         Let's Build <br /> Something <br /> <span className="font-serif text-[90px] md:text-[100px] lg:text-[115px] leading-[0.5] xl:text-[160px] tracking-tight">unreal</span>
       </h3>
 
-      <div className="flex gap-x-[50px] row-start-4 row-span-2 col-start-1 col-span-5 md:row-start-2 md:col-start-4 md-gap-x[100px] lg:col-start-6 md:-ml-[26px]">
+      <div className="flex mt-[30px] md:mt-0 gap-x-[50px] row-start-4 row-span-2 col-start-1 col-span-5 md:row-start-2 md:col-start-4 md-gap-x[100px] lg:col-start-6 md:-ml-[26px]">
         <div>
           <h4 className="mb-5 uppercase">(Navigate)</h4>
           <div className="flex flex-col gap-y-[5px]">
