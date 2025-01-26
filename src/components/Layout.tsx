@@ -7,6 +7,7 @@ import useCustomEffect from './hooks/useCustomEffect';
 import gsap from 'gsap';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ReactLenis, useLenis } from 'lenis/react';
+import { useDevice } from './hooks/useDevice';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,6 +18,7 @@ const Layout = () => {
   const outletRef = useRef(null);
   const footerRef = useRef(null);
   const lenisRef = useRef<any>(null);
+  const device = useDevice();
   const lenis = useLenis();
 
   // ===== INIT LENIS SMOOTH SCROLL =====
@@ -25,11 +27,13 @@ const Layout = () => {
       lenisRef.current?.lenis?.raf(time * 1000)
     }
   
-    gsap.ticker.add(update)
+    gsap.ticker.add(update);
+
+    ScrollTrigger.refresh();
   
     return () => {
-      gsap.ticker.remove(update)
-      ScrollTrigger.refresh()
+      gsap.ticker.remove(update);
+     
     }
   }, [])
 
@@ -43,6 +47,7 @@ const Layout = () => {
   }, [location])
 
   useCustomEffect(() => {
+    if (device.width < 640) return null;
     if (!outletRef.current || !footerRef.current) return;
 
     gsap.killTweensOf([outletRef.current, footerRef.current]);
@@ -60,7 +65,7 @@ const Layout = () => {
         scrub: 1
       }
     })
-  })
+  }, [device])
   
   return (
     <ReactLenis 
@@ -80,7 +85,7 @@ const Layout = () => {
           </div>
           <div
             ref={footerRef}
-            className="absolute left-0 -bottom-[100%] w-full h-fit"
+            className={`${(device.width > 640 ? 'absolute' : 'static')} left-0 -bottom-[100%] w-full h-fit`}
           >
             {!hideFooter && <Footer />}
           </div>

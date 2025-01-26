@@ -3,9 +3,9 @@ import PostersGrid from "./PostersGrid";
 
 const AboutMe = () => {
   return (
-    <div className="px-5 leading-[1] h-full w-full">
+    <div className="leading-[1] h-full w-full">
       {/* ===== INTRO SCREEN ===== */}
-      <div className=" relative h-[100dvh] lg:[100vh] w-full flex flex-col justify-center items-center">
+      <div className="px-5 relative h-[100dvh] lg:[100vh] w-full flex flex-col justify-center items-center">
         <div className="flex flex-col items-center gap-y-5" >
           <div className="flex items-center">
             <p className="font-serif text-base">003 &mdash; </p>
@@ -17,11 +17,11 @@ const AboutMe = () => {
           </h3>
         </div>
 
-        <p className="absolute left-0 bottom-5 text-base opacity-50 lg:hidden">SCROLL</p>
+        <p className="absolute left-5 bottom-5 text-base opacity-50 lg:hidden">SCROLL</p>
       </div>
 
       {/* ===== WARNING OVERLAY ===== */}
-      <div className="h-[100dvh] md:[60vh] flex flex-col justify-center">
+      <div className="px-5 h-[100dvh] md:[60vh] flex flex-col justify-center">
         <button className="flex items-center w-fit text-base gap-x-[5px] px-[25px] py-[10px] bg-red-300 text-red-600 rounded-3xl" >
           <TriangleAlert size={16} />
           <p>WARNING</p>
