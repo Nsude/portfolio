@@ -71,8 +71,8 @@ const PostersGrid = () => {
   }, [device])
 
   return (
-    <div ref={containerRef} className="px-2.5 md:px-0md:bg-myblack min-h-[100dvh] lg:h-[100vh] w-full pb-[150px] md:pb-0">
-      <div ref={gridCon} className="grid grid-cols-2 grid-rows-3 sm:grid-rows-2 md:grid-cols-4 lg:grid-cols-6 2xl:grid-cols-8 gap-[5px] h-full w-full">
+    <div ref={containerRef} className="px-2.5 md:px-0 md:bg-myblack min-h-[100dvh] lg:h-[100vh] w-full pb-[150px] md:pb-0">
+      <div ref={gridCon} className="grid grid-cols-2 grid-rows-3 sm:grid-rows-3 md:grid-cols-4 lg:grid-cols-6 2xl:grid-cols-8 gap-[5px] h-full w-full">
         {
           posters.map((image, i) => (
             <div ref={(el) => addElem(el, imagesRef.current)} key={i} 

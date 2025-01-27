@@ -67,18 +67,21 @@ const AboutSection = () => {
   })
 
   return (
-    <div className="text-base px-5 min-h-[100dvh] w-full lg:h-[100vh]">
-      <div>
+    <div className="text-base px-5 min-h-[100dvh] w-full sm:h-full lg:min-h-[100vh] md:mt-[120px] lg:mt-[200px] lg:flex lg:justify-between lg:gap-x-5">
+      <div className="w-[50%]">
         <h4 className="uppercase mb-[55px]">About me <span className="opacity-40">(Click Titles)</span></h4>
-        <div className="mb-[150px]">
+        <div 
+          onMouseLeave={() => setStory('')}
+          className="mb-[150px]">
           {
             titles.map((item, i) => (
-              <button 
+              <div 
                 key={i}
                 onClick={(e) => {e.stopPropagation(); setStory(item.story)}} 
+                onMouseEnter={() => setStory(item.story)}
                 className="mb-[25px] last:mb-0">
                 <AboutTitle title={item.title} index={item.index} />
-              </button>
+              </div>
             ))
           }
         </div>
@@ -86,15 +89,18 @@ const AboutSection = () => {
         {/* ===== ORIGIN STORY ===== */}
         <div>
           <h4 className="uppercase mb-[25px]">origin story</h4>
-          <p ref={storyRef} className="text-[20px] tracking-[0.02ch] leading-[1.2] opacity-60">
+          <p ref={storyRef} className="text-[20px] tracking-[0.02ch] leading-[1.2] opacity-60 sm:w-[70%] md:w-[45%] lg:w-[65%] 2xl:w-[40%]">
             { story || 
              `Hi I'm Meshach and I'm an addict. I'm addicted to becoming the best version of myself. I grew up in a small town in Enugu, Nigeria where we did not have many examples of success to look up to`
             }
-            <p>...</p>
+            <br />
+            <span>...</span>
           </p>
         </div>
       </div>
-      <div></div>
+      <div className="bg-myblack w-[50%] h-full">
+
+      </div>
     </div>
   )
 }
