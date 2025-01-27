@@ -37,6 +37,11 @@ const Layout = () => {
     }
   }, [])
 
+  // ==== RESET ANIMATIONS ON RESIZE ====
+  useCustomEffect(() => {
+    ScrollTrigger.refresh();
+  }, [device])
+
   // ===== SCROLL TO TOP ON PAGE NAVIGATE =====
   useEffect(() => {
     lenis?.scrollTo(0, {immediate: true})
