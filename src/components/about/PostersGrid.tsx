@@ -71,17 +71,17 @@ const PostersGrid = () => {
   }, [device])
 
   return (
-    <div ref={containerRef} className="bg-myblack h-[100dvh] lg:h-[100vh] w-full pb-[150px] md:pb-0">
-      <div ref={gridCon} className="grid grid-cols-2 grid-rows-2 sm:grid-rows-2 md:grid-cols-4 lg:grid-cols-6 2xl:grid-cols-8 gap-[5px] h-full w-full">
+    <div ref={containerRef} className="px-2.5 md:px-0md:bg-myblack min-h-[100dvh] lg:h-[100vh] w-full pb-[150px] md:pb-0">
+      <div ref={gridCon} className="grid grid-cols-2 grid-rows-3 sm:grid-rows-2 md:grid-cols-4 lg:grid-cols-6 2xl:grid-cols-8 gap-[5px] h-full w-full">
         {
           posters.map((image, i) => (
             <div ref={(el) => addElem(el, imagesRef.current)} key={i} 
-            className={`w-full h-full 
-            ${( device.width < 768 && i > 3 )? 'hidden' : 'inline-block'}
+            className={`w-full h-fit sm:h-full
+            ${( device.width < 768 && i > 5 )? 'hidden' : 'inline-block'}
             ${(device.width < 1024 && i > 11) ? 'hidden' : 'inline-block'}
             ${(device.width < 1536 && i > 17) ? 'hidden' : 'inline-block'}
             `}>
-              <img className="w-full h-full object-cover" src={image} alt="poster image" />
+              <img className="w-full h-full overflow-hidden object-cover" src={image} alt="poster image" />
             </div>
           ))
         }

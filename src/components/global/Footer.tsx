@@ -29,7 +29,7 @@ const Footer = () => {
         </div>
 
         <div>
-          <h4 className="mb-5 uppercase">(Socials)</h4>
+          <h4 className="mb-5 uppercase">(Reach out)</h4>
           <div className="flex flex-col gap-y-[5px]">
             {
               socialLinks.map((item, i) => (
