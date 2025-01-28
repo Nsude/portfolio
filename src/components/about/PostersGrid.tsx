@@ -76,7 +76,7 @@ const PostersGrid = () => {
         {
           posters.map((image, i) => (
             <div ref={(el) => addElem(el, imagesRef.current)} key={i} 
-            className={`w-full h-fit sm:h-full
+            className={`w-full h-fit
             ${( device.width < 768 && i > 5 )? 'hidden' : 'inline-block'}
             ${(device.width < 1024 && i > 11) ? 'hidden' : 'inline-block'}
             ${(device.width < 1536 && i > 17) ? 'hidden' : 'inline-block'}
