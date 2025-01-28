@@ -35,24 +35,13 @@ const Homepage = () => {
 
   // ===== NAVIGATE TO PAGE =====
   const handleClick = () => {
-    switch(selected?.name.toLowerCase()) {
-      case "about me": 
-        navigate("/about");
-        break
-      case "projects":
-        navigate("projects");
-        break;
-      case "junk lab":
-        navigate("junk-lab");
-        break;
-      case "user interfaces":
-        navigate("projects");
-        break;
-    }
+    navigate(selected?.link || '/');
+    window.location.reload();
   }
 
   return (
-    <div onClick={handleClick} 
+    <div 
+      onClick={handleClick} 
       className="relative cursor-pointer h-[100dvh] lg:h-[100vh] w-full px-5 grid grid-rows-10 justify-center overflow-hidden lg:grid-cols-8 lg:px-[20px]">    
       <div 
         onClick={(e) => e.stopPropagation()}
