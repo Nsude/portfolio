@@ -8,30 +8,30 @@ import { useDevice } from "../hooks/useDevice";
 gsap.registerPlugin(ScrollTrigger);
 
 const posters = [
-  "assets/images/posters/poster-image.webp",
-  "assets/images/posters/blank.png",
-  "assets/images/posters/poster-image-2.webp",
-  "assets/images/posters/poster-image-34.webp",
-  "assets/images/posters/blank.png",
-  "assets/images/posters/poster-image-15.webp", // row 1
-  "assets/images/posters/blank.png",
-  "assets/images/posters/poster-image-12.webp", // row 1
-  "assets/images/posters/blank.png",
-  "assets/images/posters/poster-image-13.webp",
-  "assets/images/posters/blank.png",
-  "assets/images/posters/poster-image-3.webp",
-  "assets/images/posters/poster-image-9.webp",
-  "assets/images/posters/blank.png",
-  "assets/images/posters/poster-image-11.webp",
-  "assets/images/posters/poster-image-33.webp", // row 2
-  "assets/images/posters/poster-image-6.webp",
-  "assets/images/posters/poster-image-1.webp",
-  "assets/images/posters/blank.png",
-  "assets/images/posters/poster-image-4.webp",
-  "assets/images/posters/poster-image-19.webp",
-  "assets/images/posters/poster-image-30.webp",
-  "assets/images/posters/blank.png",
-  "assets/images/posters/poster-image-25.webp" // row 3
+  "/assets/images/posters/poster-image.webp",
+  "/assets/images/posters/blank.png",
+  "/assets/images/posters/poster-image-2.webp",
+  "/assets/images/posters/poster-image-34.webp",
+  "/assets/images/posters/blank.png",
+  "/assets/images/posters/poster-image-15.webp", // row 1
+  "/assets/images/posters/blank.png",
+  "/assets/images/posters/poster-image-12.webp", // row 1
+  "/assets/images/posters/blank.png",
+  "/assets/images/posters/poster-image-13.webp",
+  "/assets/images/posters/blank.png",
+  "/assets/images/posters/poster-image-3.webp",
+  "/assets/images/posters/poster-image-9.webp",
+  "/assets/images/posters/blank.png",
+  "/assets/images/posters/poster-image-11.webp",
+  "/assets/images/posters/poster-image-33.webp", // row 2
+  "/assets/images/posters/poster-image-6.webp",
+  "/assets/images/posters/poster-image-1.webp",
+  "/assets/images/posters/blank.png",
+  "/assets/images/posters/poster-image-4.webp",
+  "/assets/images/posters/poster-image-19.webp",
+  "/assets/images/posters/poster-image-30.webp",
+  "/assets/images/posters/blank.png",
+  "/assets/images/posters/poster-image-25.webp" // row 3
 ]
 
 const PostersGrid = () => {

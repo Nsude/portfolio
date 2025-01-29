@@ -38,3 +38,13 @@ body, html {
     overscroll-behavior: none;
   }
 } */
+
+/* Hide scrollbar for WebKit browsers (Chrome, Safari, Edge) */
+.hide-scroll {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.hide-scroll::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
