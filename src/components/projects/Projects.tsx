@@ -1,14 +1,17 @@
-import { useProjectContext } from "../contexts/ProjectsContext";
-import { useEffect, useRef } from "react";
+import { Project, useProjectContext } from "../contexts/ProjectsContext";
+import { useEffect, useRef} from "react";
 import ProjectGrid from "./ProjectGrid";
 import useCustomEffect from "../hooks/useCustomEffect";
 import { useLenis } from "lenis/react";
+import { useNavigate } from "react-router-dom";
 
 
 const Projects = () => {
   const { projects, setActiveProject, activeProject } = useProjectContext();
   const containerRef = useRef(null);
   const lenis = useLenis();
+  const activeProjectRef = useRef(activeProject); // Store activeProject in a ref to prevent snap scroll on active 
+  const navigate = useNavigate();
 
   // ==== INIT ACTIVE PROJECT ON MOUNT ====
   useEffect(() => {
@@ -18,15 +21,20 @@ const Projects = () => {
     setActiveProject(match || null);
   }, [location])
 
+
+  useEffect(() => {
+    activeProjectRef.current = activeProject; // Keep ref in sync with state
+  }, [activeProject]);
+
   useCustomEffect(() => {
     if (!containerRef.current) return;
     const container = containerRef.current as HTMLDivElement;
     const sections = Array.from(container.children) as HTMLDivElement[];
 
     const handleScroll = () => {
-      const scrollPosition = window.scrollY;
+      if (activeProjectRef.current) return; // ✅ always checks the latest activeProject state
 
-      // Find the closest section
+      const scrollPosition = window.scrollY;
       let closest = sections[0];
       let closestDistance = Math.abs(closest.offsetTop - scrollPosition);
 
@@ -38,25 +46,45 @@ const Projects = () => {
         }
       }
 
-      // Snap to closest section
       if (lenis) {
-        lenis?.scrollTo(closest.offsetTop, {duration: 1});
+        lenis.scrollTo(closest.offsetTop, { duration: 1 });
       }
     };
 
     let timeout: any;
     const onScrollStop = () => {
       clearTimeout(timeout);
-      timeout = setTimeout(handleScroll, 40); // Fires after scrolling stops
+      timeout = setTimeout(handleScroll, 40);
     };
 
-    
     window.addEventListener("scroll", onScrollStop);
 
     return () => {
       window.removeEventListener("scroll", onScrollStop);
     };
-  }, [lenis, activeProject]);
+  }, [lenis]);
+
+
+  // ===== SNAP TO SECTIO AND SET ACTIVE PROJECT =====
+  const handleClick = (project: Project, section: HTMLDivElement | null ) => {
+    if (!section) return;
+
+    lenis?.scrollTo(section.offsetTop, { duration: 1});
+
+    const checkIfScrolled = () => {
+      const scrollY = window.scrollY;
+      const tolerance = 5; // small margin to account for subpixel differences
+
+      if (Math.abs(scrollY - section.offsetTop) <= tolerance) {
+        setActiveProject(project);
+        navigate(`/projects/${project.title}`, {replace: false});
+
+        lenis?.off('scroll', checkIfScrolled);
+      }
+    }
+
+    lenis?.on("scroll", checkIfScrolled);
+  }
 
 
   return (
@@ -64,7 +92,11 @@ const Projects = () => {
       {
         projects.map((project, i) => (
           <div key={i}>
-            <ProjectGrid project={project} index={i} />
+            <ProjectGrid 
+              project={project} 
+              index={i} 
+              handleClick={(sectionRef) => handleClick(project, sectionRef)}
+              />
           </div>
         ))
       }

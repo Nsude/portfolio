@@ -1,31 +1,23 @@
-import { useNavigate } from "react-router-dom";
 import { Project, useProjectContext } from "../contexts/ProjectsContext"
 import useCustomEffect from "../hooks/useCustomEffect";
 import { useRef } from "react";
 import gsap from "gsap";
 
 import ScrollTrigger from "gsap/ScrollTrigger";
-import { useLenis } from "lenis/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 interface Props {
   project: Project;
-  index: number
+  index: number;
+  handleClick: (sectionRef: HTMLDivElement | null) => void;
 }
 
-const ProjectGrid = ({project, index}: Props) => {
-  const {activeProject, setActiveProject} = useProjectContext();
-  const navigate = useNavigate();
+const ProjectGrid = ({project, index, handleClick}: Props) => {
+  const {activeProject } = useProjectContext();
   const descRef = useRef(null);
   const mediaCon = useRef(null);
-  const lenis = useLenis();
-
-  // ==== NAVIGATE  ====
-  const handleClick = (project: Project) => {
-    setActiveProject(project);
-    navigate(`/projects/${project.title}`, {replace: false});
-  }
+  const containerRef = useRef(null);
 
   // ==== PIN DESCRIPTION WHILE SCROLLING IMAGES ====
   useCustomEffect(() => {
@@ -57,7 +49,8 @@ const ProjectGrid = ({project, index}: Props) => {
 
   return (
     <div 
-      onClick={() => handleClick(project)}
+      ref={containerRef}
+      onClick={() => handleClick(containerRef.current)}
       className={`
         grid grid-cols-2 grid-rows-1 w-full 
         ${activeProject?.index === project.index ? 'h-fit' : 'h-[100dvh]'} cursor-pointer
@@ -95,7 +88,7 @@ const ProjectGrid = ({project, index}: Props) => {
       </div>
 
       {/* ===== PROJECT TITLE / DESCRIPTION ===== */}
-      <div ref={descRef} className={`h-[100vh] flex flex-col justify-end pb-5 px-5 border-blue-600 border-2`}>
+      <div ref={descRef} className={`h-[100vh] flex flex-col justify-end pb-5 px-5`}>
         <div className="flex justify-between items-end">
           <h3 className="text-[30px] lg:text-[40px]">{project.title}</h3>
           <p className="text-base font-serif sm:text-[20px] lg:text-[25px]">{project.index}</p>
