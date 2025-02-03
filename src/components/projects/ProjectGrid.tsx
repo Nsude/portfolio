@@ -18,6 +18,8 @@ const ProjectGrid = ({project, index, handleClick}: Props) => {
   const descRef = useRef(null);
   const mediaCon = useRef(null);
   const containerRef = useRef(null);
+  const thumbnailRef = useRef(null);
+  const otherMedia = useRef(null);
 
   // ==== PIN DESCRIPTION WHILE SCROLLING IMAGES ====
   useCustomEffect(() => {
@@ -47,6 +49,33 @@ const ProjectGrid = ({project, index, handleClick}: Props) => {
     return activeProject?.index === project.index;
   }
 
+  // ===== OPEN ACTIVE PROJECT =====
+  useCustomEffect(() => {
+    const duration = .8;
+    const ease = "expo.inOut";
+
+    const tl = gsap.timeline();
+    tl.to(thumbnailRef.current, {
+      width: isActiveProject() ?  '75%' : '100%',
+      marginBottom: isActiveProject() ? '20px' : '0',
+      duration,
+      ease
+    }) 
+
+    tl.to(mediaCon.current, {
+      padding: isActiveProject() ? '150px 0 150px 0' : '',
+      duration,
+      ease
+    }, "<")
+
+    tl.to(otherMedia.current, {
+      display: isActiveProject() ? 'flex' : 'hidden',
+      duration,
+      ease
+    })
+
+  }, [activeProject])
+
   return (
     <div 
       ref={containerRef}
@@ -60,31 +89,33 @@ const ProjectGrid = ({project, index, handleClick}: Props) => {
       <div 
         ref={mediaCon}
         className={`
-          w-full min-h-[100vh] flex flex-col items-center
-          ${isActiveProject() ? 'overflow-y-auto hide-scroll py-[150px] h-fit' : 'h-full'} 
+          w-full flex flex-col items-center overflow-hidden
+          ${isActiveProject() ? 'hide-scroll ' : 'min-h-[100vh]'} 
           ${(index + 1) % 2 === 0 ? 'col-start-2' : ''}
         `}>
 
         {/* Thumnail image */}
         <img 
-          className={`object-cover ${isActiveProject() ? 'w-[75%] aspect-square mb-5' : 'h-full w-full'}`}
+          ref={thumbnailRef}
+          className={`
+            object-cover aspect-square
+            ${isActiveProject() ? '' : 'min-h-full'}
+            `}
           src={project.thumbnail} 
           alt="featured project thumbnail image" />
 
         {/* ...Project images */}
-        {activeProject?.index === project.index && activeProject?.media.length > 0 ? (
-          <div className='w-[75%] h-full flex flex-col gap-y-5'>
-            {activeProject.media.map((image, i) => (
-              <div key={i} className="w-full aspect-square overflow-hidden">
-                <img
-                  className="w-full h-full object-cover"
-                  src={image}
-                  alt={`Project image ${i + 1}`}
-                />
-              </div>
-            ))}
-          </div>
-        ) : ''}
+        <div ref={otherMedia} className='w-[75%] h-full flex-col gap-y-5'>
+          {project.media.map((image, i) => (
+            <div key={i} className="w-full aspect-square overflow-hidden">
+              <img
+                className="w-full h-full object-cover"
+                src={image}
+                alt={`Project image ${i + 1}`}
+              />
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* ===== PROJECT TITLE / DESCRIPTION ===== */}

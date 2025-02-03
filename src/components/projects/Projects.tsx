@@ -69,6 +69,13 @@ const Projects = () => {
   const handleClick = (project: Project, section: HTMLDivElement | null ) => {
     if (!section) return;
 
+    // open the project immediately if there is no scroll
+    if (Math.abs(window.scrollY - section.offsetTop) <= 5) {
+      setActiveProject(project);
+      navigate(`/projects/${project.title}`, {replace: false});
+      return;
+    }
+
     lenis?.scrollTo(section.offsetTop, { duration: 1});
 
     const checkIfScrolled = () => {
