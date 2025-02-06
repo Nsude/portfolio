@@ -1,6 +1,5 @@
 import { Project, useProjectContext } from "../contexts/ProjectsContext";
 import { useEffect, useRef} from "react";
-import ProjectGrid from "./ProjectGrid";
 import useCustomEffect from "../hooks/useCustomEffect";
 import { useLenis } from "lenis/react";
 import { useNavigate } from "react-router-dom";
@@ -97,15 +96,16 @@ const Projects = () => {
   return (
     <div ref={containerRef} className="w-full h-full">
       {
-        projects.map((project, i) => (
-          <div key={i}>
-            <ProjectGrid 
+        projects.map((project, i) => {
+          if (i !== 0) return null;
+          return <div key={i}>
+            {/* <ProjectGrid 
               project={project} 
               index={i} 
               handleClick={(sectionRef) => handleClick(project, sectionRef)}
-              />
+              /> */}
           </div>
-        ))
+        })
       }
     </div>
   )
