@@ -8,6 +8,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ReactLenis, useLenis } from 'lenis/react';
 import { useDevice } from './hooks/useDevice';
+import ProjectContextProvider from './contexts/ProjectsContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -39,11 +40,13 @@ const Layout = () => {
 
   // ==== RESET ANIMATIONS ON RESIZE ====
   useCustomEffect(() => {
+    lenis?.resize();
     ScrollTrigger.refresh();
   }, [device])
 
   // ===== SCROLL TO TOP ON PAGE NAVIGATE =====
   useEffect(() => {
+    if (location.pathname.toLocaleLowerCase().includes('projects')) return;
     lenis?.scrollTo(0, {immediate: true})
   }, [location])
 
@@ -83,18 +86,20 @@ const Layout = () => {
       ref={lenisRef}
     >
       <NavContextProvider>
-        <div className="relative bg-myGray-100 overflow-hidden">
-          <NavBar />
-          <div ref={outletRef}>
-            <Outlet />
+        <ProjectContextProvider>
+          <div className="relative bg-myGray-100 overflow-hidden">
+            <NavBar />
+            <div ref={outletRef}>
+              <Outlet />
+            </div>
+            <div
+              ref={footerRef}
+              className={`${(device.width > 640 ? 'absolute' : 'static')} left-0 -bottom-[100%] w-full h-fit`}
+            >
+              {!hideFooter && <Footer />}
+            </div>
           </div>
-          <div
-            ref={footerRef}
-            className={`${(device.width > 640 ? 'absolute' : 'static')} left-0 -bottom-[100%] w-full h-fit`}
-          >
-            {!hideFooter && <Footer />}
-          </div>
-        </div>
+        </ProjectContextProvider>
       </NavContextProvider>
     </ReactLenis>
   );
