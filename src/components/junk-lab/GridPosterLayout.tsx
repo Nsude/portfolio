@@ -1,23 +1,21 @@
 import { useRef } from 'react';
-import { posters } from '../contexts/ProjectsContext';
 import useCustomEffect from '../hooks/useCustomEffect';
 import { PosterLayout } from '../models';
 import gsap from 'gsap';
 
-const GridPosterLayout = ({index}: PosterLayout) => {
-  if (index !== "0") return null;
+const GridPosterLayout = ({posters}: PosterLayout) => {
   const postersRef = useRef<(HTMLDivElement | null)[]>([]);
 
   // fade in animation on load
   useCustomEffect(() => {
-    if (postersRef.current.length === 0) return;
+    if (!postersRef.current || postersRef.current.length === 0) return;
     gsap.from(postersRef.current, {
       y: 80,
       opacity: 0, 
       stagger: 0.02,
       ease: "power2.out"
     })
-  }, [index])
+  })
 
   const ease = "expo.inOut";
   const duration = .6;
@@ -78,7 +76,7 @@ const GridPosterLayout = ({index}: PosterLayout) => {
       ease
     })
   }
-
+  
   return (
     <div className='px-5 flex flex-wrap gap-5 justify-center w-full min-h-screen h-full'>
       {
@@ -86,7 +84,7 @@ const GridPosterLayout = ({index}: PosterLayout) => {
           <div 
             onMouseEnter={handleMouseEnter} 
             onMouseLeave={handleMouseLeave}
-            key={i} 
+            key={poster.name} 
             ref={(el) => postersRef.current[i] = el}
             className='w-[15%] relative'>
             <img 

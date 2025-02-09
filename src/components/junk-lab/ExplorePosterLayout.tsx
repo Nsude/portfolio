@@ -1,8 +1,7 @@
 import { PosterLayout } from "../models";
 
 
-const ExplorePosterLayout = ({index}: PosterLayout) => {
-  if (index !== "1") return null;
+const ExplorePosterLayout = ({posters}: PosterLayout) => {
   
   return (
     <div>ExplorePosterLayout</div>

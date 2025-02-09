@@ -59,7 +59,13 @@ const ProjectContextProvider = ({children}: PropsWithChildren) => {
 
 export default ProjectContextProvider;
 
-export const posters = [
+export interface Poster {
+  name: string;
+  path: string;
+  index: string
+}
+
+export const posters: Poster[] = [
   {
     name: "Focus Absolute",
     path: "/assets/images/posters/poster-image.webp",
