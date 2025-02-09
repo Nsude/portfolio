@@ -65,7 +65,7 @@ const ListPosterLayout = ({posters}: PosterLayout) => {
         <div ref={nameListRef} className=" text-[25px] leading-[1] h-[75vh] overflow-hidden">
           <div ref={namesRef} className="flex flex-col gap-y-[10px]">
             {
-              posters.map((poster, i) => (
+              posters.map((poster) => (
                 <button key={poster.name} className="text-left w-fit opacity-40 transition-opacity duration-[400ms] hover:opacity-100">
                   {poster.name}
                 </button>
