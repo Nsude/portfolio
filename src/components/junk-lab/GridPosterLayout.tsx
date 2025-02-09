@@ -12,7 +12,7 @@ const GridPosterLayout = ({index}: PosterLayout) => {
   useCustomEffect(() => {
     if (postersRef.current.length === 0) return;
     gsap.from(postersRef.current, {
-      y: 40,
+      y: 80,
       opacity: 0, 
       stagger: 0.02,
       ease: "power2.out"
