@@ -24,18 +24,58 @@ const GridPosterLayout = ({index}: PosterLayout) => {
   const handleMouseEnter = (e: React.MouseEvent) => {
     const target = e.currentTarget.firstElementChild;
     gsap.to(target, {
-      scale: 0.7, 
+      scale: 0.75, 
+      opacity: 0.3,
       ease,
       duration
     })
+
+    if (!target) return;
+    showDetails(getDetails(target));
+  }
+
+  // get current poster details elems
+  const getDetails = (target: Element) => {
+    const children = target.nextElementSibling?.children;
+    return children;
   }
 
   const handleMouseLeave = (e: React.MouseEvent) => {
     const target = e.currentTarget.firstElementChild;
     gsap.to(target, {
       scale: 1, 
+      opacity: 1,
       ease,
       duration
+    })
+
+    if (!target) return;
+    hideDetails(getDetails(target));
+  }
+
+  // animate poster details in
+  const showDetails = (target: HTMLCollection | undefined) => {
+    if (!target) return;
+    gsap.fromTo(target, {
+      y: 40,
+      opacity: 0
+    }, {
+      y: 0, 
+      opacity: 1,
+      stagger: .02,
+      duration: 0.6,
+      ease
+    })
+  }
+
+  // animate poster details out
+  const hideDetails = (target: HTMLCollection | undefined) => {
+    if (!target) return;
+    gsap.to(target, {
+      y: 40,
+      opacity: 0,
+      duration: 0.6,
+      ease
     })
   }
 
@@ -48,18 +88,27 @@ const GridPosterLayout = ({index}: PosterLayout) => {
             onMouseLeave={handleMouseLeave}
             key={i} 
             ref={(el) => postersRef.current[i] = el}
-            className='w-[15%] overflow-visible cursor-crosshair'>
+            className='w-[15%] relative'>
             <img 
-              src={poster} 
+              src={poster.path} 
               alt={`poster image ${i}`} />
+
+             {/* Poster Details */}
+            <div className='absolute leading-[1] flex flex-col items-center capitalize top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] gap-y-0.5'>
+              <h3 
+                className='text-[25px] text-nowrap opacity-0'>
+                  {poster.name}
+              </h3>
+              <div className='opacity-0'>
+                <p
+                  className='text-[10px] opacity-60'>
+                    {poster.index}
+                </p>
+              </div>
+            </div>
           </div>
         ))
       }
-      {/* <div className='fixed bg-white left-[50%] top-[50%] -translate-x-[50%] -translate-y-[50%] w-[520px] aspect-[4/5]'>
-        <div className='h-[85%] w-full'>
-          <img className='' src={selectedPoster} />
-        </div>
-      </div> */}
     </div>
   )
 }

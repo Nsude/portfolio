@@ -17,7 +17,7 @@ const JunklabMobile = () => {
             <div key={i} className={`w-[22%]`}>
               <img 
                 className="w-full h-full object-cover"
-                src={poster} 
+                src={poster.path} 
                 alt={`poster-image-${i}`} 
               />
             </div>
