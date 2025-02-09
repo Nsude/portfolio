@@ -6,7 +6,7 @@ const ListPosterLayout = ({index}: PosterLayout) => {
 
   return (
     <div>
-      List WOrkd
+      List Layout works
     </div>
   )
 }

@@ -5,7 +5,6 @@ import { PosterLayout } from '../models';
 import gsap from 'gsap';
 
 const GridPosterLayout = ({index}: PosterLayout) => {
-  if (index !== "0") return null;
   const postersRef = useRef<(HTMLDivElement | null)[]>([]);
 
   // fade in animation on load
@@ -79,6 +78,7 @@ const GridPosterLayout = ({index}: PosterLayout) => {
     })
   }
 
+  if (index !== "0") return null;
   return (
     <div className='px-5 flex flex-wrap gap-5 justify-center w-full min-h-screen h-full'>
       {
@@ -96,12 +96,12 @@ const GridPosterLayout = ({index}: PosterLayout) => {
              {/* Poster Details */}
             <div className='absolute leading-[1] flex flex-col items-center capitalize top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] gap-y-0.5 text-nowrap'>
               <h3 
-                className='text-[25px] opacity-0'>
+                className='2xl:text-[25px] text-[20px] opacity-0'>
                   {poster.name}
               </h3>
               <div className='opacity-0'>
                 <p
-                  className='text-[25px] opacity-50'>
+                  className='2xl:text-[25px] text-[20px] opacity-50'>
                     {poster.index}
                 </p>
               </div>
