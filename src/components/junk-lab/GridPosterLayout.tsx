@@ -25,7 +25,7 @@ const GridPosterLayout = ({index}: PosterLayout) => {
     const target = e.currentTarget.firstElementChild;
     gsap.to(target, {
       scale: 0.75, 
-      opacity: 0.3,
+      opacity: 0.2,
       ease,
       duration
     })
@@ -94,14 +94,14 @@ const GridPosterLayout = ({index}: PosterLayout) => {
               alt={`poster image ${i}`} />
 
              {/* Poster Details */}
-            <div className='absolute leading-[1] flex flex-col items-center capitalize top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] gap-y-0.5'>
+            <div className='absolute leading-[1] flex flex-col items-center capitalize top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] gap-y-0.5 text-nowrap'>
               <h3 
-                className='text-[25px] text-nowrap opacity-0'>
+                className='text-[25px] opacity-0'>
                   {poster.name}
               </h3>
               <div className='opacity-0'>
                 <p
-                  className='text-[10px] opacity-60'>
+                  className='text-[25px] opacity-50'>
                     {poster.index}
                 </p>
               </div>
