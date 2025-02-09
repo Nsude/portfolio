@@ -9,6 +9,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ReactLenis, useLenis } from 'lenis/react';
 import { useDevice } from './hooks/useDevice';
 import ProjectContextProvider from './contexts/ProjectsContext';
+import StatusBar from './global/StatusBar';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -46,7 +47,7 @@ const Layout = () => {
 
   // ===== SCROLL TO TOP ON PAGE NAVIGATE =====
   useEffect(() => {
-    if (location.pathname.toLocaleLowerCase().includes('projects')) return;
+    if (location.pathname.toLowerCase().includes('projects')) return;
     lenis?.scrollTo(0, {immediate: true})
   }, [location])
 
@@ -54,26 +55,34 @@ const Layout = () => {
     setHideFooter(routesToHideFooter.endsWith(location.pathname));
   }, [location])
 
+  // ===== ANIMATE FOOTER INTO THE SCREEN =====
   useCustomEffect(() => {
-    if (device.width < 640) return null;
-    if (!outletRef.current || !footerRef.current) return;
+    // if (device.width < 640) return null;
+    // if (!outletRef.current || !footerRef.current) return;
 
-    gsap.killTweensOf([outletRef.current, footerRef.current]);
+    // gsap.killTweensOf([outletRef.current, footerRef.current]);
 
-    const tl = gsap.timeline();
+    // const tl = gsap.timeline();
 
-    tl.to(footerRef.current, {
-      bottom: 0,
-      scrollTrigger: {
-        trigger: outletRef.current,
-        start: "bottom bottom",
-        end: "bottom top",
-        pin: true,
-        pinSpacing: true,
-        scrub: 1
-      }
-    })
+    // tl.to(footerRef.current, {
+    //   bottom: 0,
+    //   scrollTrigger: {
+    //     trigger: outletRef.current,
+    //     start: "bottom bottom",
+    //     end: "bottom top",
+    //     pin: true,
+    //     pinSpacing: true,
+    //     scrub: 1
+    //   }
+    // })
   }, [device])
+
+  const [darkBg, setDarkBg] = useState(false);
+  useEffect(() => {
+    lenis?.resize();
+    if (!location.pathname.toLowerCase().includes('junk-lab')) return setDarkBg(false);
+    setDarkBg(true);
+  }, [location, device])
   
   return (
     <ReactLenis 
@@ -87,14 +96,15 @@ const Layout = () => {
     >
       <NavContextProvider>
         <ProjectContextProvider>
-          <div className="relative bg-myGray-100 overflow-hidden">
+          <StatusBar />
+          <div className={`${darkBg ? 'bg-myblack' : 'bg-myGray-100'} hide-scroll`}>
             <NavBar />
             <div ref={outletRef}>
               <Outlet />
             </div>
             <div
               ref={footerRef}
-              className={`${(device.width > 640 ? 'absolute' : 'static')} left-0 -bottom-[100%] w-full h-fit`}
+              className={`w-full h-fit`}
             >
               {!hideFooter && <Footer />}
             </div>
