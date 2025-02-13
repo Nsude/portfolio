@@ -34,8 +34,6 @@ const ListPosterLayout = ({posters}: PosterLayout) => {
         scrub: true,
         pin: true,
         onEnter: showDisplayCon,
-        onEnterBack: showDisplayCon,
-        onLeave: hideDisplayCon,
         onLeaveBack: hideDisplayCon
       }
     });
@@ -63,9 +61,6 @@ const ListPosterLayout = ({posters}: PosterLayout) => {
 
   const hideDisplayCon = () => {
     gsap.to(containerRef.current, {opacity: 0, pointerEvents: "none", duration: 1});
-    // animate preview 
-    gsap.to(previewRef.current, 
-      {yPercent: 30, opacity: 0, duration: 1, ease: "power2.out"})
   }
 
   // Name list item click handler
@@ -92,35 +87,16 @@ const ListPosterLayout = ({posters}: PosterLayout) => {
   const movePointer = (elem: HTMLElement) => {
     if (!pointerRef.current || !nameListRef.current) return;
     const pointer = pointerRef.current as HTMLDivElement;
-    const nameList = nameListRef.current as HTMLDivElement;
-  
-    // Compute max scroll distance
-    const maxScroll = nameList.scrollHeight - nameList.offsetHeight + addedScroll;
   
     // Get the target position
     let targetY = elem.offsetTop;
-  
-    // Ensure it doesn't exceed maxScroll
-    if (targetY > maxScroll) {
-      // targetY = maxScroll;
-    }
   
     gsap.to(pointer, {
       y: targetY,
       ease: "expo.inOut",
       duration: 0.6
     });
-  
-    // gsap.to(nameList, {
-    //   y: -targetY,
-    //   ease: "expo.inOut",
-    //   duration: 0.6,
-    //   onComplete: () => {
-    //     if (!timeLineRef.current) return;
-    //     const newProgress = maxScroll === 0 ? 0 : targetY / maxScroll;
-    //     timeLineRef.current.progress(newProgress);
-    //   }
-    // });
+
   };  
 
   useCustomEffect(() => {
@@ -140,10 +116,23 @@ const ListPosterLayout = ({posters}: PosterLayout) => {
     movePreviewImage(matchedImage as HTMLElement);
 
   }, [selectedIndex])
+
+  // move large poster display
+  const [offset, setOffset] = useState({top: "50%", right: "7%"});
+  const [posterH, setPosterH] = useState("75vh");
+  useCustomEffect(() => {
+    const randomTopOffset = 50 + (Math.random() * 20 - 10); // ±20%
+    const randomRightOffset = 7 + (Math.random() * 10 - 5); // ±2%
+    const randomH = 75 + (Math.random() * 10 - 5);
+
+    setOffset({top: `${randomTopOffset}%`, right: `${randomRightOffset}%`});
+    setPosterH(`${randomH}vh`);
+  }, [selectedIndex]);
   
 
+
   return (
-    <div ref={containerRef} className="h-screen w-full px-5 grid grid-cols-8 opacity-0">
+    <div ref={containerRef} className="h-screen w-full px-5 grid grid-cols-8 opacity-0 overflow-hidden">
       {/* Index */}
       <div></div>
 
@@ -157,7 +146,6 @@ const ListPosterLayout = ({posters}: PosterLayout) => {
                 onClick={(e) => handlePreviewClick(e.currentTarget, i)}
                 data-index={i}
                 className={`relative transition-all duration-[600ms] w-[150px] aspect-[3/2] overflow-hidden`}>
-                {/* <div className={`absolute z-10 transition-all duration-[600ms] left-0 top-0 w-full h-full ${selectedIndex === i ? 'bg-gradient-to-t from-myblack to-transparent' : ''}`}></div> */}
                 <img 
                   src={poster.path} 
                   className={`
@@ -172,7 +160,7 @@ const ListPosterLayout = ({posters}: PosterLayout) => {
       </div>
 
       {/* Name List and Display */}
-      <div ref={nameDisplayCon} className="col-start-3 col-span-5">
+      <div ref={nameDisplayCon} className="relative col-start-3 col-span-6 flex justify-between  max-h-[100vh] gap-2.5">
         <div ref={nameListRef} className="relative text-[25px] flex flex-col gap-y-2.5 leading-[1] h-[75vh] mt-[35vh] w-fit overflow-visible">
 
          {/* Triangle Pointer */}
@@ -191,7 +179,12 @@ const ListPosterLayout = ({posters}: PosterLayout) => {
             ))
           }
         </div>
-        <div></div>
+        <div className="absolute -translate-y-[50%] aspect-[4/5]"
+          style={{ top: offset.top, right: offset.right, height: posterH }}>
+          <img 
+            className={`w-full h-full`}
+            src={posters[selectedIndex].path} alt={`selected poster, poster-${selectedIndex}`} />
+        </div>
       </div>
     </div>
   )

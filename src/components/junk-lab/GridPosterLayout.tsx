@@ -12,7 +12,7 @@ const GridPosterLayout = ({posters}: PosterLayout) => {
     gsap.from(postersRef.current, {
       y: 80,
       opacity: 0, 
-      stagger: 0.02,
+      stagger: 0.01,
       ease: "power2.out"
     })
   })
