@@ -77,21 +77,27 @@ const ExplorePosterLayout = ({posters}: PosterLayout) => {
     const target = e.currentTarget;
     gsap.to(target, {
       scale: 1.5,
-      duration: .6, 
+      duration: 0.6,
       zIndex: 30,
-      ease: "expo.inOut"
-    })
-  }
-
+      ease: "expo.inOut",
+      rotate: 0, // Make the image vertical
+    });
+  };
+  
   const handlePosterHoverBlur = (e: React.MouseEvent) => {
     const target = e.currentTarget;
+    if (!target.parentElement) return;
+    const index = Array.from(target.parentElement.children).indexOf(target);
+    const originalRotation = posterPositions.current[index].transform;
+  
     gsap.to(target, {
       scale: 1,
-      duration: .6, 
+      duration: 0.6,
       zIndex: 1,
-      ease: "expo.inOut"
-    })
-  }
+      ease: "expo.inOut",
+      rotate: originalRotation.match(/-?\d+/)?.[0] || 0, // Extract original rotation value
+    });
+  };  
 
   let isDragging = false;
   let startX: number, startY: number, currentX = 0, currentY = 0;
