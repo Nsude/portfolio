@@ -6,11 +6,13 @@ import FeaturedCardTwo from "./FeaturedCardTwo";
 import { addElem } from "../utils/utilityFunctions";
 import gsap from "gsap";
 import { useNavigate } from "react-router-dom";
+import { useLenis } from "lenis/react";
 
 const Homepage = () => {
   const { selected } = useCarouselContext();
   const fadeInElems = useRef<HTMLElement[]>([]);
   const navigate = useNavigate();
+  const lenis = useLenis();
 
   useCustomEffect(() => {
     if (!fadeInElems.current) return;
@@ -36,13 +38,14 @@ const Homepage = () => {
   // ===== NAVIGATE TO PAGE =====
   const handleClick = () => {
     navigate(selected?.link || '/');
-    window.location.reload();
+    // window.location.reload();
+    lenis?.resize();
   }
 
   return (
     <div 
       onClick={handleClick} 
-      className="relative cursor-pointer h-[100dvh] lg:h-[100vh] w-full px-5 grid grid-rows-10 justify-center overflow-hidden lg:grid-cols-8 lg:px-[20px]">    
+      className="relative cursor-pointer h-[100dvh] lg:h-[100vh] hide-scroll w-full px-5 grid grid-rows-10 justify-center lg:grid-cols-8 lg:px-[20px]">    
       <div 
         onClick={(e) => e.stopPropagation()}
         className="relative z-[3] row-start-3 row-span-5 flex justify-center lg:inline-block lg:col-start-2 lg:col-span-2">
