@@ -7,7 +7,8 @@ export default {
   theme: {
     fontFamily: {
       sans: ['HaasRegular', 'sans-serif'],
-      serif: ['Garamond', 'serif']
+      serif: ['AppleG Italic', 'serif'],
+      appleG: 'AppleG'
     },
     fontSize: {
       base: '14px'

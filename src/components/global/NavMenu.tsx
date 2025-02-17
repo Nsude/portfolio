@@ -6,10 +6,11 @@ import SocialLink from "./SocialLink";
 import slideup from "../utils/slideUp";
 import BracesHeaderText from "./BracesHeaderText";
 import NavMenuImage from "./NavMenuImage";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const NavMenu = () => {
-  const {open, pages, socialLinks} = useNavContext();
+  const {open, pages, socialLinks, setOpen} = useNavContext();
+  const navigate = useNavigate();
   const container = useRef(null);
   const innerCon = useRef(null);
   const fadeInElems = useRef<HTMLElement[]>([]);
@@ -58,6 +59,11 @@ const NavMenu = () => {
     }
   };  
 
+  const handleNavigate = (page: Page) => {
+    navigate(`${page.link}`, {replace: false});
+    setOpen(false);
+  }
+
   return (
     <div ref={container} 
       className="text-base w-full h-[100dvh] lg:h-[100vh] pointer-events-none text-myblack bg-myGray-100 fixed opacity-0 z-10">
@@ -73,6 +79,7 @@ const NavMenu = () => {
               <button 
                 ref={(el) => addElem(el)} 
                 key={i} 
+                onClick={() => handleNavigate(page)}
                 onMouseEnter={() => setSelectedpage(page)}
                 className="mb-[5px] text-left last:mb-[0] block">
                 <BracesHeaderText text={page.name} />

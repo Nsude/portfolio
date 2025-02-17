@@ -10,8 +10,15 @@
 }
 
 @font-face {
-  font-family: "Garamond";
-  src: url("./assets/fonts/GARAIT.TTF");
+  font-family: "AppleG";
+  src: url("./assets/fonts/AppleG.ttf");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "AppleG Italic";
+  src: url("./assets/fonts/AppleG-Italic.ttf");
   font-weight: 400;
   font-style: normal;
 }
