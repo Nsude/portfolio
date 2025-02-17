@@ -57,7 +57,7 @@ const AboutSection = () => {
       opacity: 0,
     }, {
       y: 0,
-      opacity: .6,
+      opacity: .8,
       duration: .6,
       ease: 'power2.out',
       delay: .2
@@ -119,7 +119,7 @@ const AboutSection = () => {
         {/* ===== ORIGIN STORY ===== */}
         <div>
           <h4 className="uppercase mb-[25px]">origin story</h4>
-          <p ref={storyRef} className="text-[20px] tracking-[0.02ch] leading-[1.2] opacity-60 sm:w-[70%] md:w-[45%] lg:text-[30px] 2xl:text-[35px] lg:w-[85%]">
+          <p ref={storyRef} className="font-appleG text-[20px] leading-[1] opacity-80 sm:w-[70%] md:w-[45%] lg:text-[30px] 2xl:text-[35px] lg:w-[85%] 2xl:w-[65%]">
             { story || 
              `Hi I'm Meshach and I'm an addict. I'm addicted to becoming the best version of myself. I grew up in a small town in Enugu, Nigeria where we did not have many examples of success to look up to`
             }

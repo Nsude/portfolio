@@ -63,9 +63,9 @@ const Homepage = () => {
         <h2 className="text-[160px] font-serif lowercase leading-[0.5] text-nowrap -tracking-[0.06ch]">{ selected?.title || "The Title" }</h2>
       </div>
       
-      <div className="hidden relative z-[2] uppercase text-base max-w-[450px] mt-5 row-start-7 col-start-6 col-span-2 lg:inline-block">
-        <p ref={(el) => addElem(el, fadeInElems.current)} className="text-[10px] opacity-50 mb-[5px]">intro</p>
-        <h4 ref={(el) => addElem(el, fadeInElems.current)} className="w-full"> {selected?.description} </h4>
+      <div className="hidden relative z-[2] text-base max-w-[450px] mt-5 row-start-7 col-start-6 col-span-2 lg:inline-block">
+        <p ref={(el) => addElem(el, fadeInElems.current)} className="text-[10px] uppercase opacity-50 mb-[5px]">intro</p>
+        <h4 ref={(el) => addElem(el, fadeInElems.current)} className="w-full text-[20px] leading-[1.1]"> {selected?.description} </h4>
       </div>
 
       <div className="row-start-10 w-full lg:absolute z-[2] lg:bottom-5 lg:left-0 lg:px-5">
