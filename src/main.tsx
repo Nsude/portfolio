@@ -7,6 +7,7 @@ import App from './App.tsx'
 import AboutMe from './components/about/AboutMe.tsx'
 import Projects from './components/projects/Projects.tsx'
 import JunkLab from './components/junk-lab/JunkLab.tsx'
+import ProjectView from './components/projects/ProjectView.tsx'
 const router = createBrowserRouter([
   {
     path: '/',
@@ -19,8 +20,11 @@ const router = createBrowserRouter([
         path: "/about",
         element: <AboutMe />
       }, {
-        path: "/projects/*",
-        element: <Projects />,
+        path: "/projects",
+        element: <Projects />
+      }, {
+        path: "/projects/:title",
+        element: <ProjectView />
       }, {
         path: "/junk-lab",
         element: <JunkLab />

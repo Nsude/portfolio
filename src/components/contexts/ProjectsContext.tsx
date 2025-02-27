@@ -4,7 +4,12 @@ export interface Project {
   title: string;
   index: string;
   thumbnail: string;
+  category: string;
   media: string[];
+  services: string[];
+  overview: string,
+  sectors: string[],
+  timeline: string,
 }
 
 interface Props {
@@ -27,19 +32,35 @@ const projects: Project[] = [
     title: 'Harlow',
     index: '001',
     thumbnail: '/assets/images/harlow.webp',
-    media: ['/assets/images/harlow.webp', '/assets/images/harlow.webp', '/assets/images/harlow.webp']
+    category: 'e-commerce',
+    media: ['/assets/images/harlow.webp', '/assets/images/harlow.webp', '/assets/images/harlow.webp'],
+    services: ["Design", "Development", "Content"],
+    overview: `Harlow is a sleek and modern fashion e-commerce platform designed to showcase a seamless online shopping experience. Featuring an exclusive collection from top brands like Nike, Adidas, Puma, and Harlow, the platform blends intuitive UX with bold aesthetics to create a high-end retail feel.
+    Harlow focuses on smooth navigation, dynamic product displays, and an immersive shopping experience.`,
+    sectors: ["Fashion", "Lifestyle"],
+    timeline: 'Dec, 2024'
   },
   {
     title: 'Polygene',
     index: '002',
     thumbnail: '/assets/images/polygene.webp',
-    media: ['/assets/images/polygene.webp', '/assets/images/polygene.webp', '/assets/images/polygene.webp']
+    category: 'Gradient Exp. 1',
+    media: ['/assets/images/polygene.webp', '/assets/images/polygene.webp', '/assets/images/polygene.webp'],
+    services: ["Design", "Development", "Content"],
+    overview: ``,
+    sectors: [],
+    timeline: ''
   },
   {
     title: 'UI layouts',
     index: '003',
+    category: 'UI Explorations',
     thumbnail: '/assets/images/uiLayouts.webp',
-    media: ['/assets/images/uiLayouts.webp', '/assets/images/uiLayouts.webp', '/assets/images/uiLayouts.webp']
+    media: ['/assets/images/uiLayouts.webp', '/assets/images/uiLayouts.webp', '/assets/images/uiLayouts.webp'],
+    services: ["Design", "Development"],
+    overview: ``,
+    sectors: [],
+    timeline: ''
   },
 ]
 

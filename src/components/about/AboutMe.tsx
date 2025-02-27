@@ -13,8 +13,8 @@ const AboutMe = () => {
             <p>&nbsp; ABOUT ME</p>
           </div>
 
-          <h3 className="w-[90%] font-appleG text-[35px] text-center sm:w-[55%] md:w-[65%] md:text-[40px] lg:w-[38%]">
-            The software engineer who <span>designs</span>, or is it the designer who <span>codes</span>, now I'm not sure.
+          <h3 className="w-[90%] font-appleG text-[25px] text-center sm:w-[55%] md:w-[65%] md:text-[40px] lg:w-[38%]">
+            The software engineer who <span className="font-serif">designs</span>, or is it the designer who <span >codes</span>, now I'm not sure.
           </h3>
         </div>
 
@@ -23,12 +23,12 @@ const AboutMe = () => {
 
       {/* ===== WARNING OVERLAY ===== */}
       <div className="px-5 h-[100dvh] md:[60vh] flex flex-col justify-center">
-        <button className="flex items-center w-fit text-[12px] gap-x-[5px] px-[25px] py-[10px] bg-red-300 text-red-600 rounded-3xl" >
+        <button className="flex items-center w-fit gap-x-[5px] px-[25px] py-[10px] bg-red-300 text-red-600 rounded-3xl" >
           <TriangleAlert size={16} />
           <p>WARNING</p>
         </button>
 
-        <p className="w-[90%] font-appleG text-left text-5 mt-5 leading-[1] sm:w-[45%] xl:w-[26%] lg:text-[25px]">
+        <p className="w-[90%] text-left text-5 mt-5 leading-[1.2] sm:w-[45%] xl:w-[26%] lg:text-[20px]">
           The visuals you’re about to see might just steal your heart. If you’re taken, grab some shades before scrolling any further. If not—sit back, relax, and enjoy the show.
         </p>
       </div>

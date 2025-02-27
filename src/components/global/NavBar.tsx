@@ -28,14 +28,13 @@ const NavBar = () => {
 
   const handleNavigation = () => {
     navigate("/");
-    window.location.reload();
   }
 
   return (
     <>
     <NavMenu />
     <DarkOverlay trigger={open} />
-    <nav className="text-base fixed z-10 top-0 text-white mix-blend-difference w-full px-[20px] py-[25px] grid grid-cols-8">
+    <nav className="text-base fixed z-10 top-0 text-white mix-blend-difference w-full px-5 py-[25px] grid grid-cols-8">
       <button onClick={handleNavigation} className="flex items-center justify-between w-fit col-span-1">
         <span className="leading-[1]">M</span>
         <span className="leading-[0.5]">&mdash;</span>

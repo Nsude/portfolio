@@ -1,11 +1,8 @@
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useRef } from "react";
 import { addElem } from "../utils/utilityFunctions";
 import useCustomEffect from "../hooks/useCustomEffect";
 import { useDevice } from "../hooks/useDevice";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const posters = [
   "/assets/images/posters/poster-image.webp",

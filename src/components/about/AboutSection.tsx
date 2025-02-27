@@ -99,7 +99,10 @@ const AboutSection = () => {
   return (
     <div className="text-base px-5 min-h-[100dvh] w-full sm:h-full lg:min-h-[100vh] max-h-[100vh] lg:py-[100px] md:mt-[120px] lg:mt-[200px] lg:flex lg:justify-between lg:gap-x-5">
       <div className="lg:w-[50%]">
-        <h4 className="uppercase mb-[55px]">About me <span className="opacity-40">({device.width < 1024 ? 'Click' : 'Hover'} Titles)</span></h4>
+        <div className={`w-full flex gap-2`}>
+          <h4 className="uppercase mb-[55px]">About me</h4>
+          <span className="opacity-40 uppercase text-[14px]">({device.width < 1024 ? 'Click' : 'Hover'} Titles)</span>
+        </div>
         <div 
           onMouseLeave={() => handleMouseLeave()}
           className="mb-[150px]">
@@ -119,7 +122,7 @@ const AboutSection = () => {
         {/* ===== ORIGIN STORY ===== */}
         <div>
           <h4 className="uppercase mb-[25px]">origin story</h4>
-          <p ref={storyRef} className="font-appleG text-[20px] leading-[1] opacity-80 sm:w-[70%] md:w-[45%] lg:text-[30px] 2xl:text-[35px] lg:w-[85%] 2xl:w-[65%]">
+          <p ref={storyRef} className="leading-[1.2] opacity-80 sm:w-[70%] md:w-[45%] lg:text-[25px] lg:w-[85%] 2xl:w-[65%]">
             { story || 
              `Hi I'm Meshach and I'm an addict. I'm addicted to becoming the best version of myself. I grew up in a small town in Enugu, Nigeria where we did not have many examples of success to look up to`
             }

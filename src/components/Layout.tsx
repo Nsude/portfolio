@@ -11,6 +11,7 @@ import { useDevice } from './hooks/useDevice';
 import ProjectContextProvider from './contexts/ProjectsContext';
 import StatusBar from './global/StatusBar';
 
+// Register once globally
 gsap.registerPlugin(ScrollTrigger);
 
 const Layout = () => {
