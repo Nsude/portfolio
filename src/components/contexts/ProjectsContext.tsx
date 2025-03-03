@@ -1,11 +1,21 @@
 import { createContext, PropsWithChildren, useContext, useState } from "react";
 
+interface ProjectGrid {
+  image1: string;
+  image2: string;
+  desktopVideo: string;
+  image3: string;
+  mobileVideo: string;
+  image4: string;
+  image5: string;
+}
+
 export interface Project {
   title: string;
   index: string;
   thumbnail: string;
   category: string;
-  media: string[];
+  media: ProjectGrid;
   services: string[];
   overview: string,
   sectors: string[],
@@ -33,7 +43,15 @@ const projects: Project[] = [
     index: '001',
     thumbnail: '/assets/images/harlow.webp',
     category: 'e-commerce',
-    media: ['/assets/images/harlow.webp', '/assets/images/harlow.webp', '/assets/images/harlow.webp'],
+    media: {
+      image1: '/assets/images/harlow/harlow-img-1.webp',
+      image2: '/assets/images/harlow/harlow-img-2.webp',
+      desktopVideo: '',
+      image3: '/assets/images/harlow/harlow-card.webp', 
+      mobileVideo: '',
+      image4: '/assets/images/harlow/harlow-img-4.webp',
+      image5: '/assets/images/harlow/harlow-img-5.webp'
+    },
     services: ["Design", "Development", "Content"],
     overview: `Harlow is a sleek and modern fashion e-commerce platform designed to showcase a seamless online shopping experience. Featuring an exclusive collection from top brands like Nike, Adidas, Puma, and Harlow, the platform blends intuitive UX with bold aesthetics to create a high-end retail feel.
     Harlow focuses on smooth navigation, dynamic product displays, and an immersive shopping experience.`,

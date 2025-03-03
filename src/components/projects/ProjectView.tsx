@@ -47,7 +47,7 @@ const ProjectView = () => {
         selectedProject ? (
         <>
         <div ref={heroRef} className="h-screen w-full grid grid-cols-8 grid-rows-8 p-5 leading-[1]">
-          <div className="col-start-2 row-start-3">
+          <div className="col-start-1 sm:col-start-2 row-start-3 text-nowrap">
             <p>Case Study</p>
             <p className="opacity-40 mt-1">({selectedProject.category} Project)</p>
           </div>
@@ -60,11 +60,11 @@ const ProjectView = () => {
             }
           </div>
 
-          <div className="uppercase text-nowrap text-[250px] -tracking-[0.04ch] font-appleG col-start-2 row-start-6">
+          <div className="uppercase text-wrap lg:text-nowrap text-[100px] sm:text-[165px] lg:text-[250px] -tracking-[0.04ch] font-appleG col-start-1 sm:col-start-2 row-start-6">
             <h2>{title}</h2>
           </div>
 
-          <p className="col-start-2 row-start-8 self-end">@{new Date().getFullYear()}</p>
+          <p className="col-start-1 sm:col-start-2 row-start-8 self-end">@{new Date().getFullYear()}</p>
           <p className="col-start-6 row-start-8 -translate-x-[25px] self-end">SCROLL</p>
           
         </div>

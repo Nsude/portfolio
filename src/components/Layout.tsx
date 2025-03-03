@@ -44,7 +44,8 @@ const Layout = () => {
   useCustomEffect(() => {
     lenis?.resize();
     ScrollTrigger.refresh();
-  }, [device])
+
+  }, [device.width])
 
   // ===== SCROLL TO TOP ON PAGE NAVIGATE =====
   useEffect(() => {
