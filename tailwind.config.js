@@ -17,7 +17,8 @@ export default {
       colors: {
         myGray: {
           100: '#DDDDDD', // bg
-          200: '#EDEDED' // lighter gray
+          200: '#EDEDED', // lighter gray
+          300: "#C8C8C8" // projects-bg gray
         },
         myblack: '#0A0A0A',
         opacityBg: 'rgba(var(--opacity-color), 0.2)'

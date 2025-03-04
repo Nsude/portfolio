@@ -3,7 +3,13 @@ import { createContext, PropsWithChildren, useContext, useState } from "react";
 interface ProjectGrid {
   image1: string;
   image2: string;
-  desktopVideo: string;
+  logoBlack: string;
+  logoWhite: string;
+  desktopVideo1: string;
+  desktopVideo2: string;
+  desktopVideo3?: string;
+  desktopVideo4?: string;
+  desktopVideo5?: string;
   image3: string;
   mobileVideo: string;
   image4: string;
@@ -46,11 +52,17 @@ const projects: Project[] = [
     media: {
       image1: '/assets/images/harlow/harlow-img-1.webp',
       image2: '/assets/images/harlow/harlow-img-2.webp',
-      desktopVideo: '',
+      logoBlack: '/assets/images/harlow/harlow-logo-black.png',
+      logoWhite: '/assets/images/harlow/harlow-logo-white.png',
+      desktopVideo1: '/assets/images/harlow/videos/Landing-Page.mp4',
+      desktopVideo2: '/assets/images/harlow/videos/Search.mp4',
+      desktopVideo3: '/assets/images/harlow/videos/Grid-Sort.mp4',
+      desktopVideo4: '/assets/images/harlow/videos/Login.mp4',
+      desktopVideo5: '/assets/images/harlow/videos/Desktop-Menu.mp4',
       image3: '/assets/images/harlow/harlow-card.webp', 
       mobileVideo: '',
-      image4: '/assets/images/harlow/harlow-img-4.webp',
-      image5: '/assets/images/harlow/harlow-img-5.webp'
+      image4: '/assets/images/harlow/harlow-men.webp',
+      image5: '/assets/images/harlow/harlow-kids.webp'
     },
     services: ["Design", "Development", "Content"],
     overview: `Harlow is a sleek and modern fashion e-commerce platform designed to showcase a seamless online shopping experience. Featuring an exclusive collection from top brands like Nike, Adidas, Puma, and Harlow, the platform blends intuitive UX with bold aesthetics to create a high-end retail feel.
