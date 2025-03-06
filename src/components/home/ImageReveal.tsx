@@ -13,53 +13,38 @@ interface Props {
 const ImageReveal = ({page, delay, fullHeight, featured}: Props) => {
   const { open } = useNavContext();
   const [prevImage, setPrevImage] = useState( !featured ? 'assets/images/index-image.webp' : 'assets/images/posters/poster-image-21.webp');
-  const currentImageRef = useRef(null);
   const newImageRef = useRef(null);
-  const [key, setKey] = useState(0);
 
-  // ===== REVEAL SELECTED IMAGE OVER PREV IMAGE =====
   useCustomEffect(() => {
-    const duration = 1;
-    const ease = "power2.out";
+    if (!newImageRef.current) return null;
 
-    if (!newImageRef.current || !currentImageRef.current || !page?.image) return;
-
-    gsap.killTweensOf([newImageRef.current, currentImageRef.current]);
-
-    gsap.set(newImageRef.current, {
-      opacity: 1,
-      scale: 3.5,
-      clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)"
-    });
+    gsap.killTweensOf(newImageRef.current);
 
     const tl = gsap.timeline({
       onComplete: () => {
-        setPrevImage(!featured ? page.image : page.poster);
-        setKey(prev => prev + 1);
+        setPrevImage(page?.image || '');
       }
     });
 
-    tl.to(newImageRef.current, {
-      clipPath: "polygon(0 100%, 100% 100%, 100% 0%, 0 0%)",
-      duration,
-      ease,
-      delay
-    }).to(newImageRef.current, {
+    tl.fromTo(newImageRef.current, {
+      clipPath: 'polygon(0 0, 0 0, 0 100%, 0% 100%)',
+      scale: 2
+    }, {
+      clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
       scale: 1,
-      duration,
-      ease,
-    }, "<");
-
+      duration: .8,
+      ease: 'power2.out'
+    })
   }, [page, delay])
 
   // ===== ANIMATE IMAGE ON MENU OPEN AND CLOSE =====
   useCustomEffect(() => {
-    if (!currentImageRef.current) return;
+    if (!newImageRef.current) return;
     const duration = 1.5;
     const ease = "power2.out";
     const menuDelay = .2;
 
-    const elements = [currentImageRef.current];
+    const elements = [newImageRef.current];
     if (newImageRef.current) {
       elements.push(newImageRef.current);
     }
@@ -67,29 +52,24 @@ const ImageReveal = ({page, delay, fullHeight, featured}: Props) => {
     gsap.killTweensOf(elements);
 
     if (open) {
-      gsap.to(elements, {scale: 1.3, duration, ease, delay: menuDelay})
+      gsap.fromTo(elements, {scale: 1.3}, {scale: 1, duration, ease, delay: menuDelay})
     } else {
-      gsap.to(elements, {scale: 1, duration, ease})
+      gsap.fromTo(elements, {scale: 1}, {scale: 1.3, duration, ease})
     }
   }, [open])
 
   return (
     <div className={`relative overflow-hidden w-full bg-myGray-100 ${!fullHeight ? 'h-[88%]' : 'h-full'} rounded-lg`}>
-      <img
-        ref={currentImageRef}
-        className="absolute top-0 left-0 h-full w-full object-cover"
-        src={prevImage}
-        alt="Default image"
-      />
-      {page?.image && (
-        <img
-          key={key}
-          ref={newImageRef}
-          className="absolute top-0 left-0 h-full w-full object-cover opacity-0"
-          src={!featured ? page?.image : page.poster}
-          alt="New hovered image"
-        />
-      )}
+      <img 
+        className="absolute left-0 top-0 w-full h-full object-cover"
+        src={prevImage || 'assets/images/default.png'} 
+        alt="previous selected title image"/>
+
+      <img 
+        ref={newImageRef}
+        className="absolute left-0 top-0 w-full h-full object-cover"
+        src={page?.image || 'assets/images/index-image.webp'} 
+        alt="selected title image"/>
     </div>
   )
 }
