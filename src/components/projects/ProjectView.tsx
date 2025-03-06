@@ -2,15 +2,28 @@ import { useParams } from "react-router-dom";
 import useGetProject from "../hooks/useGetProject";
 import useCustomEffect from "../hooks/useCustomEffect";
 import ProjectLayout from "./ProjectLayout";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLenis } from "lenis/react";
 
 const ProjectView = () => {
   const {title} = useParams();
   const {data: selectedProject} = useGetProject(title || "");
   const projectLayoutRef = useRef(null);
   const heroRef = useRef(null);
+  const [showLayout, setShowLayout] = useState(true);
+  const lenis = useLenis();
+
+  useCustomEffect(() => {
+    // scroll to top on navigate
+    lenis?.scrollTo(0, {offset: 0, duration: 1});
+
+    if (title?.toLowerCase().includes("polygene")) {
+      return setShowLayout(false);
+    } 
+    setShowLayout(true);
+  }, [title])
 
   useCustomEffect(() => {
     const layout = projectLayoutRef.current;
@@ -41,7 +54,19 @@ const ProjectView = () => {
   }, [selectedProject])
 
   return (
-    <div className="min-h-[100vh] w-full h-full">
+    <div className="min-h-[100vh] w-full h-full relative ">
+      {/* ===== COMING SOON ===== */}
+      {
+        !showLayout && 
+        <>
+          <div className="flex justify-center items-center w-full h-screen absolute left-0 top-0 z-[1] bg-gradient-to-b from-transparent to-myblack" />
+
+          <div className="w-full h-full flex justify-center items-center absolute left-0 top-0">
+           <h2 className="uppercase text-white opacity-50 text-[45px] sm:text-[60px] lg:text-[450px] leading-[1] -tracking-[0.08ch]">coming soon...</h2>
+        </div>
+        </>
+      }
+
       {/* ===== HERO SECTION ===== */}
       {
         selectedProject ? (
@@ -70,7 +95,7 @@ const ProjectView = () => {
         </div>
 
         <div ref={projectLayoutRef} className="relative z-[2]">
-          <ProjectLayout selectedProject={selectedProject} />
+          { showLayout && <ProjectLayout selectedProject={selectedProject} />}
         </div>
         </>
 
