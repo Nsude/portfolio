@@ -87,7 +87,7 @@ const pages: Page[] = [
     cheekyLine: 'Interfaces so smooth, they practically flirt.',
     tags: ['Clicksmith', 'Pixel Pusher'],
     poster: '/assets/images/posters/poster-image-27.webp',
-    link: '/projects'
+    link: '/projects/ui-layouts'
   },
   {
     name: 'Junk lab',

@@ -40,8 +40,8 @@ const Footer = () => {
       <div className="row-start-7 md:row-start-6 row-span-2 flex flex-col justify-between col-span-5 lg:col-span-8 lg:row-start-5 lg:row-span-3">
         <div className="w-full h-full">
           <img 
-            src="assets/images/name-text-stroke.png" 
-            className="w-full object-cover" 
+            src="/assets/images/name-text-stroke.png" 
+            className="w-full object-cover opacity-20" 
             alt="logo image" />
         </div>
 

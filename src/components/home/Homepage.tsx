@@ -38,7 +38,6 @@ const Homepage = () => {
   // ===== NAVIGATE TO PAGE =====
   const handleClick = () => {
     navigate(selected?.link || '/');
-    // window.location.reload();
     lenis?.resize();
   }
 
