@@ -10,6 +10,10 @@ const ProjectGrid = ({project}: Props) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
+    if (project.title.toLowerCase().includes("ui layouts")) {
+      return navigate("/projects/ui-layouts");
+    }
+
     navigate(`/projects/${project.title}`);
   }
 
