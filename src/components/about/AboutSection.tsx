@@ -131,7 +131,7 @@ const AboutSection = () => {
           </p>
         </div>
       </div>
-      <div className="relative hidden w-[50%] min-h-full lg:block">
+      <div className="relative hidden w-[40%] min-h-full lg:block">
         <div className=" bg-myblack h-full w-full overflow-hidden">
           <AboutImageReveal image={displayImage} />
         </div>
