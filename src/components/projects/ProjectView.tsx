@@ -5,7 +5,6 @@ import ProjectLayout from "./ProjectLayout";
 import { useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useLenis } from "lenis/react";
 
 const ProjectView = () => {
   const {title} = useParams();
@@ -13,11 +12,8 @@ const ProjectView = () => {
   const projectLayoutRef = useRef(null);
   const heroRef = useRef(null);
   const [showLayout, setShowLayout] = useState(true);
-  const lenis = useLenis();
 
   useCustomEffect(() => {
-    // scroll to top on navigate
-    lenis?.scrollTo(0, {offset: 0, duration: 1});
 
     if (title?.toLowerCase().includes("polygene")) {
       return setShowLayout(false);

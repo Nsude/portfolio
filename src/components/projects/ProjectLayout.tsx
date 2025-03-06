@@ -101,8 +101,9 @@ const ProjectLayout = ({selectedProject: project}: Props) => {
       </div>
 
       {/* DESKTOP 1 PROTOTYPE */}
-      <div className="bg-myGray-300 w-full h-[55vh] lg:h-[150vh] mb-2.5 flex justify-center items-center">
-        <div className="w-[75%] rounded-[12px]">
+      <div className="bg-myGray-300 relative w-full h-[55vh] lg:h-[150vh] mb-2.5 flex justify-center items-center">
+        <img src={project.media.bgImage2} className="w-full h-full absolute z-[0] left-0 top-0 object-cover" />
+        <div className="w-[75%] rounded-[12px] relative z-[1]">
           <LazyLoadVideo src={project.media.desktopVideo1} />
         </div>
       </div>
@@ -155,8 +156,9 @@ const ProjectLayout = ({selectedProject: project}: Props) => {
       {/* DESKTOP 5 PROTOTYPE */}
       {
         project.media.desktopVideo5 &&
-        <div className="bg-myGray-300 w-full h-[55vh] lg:h-[150vh] mb-2.5 flex justify-center items-center">
-          <div className="w-[75%] rounded-[12px]">
+        <div className="bg-myGray-300 relative w-full h-[55vh] lg:h-[150vh] mb-2.5 flex justify-center items-center">
+          <img src={project.media.image1} className="w-full h-full absolute z-[0] left-0 top-0 object-cover" />
+          <div className="w-[75%] rounded-[12px] relative z-[1]">
             <LazyLoadVideo src={project.media.desktopVideo5} />
           </div>
         </div>

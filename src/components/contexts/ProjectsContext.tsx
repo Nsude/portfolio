@@ -10,6 +10,7 @@ interface ProjectGrid {
   desktopVideo3?: string;
   desktopVideo4?: string;
   desktopVideo5?: string;
+  bgImage2?: string,
   image3: string;
   mobileVideo: string;
   image4: string;
@@ -59,6 +60,7 @@ const projects: Project[] = [
       desktopVideo3: '/assets/images/harlow/videos/Grid-Sort.mp4',
       desktopVideo4: '/assets/images/harlow/videos/Login.mp4',
       desktopVideo5: '/assets/images/harlow/videos/Desktop-Menu.mp4',
+      bgImage2: '/assets/images/harlow/image-male.webp',
       image3: '/assets/images/harlow/harlow-card.webp', 
       mobileVideo: '',
       image4: '/assets/images/harlow/harlow-men.webp',
