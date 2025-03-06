@@ -1,10 +1,32 @@
 import { createContext, PropsWithChildren, useContext, useState } from "react";
 
+interface ProjectGrid {
+  image1: string;
+  image2: string;
+  logoBlack: string;
+  logoWhite: string;
+  desktopVideo1: string;
+  desktopVideo2: string;
+  desktopVideo3?: string;
+  desktopVideo4?: string;
+  desktopVideo5?: string;
+  bgImage2?: string,
+  image3: string;
+  mobileVideo: string;
+  image4: string;
+  image5: string;
+}
+
 export interface Project {
   title: string;
   index: string;
   thumbnail: string;
-  media: string[];
+  category: string;
+  media: ProjectGrid;
+  services: string[];
+  overview: string,
+  sectors: string[],
+  timeline: string,
 }
 
 interface Props {
@@ -27,19 +49,50 @@ const projects: Project[] = [
     title: 'Harlow',
     index: '001',
     thumbnail: '/assets/images/harlow.webp',
-    media: ['/assets/images/harlow.webp', '/assets/images/harlow.webp', '/assets/images/harlow.webp']
+    category: 'e-commerce',
+    media: {
+      image1: '/assets/images/harlow/harlow-img-1.webp',
+      image2: '/assets/images/harlow/harlow-img-2.webp',
+      logoBlack: '/assets/images/harlow/harlow-logo-black.png',
+      logoWhite: '/assets/images/harlow/harlow-logo-white.png',
+      desktopVideo1: '/assets/images/harlow/videos/Landing-Page.mp4',
+      desktopVideo2: '/assets/images/harlow/videos/Search.mp4',
+      desktopVideo3: '/assets/images/harlow/videos/Grid-Sort.mp4',
+      desktopVideo4: '/assets/images/harlow/videos/Login.mp4',
+      desktopVideo5: '/assets/images/harlow/videos/Desktop-Menu.mp4',
+      bgImage2: '/assets/images/harlow/image-male.webp',
+      image3: '/assets/images/harlow/harlow-card.webp', 
+      mobileVideo: '',
+      image4: '/assets/images/harlow/harlow-men.webp',
+      image5: '/assets/images/harlow/harlow-kids.webp'
+    },
+    services: ["Design", "Development", "Content"],
+    overview: `Harlow is a sleek and modern fashion e-commerce platform designed to showcase a seamless online shopping experience. Featuring an exclusive collection from top brands like Nike, Adidas, Puma, and Harlow, the platform blends intuitive UX with bold aesthetics to create a high-end retail feel.
+    Harlow focuses on smooth navigation, dynamic product displays, and an immersive shopping experience.`,
+    sectors: ["Fashion", "Lifestyle"],
+    timeline: 'Dec, 2024'
   },
   {
     title: 'Polygene',
     index: '002',
     thumbnail: '/assets/images/polygene.webp',
-    media: ['/assets/images/polygene.webp', '/assets/images/polygene.webp', '/assets/images/polygene.webp']
+    category: 'Gradient Exp. 1',
+    media: {},
+    services: ["Design", "Development", "Content"],
+    overview: ``,
+    sectors: [],
+    timeline: ''
   },
   {
     title: 'UI layouts',
     index: '003',
+    category: 'UI Explorations',
     thumbnail: '/assets/images/uiLayouts.webp',
-    media: ['/assets/images/uiLayouts.webp', '/assets/images/uiLayouts.webp', '/assets/images/uiLayouts.webp']
+    media: {},
+    services: ["Design", "Development"],
+    overview: ``,
+    sectors: [],
+    timeline: ''
   },
 ]
 

@@ -2,9 +2,6 @@ import { useRef, useState } from "react";
 import useCustomEffect from "../hooks/useCustomEffect";
 import { PosterLayout } from "../models";
 import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
 
 
 const ListPosterLayout = ({posters}: PosterLayout) => {

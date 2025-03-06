@@ -1,10 +1,6 @@
 import { Link } from "react-router-dom";
 import { useNavContext } from "../contexts/NavContext";
-import gsap from "gsap";
 import { useRef } from "react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const Footer = () => {
   const { pages, socialLinks } = useNavContext();

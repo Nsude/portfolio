@@ -11,6 +11,7 @@ import { useDevice } from './hooks/useDevice';
 import ProjectContextProvider from './contexts/ProjectsContext';
 import StatusBar from './global/StatusBar';
 
+// Register once globally
 gsap.registerPlugin(ScrollTrigger);
 
 const Layout = () => {
@@ -43,12 +44,12 @@ const Layout = () => {
   useCustomEffect(() => {
     lenis?.resize();
     ScrollTrigger.refresh();
-  }, [device])
+
+  }, [device.width])
 
   // ===== SCROLL TO TOP ON PAGE NAVIGATE =====
   useEffect(() => {
-    if (location.pathname.toLowerCase().includes('projects')) return;
-    lenis?.scrollTo(0, {immediate: true})
+    lenis?.scrollTo(0, {duration: 1, offset: 0})
   }, [location])
 
   useCustomEffect(() => {
@@ -104,7 +105,7 @@ const Layout = () => {
             </div>
             <div
               ref={footerRef}
-              className={`w-full h-fit`}
+              className={`w-full h-fit relative z-[5]`}
             >
               {!hideFooter && <Footer />}
             </div>
