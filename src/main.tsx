@@ -79,12 +79,12 @@ const AnimatedRoutes = () => {
 }
 
 const PageWrapper = ({children}: {children: ReactNode}) => {
-  const location = useLocation();
   const duration = 1;
   const delay = .1;
 
   return (
     <>
+      {/* ===== MOVE PAGE CONTENT ===== */}
       <m.div 
         initial={{opacity: 1, y: 50}}
         animate={{opacity: 1, y: 0}}
@@ -94,14 +94,16 @@ const PageWrapper = ({children}: {children: ReactNode}) => {
         {children}
       </m.div>
 
+      {/* ===== DARK OVERLAY ===== */}
       <m.div 
-      className={`fixed w-full h-screen top-0 left-0 opacity-0 pointer-events-none bg-black z-[5]`}
-      initial={{opacity: 0.6}}
-      animate={{opacity: 0}}
-      exit={{opacity: 0.6}}
-      transition={{duration: duration/2}}
+        className={`fixed w-full h-screen top-0 left-0 opacity-0 pointer-events-none bg-black z-[5]`}
+        initial={{opacity: 0.6}}
+        animate={{opacity: 0}}
+        exit={{opacity: 0.6}}
+        transition={{duration: duration/2}}
       />
 
+      {/* ===== SLIDE IN ===== */}
       <m.div
         className={`fixed z-10 left-0 top-0 bg-black w-full h-screen origin-bottom`}
         initial={{scaleY: 0}}
@@ -109,6 +111,7 @@ const PageWrapper = ({children}: {children: ReactNode}) => {
         exit={{scaleY: 1}}
         transition={{duration, ease: [0.22, 1, 0.36, 1], delay}}
       />
+      {/* ===== SLIDE OUT ===== */}
       <m.div
         className={`fixed z-10 left-0 top-0 bg-black w-full h-screen origin-top`}
         initial={{scaleY: 1}}
