@@ -40,12 +40,6 @@ body, html {
   overscroll-behavior: none;
 }
 
-/* @media only screen and (min-width: 640px) {
-  body, html {
-    overscroll-behavior: none;
-  }
-} */
-
 /* Hide scrollbar for WebKit browsers (Chrome, Safari, Edge) */
 .hide-scroll {
   -ms-overflow-style: none; /* IE and Edge */

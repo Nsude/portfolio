@@ -1,10 +1,16 @@
 import { Link } from "react-router-dom";
 import { useNavContext } from "../contexts/NavContext";
 import { useRef } from "react";
+import { useLenis } from "lenis/react";
 
 const Footer = () => {
   const { pages, socialLinks } = useNavContext();
   const footerRef = useRef(null);
+  const lenis = useLenis();
+
+  const handleBackToTop = () => {
+    lenis?.scrollTo(0, {offset: 0, duration: 1})
+  }
 
   return (
     <div ref={footerRef} className="h-[100dvh] lg:h-[100vh] overflow-hidden grid grid-rows-7 grid-cols-5 bg-myblack px-5 pb-5 leading-[0.95] lg:grid-cols-8 text-white tracking-tight">
@@ -48,7 +54,7 @@ const Footer = () => {
         <div className="w-full flex justify-between text-base">
           <p className="hidden lg:inline-block">@M-N</p>
           <p>All rights reserve &copy; <span className="hidden lg:inline-block">2025</span> </p>
-          <button className="uppercase">Back to top</button>
+          <button className="uppercase" onClick={handleBackToTop}>Back to top</button>
         </div>
       </div>
     </div>
