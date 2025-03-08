@@ -41,7 +41,7 @@ const ProjectLayout = ({selectedProject: project}: Props) => {
     <div className="min-h-screen h-full mt-[100px] xl:mt-0 bg-myGray-100">
       <div className="xl:h-[150vh] md:h-[55vh] h-[45vh] w-full overflow-hidden">
         <img ref={mainImageRef} className="w-full h-[100%] xl:h-[130%] object-cover object-right" 
-        src={project.media.image1} alt="" />
+        src={project.media?.image1} alt="" />
       </div>
 
       {/* OVERVIEW START */}
@@ -93,49 +93,49 @@ const ProjectLayout = ({selectedProject: project}: Props) => {
       {/* logo-image2 START */}
       <div className="flex flex-col md:flex-row gap-2.5 h-[70vh] lg:h-screen mb-2.5 px-5 ">
         <div className="bg-myGray-300 h-[75%] w-full lg:w-1/2 flex justify-center items-center">
-          <img className="opacity-45" src={project.media.logoBlack}/>
+          <img className="opacity-45" src={project.media?.logoBlack}/>
         </div>
         <div className="w-full h-1/2 md:h-full lg:w-1/2">
-          <img className="w-full h-full object-cover" src={project.media.image2} />
+          <img className="w-full h-full object-cover" src={project.media?.image2} />
         </div>
       </div>
 
       {/* DESKTOP 1 PROTOTYPE */}
       <div className="bg-myGray-300 relative w-full h-[55vh] lg:h-[150vh] mb-2.5 flex justify-center items-center">
-        <img src={project.media.bgImage2} className="w-full h-full absolute z-[0] left-0 top-0 object-cover" />
+        <img src={project.media?.bgImage2} className="w-full h-full absolute z-[0] left-0 top-0 object-cover" />
         <div className="w-[75%] rounded-[12px] relative z-[1]">
-          <LazyLoadVideo src={project.media.desktopVideo1} />
+          <LazyLoadVideo src={project.media?.desktopVideo1 || ''} />
         </div>
       </div>
 
       {/* IMAGE 3 */}
       <div className=" h-[55vh] lg:h-[75vh] flex justify-end mb-2.5">
         <div className="md:w-1/2 w-full h-full bg-myGray-300 flex justify-center items-center">
-          <img className="" src={project.media.image3}/>
+          <img className="" src={project.media?.image3}/>
         </div>
       </div>
 
       {/* DESKTOP 2 PROTOTYPE */}
       <div className="bg-myGray-300 w-full h-[55vh] lg:h-[150vh] mb-2.5 flex justify-center items-center">
         <div className="w-[75%] rounded-[12px]">
-          <LazyLoadVideo src={project.media.desktopVideo2} />
+          <LazyLoadVideo src={project.media?.desktopVideo2 || ''} />
         </div>
       </div>
 
       {/* IMAGE 4-5 */}
       <div className="flex flex-col md:flex-row gap-2.5 h-[55vh] lg:h-screen mb-2.5 px-2.5 md:px-2.5">
         <div className="w-full h-1/2 lg:w-1/2 md:h-[75%]">
-          <img className="h-full w-full object-cover" src={project.media.image4}/>
+          <img className="h-full w-full object-cover" src={project.media?.image4}/>
         </div>
         <div className="w-full h-1/2 md:h-full lg:w-1/2 relative">
-          <img className="absolute left-[50%] top-[50%] -translate-x-[50%] -translate-y-[50%]" src={project.media.logoWhite} alt="" />
-          <img className="w-full h-full object-cover" src={project.media.image5} />
+          <img className="absolute left-[50%] top-[50%] -translate-x-[50%] -translate-y-[50%]" src={project.media?.logoWhite} alt="" />
+          <img className="w-full h-full object-cover" src={project.media?.image5} />
         </div>
       </div>
 
       {/* DESKTOP 3 PROTOTYPE */}
       {
-        project.media.desktopVideo3 &&
+        project.media?.desktopVideo3 &&
         <div className="bg-myGray-300 w-full h-[55vh] lg:h-[150vh] mb-2.5 flex justify-center items-center">
           <div className="w-[75%] rounded-[12px]">
             <LazyLoadVideo src={project.media.desktopVideo3} />
@@ -145,7 +145,7 @@ const ProjectLayout = ({selectedProject: project}: Props) => {
 
       {/* DESKTOP 4 PROTOTYPE */}
       {
-        project.media.desktopVideo4 &&
+        project.media?.desktopVideo4 &&
         <div className="bg-myGray-300 w-full lg:w-[80%] mx-auto h-[55vh] lg:h-[100vh] mb-2.5 flex justify-center items-center">
           <div className="w-[75%] rounded-[12px]">
             <LazyLoadVideo src={project.media.desktopVideo4} />
@@ -155,7 +155,7 @@ const ProjectLayout = ({selectedProject: project}: Props) => {
 
       {/* DESKTOP 5 PROTOTYPE */}
       {
-        project.media.desktopVideo5 &&
+        project.media?.desktopVideo5 &&
         <div className="bg-myGray-300 relative w-full h-[55vh] lg:h-[150vh] mb-2.5 flex justify-center items-center">
           <img src={project.media.image1} className="w-full h-full absolute z-[0] left-0 top-0 object-cover" />
           <div className="w-[75%] rounded-[12px] relative z-[1]">

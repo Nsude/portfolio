@@ -22,7 +22,7 @@ export interface Project {
   index: string;
   thumbnail: string;
   category: string;
-  media: ProjectGrid;
+  media?: ProjectGrid;
   services: string[];
   overview: string,
   sectors: string[],
@@ -77,7 +77,6 @@ const projects: Project[] = [
     index: '002',
     thumbnail: '/assets/images/polygene.webp',
     category: 'Gradient Exp. 1',
-    media: {},
     services: ["Design", "Development", "Content"],
     overview: ``,
     sectors: [],
@@ -88,7 +87,6 @@ const projects: Project[] = [
     index: '003',
     category: 'UI Explorations',
     thumbnail: '/assets/images/uiLayouts.webp',
-    media: {},
     services: ["Design", "Development"],
     overview: ``,
     sectors: [],
