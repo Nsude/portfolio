@@ -12,6 +12,7 @@ import UILayouts from './components/projects/UILayouts.tsx'
 import { AnimatePresence, motion as m } from 'motion/react'
 import NavBar from './components/global/NavBar.tsx'
 import NavContextProvider from './components/contexts/NavContext.tsx'
+import PreloaderContextProvider from './components/contexts/PreloaderContext.tsx'
 
 
 const AnimatedRoutes = () => {
@@ -128,10 +129,12 @@ const PageWrapper = ({children}: {children: ReactNode}) => {
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
-      <NavContextProvider>
-        <NavBar />
-        <AnimatedRoutes />
-      </NavContextProvider>
+      <PreloaderContextProvider>
+        <NavContextProvider>
+          <NavBar />
+          <AnimatedRoutes />
+        </NavContextProvider>
+      </PreloaderContextProvider>
     </BrowserRouter>
   </StrictMode>,
 )
