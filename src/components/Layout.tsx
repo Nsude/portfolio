@@ -8,6 +8,8 @@ import { ReactLenis, useLenis } from 'lenis/react';
 import { useDevice } from './hooks/useDevice';
 import ProjectContextProvider from './contexts/ProjectsContext';
 import StatusBar from './global/StatusBar';
+import Preloader from './global/Preloader';
+import { usePreloaderContext } from './contexts/PreloaderContext';
 
 // Register once globally
 gsap.registerPlugin(ScrollTrigger);
@@ -20,6 +22,7 @@ const Layout = () => {
   const lenisRef = useRef<any>(null);
   const device = useDevice();
   const lenis = useLenis();
+  const {isLoading } = usePreloaderContext();
 
   // ===== INIT LENIS SMOOTH SCROLL =====
   useEffect(() => {
@@ -72,15 +75,23 @@ const Layout = () => {
     >
       <ProjectContextProvider>
         <StatusBar />
-        <div className={`${darkBg ? 'bg-myblack' : 'bg-myGray-100'} hide-scroll`}>
-          <Outlet />
-          <div
-            ref={footerRef}
-            className={`w-full h-fit relative z-[5]`}
-          >
-            {!hideFooter && <Footer />}
-          </div>
-        </div>
+        {
+          isLoading ? 
+          (
+            <Preloader />
+          )
+          : (
+            <div className={`${darkBg ? 'bg-myblack' : 'bg-myGray-100'} hide-scroll`}>
+              <Outlet />
+              <div
+                ref={footerRef}
+                className={`w-full h-fit relative z-[5]`}
+              >
+                {!hideFooter && <Footer />}
+              </div>
+            </div>
+          )
+        }
       </ProjectContextProvider>
     </ReactLenis>
   );
