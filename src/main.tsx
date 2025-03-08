@@ -88,7 +88,7 @@ const PageWrapper = ({children}: {children: ReactNode}) => {
       <m.div 
         initial={{opacity: 1, y: 50}}
         animate={{opacity: 1, y: 0}}
-        exit={{opacity: 0.6, y: -100}}
+        exit={{opacity: 0.6, y: -50}}
         transition={{duration, ease: [0.22, 1, 0.36, 1], delay}}
       >
         {children}

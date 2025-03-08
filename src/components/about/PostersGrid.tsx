@@ -1,4 +1,5 @@
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useRef } from "react";
 import { addElem } from "../utils/utilityFunctions";
 import useCustomEffect from "../hooks/useCustomEffect";
@@ -41,6 +42,7 @@ const PostersGrid = () => {
     if (device.width < 768) return null;
 
     gsap.killTweensOf(imagesRef.current);
+    ScrollTrigger.killAll();
 
     const tl = gsap.timeline({
       defaults: {
@@ -48,17 +50,17 @@ const PostersGrid = () => {
       }, 
       scrollTrigger: {
         trigger: gridCon.current,
-        start:'center center',
+        start:'center 50%',
         end: "+=200%",
         pin: containerRef.current,
         pinReparent: true,
         pinSpacing: true,
-        scrub: 0.5,
+        scrub: 1,
       }
     })
     .from(imagesRef.current, {
       stagger: .07,
-      y: gsap.utils.random(window.innerHeight, (window.innerHeight * 1.8))
+      y: gsap.utils.random(window.innerHeight, (window.innerHeight * 2.8))
     })
 
     return () => (
@@ -68,8 +70,8 @@ const PostersGrid = () => {
   }, [device])
 
   return (
-    <div ref={containerRef} className="px-2.5 md:px-0 md:bg-myblack min-h-[100dvh] lg:h-[100vh] w-full pb-[150px] md:pb-0">
-      <div ref={gridCon} className="grid grid-cols-2 grid-rows-3 sm:grid-rows-3 md:grid-cols-4 lg:grid-cols-6 2xl:grid-cols-8 gap-[5px] h-full w-full">
+    <div ref={containerRef} className="px-2.5 md:px-0 md:bg-myblack min-h-[100dvh] lg:h-[108vh] w-full pb-[150px] md:pb-0 lg:flex lg:items-center overflow-hidden">
+      <div ref={gridCon} className="grid grid-cols-2 grid-rows-3 sm:grid-rows-3 md:grid-cols-4 lg:grid-cols-6 2xl:grid-cols-8 gap-[5px] h-full lg:h-fit w-full">
         {
           posters.map((image, i) => (
             <div ref={(el) => addElem(el, imagesRef.current)} key={i} 
