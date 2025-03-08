@@ -21,8 +21,8 @@ const ProjectGrid = ({project}: Props) => {
     <div
       onClick={handleClick} 
       className={`w-full h-full flex flex-col gap-y-[15px]`}>
-      <div className="w-full h-[85%]">
-        <img className="w-full h-full object-cover" src={`${project.thumbnail}`} />
+      <div className="w-full h-[85%] overflow-hidden">
+        <img className="w-full h-full object-cover hover:scale-[1.15] transition-all duration-[600ms]" src={`${project.thumbnail}`} />
       </div>
 
       <div>
