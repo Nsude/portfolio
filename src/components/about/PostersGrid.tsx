@@ -49,10 +49,10 @@ const PostersGrid = () => {
         ease: 'sine'
       }, 
       scrollTrigger: {
-        trigger: gridCon.current,
-        start:'center 50%',
+        trigger: containerRef.current,
+        start:'top top',
         end: "+=200%",
-        pin: containerRef.current,
+        pin: true,
         pinReparent: true,
         pinSpacing: true,
         scrub: 1,
@@ -70,7 +70,7 @@ const PostersGrid = () => {
   }, [device])
 
   return (
-    <div ref={containerRef} className="px-2.5 md:px-0 md:bg-myblack min-h-[100dvh] lg:h-[108vh] w-full pb-[150px] md:pb-0 lg:flex lg:items-center overflow-hidden">
+    <div ref={containerRef} className="px-2.5 md:px-0 md:bg-myblack min-h-[108dvh] lg:h-[100vh] w-full pb-[150px] md:pb-0 lg:flex lg:items-center overflow-hidden">
       <div ref={gridCon} className="grid grid-cols-2 grid-rows-3 sm:grid-rows-3 md:grid-cols-4 lg:grid-cols-6 2xl:grid-cols-8 gap-[5px] h-full lg:h-fit w-full">
         {
           posters.map((image, i) => (
