@@ -44,7 +44,7 @@ const Homepage = () => {
   return (
     <div 
       onClick={handleClick} 
-      className="relative cursor-pointer h-[100dvh] lg:h-[100vh] hide-scroll w-full px-5 grid grid-rows-10 justify-center lg:grid-cols-8 lg:px-[20px]">    
+      className="relative cursor-pointer h-[100dvh] lg:h-[100vh] hide-scroll w-full px-5 grid grid-rows-10 justify-center lg:grid-cols-8 lg:px-[20px] overflow-hidden">    
       <div 
         onClick={(e) => e.stopPropagation()}
         className="relative z-[3] row-start-3 row-span-5 flex justify-center lg:inline-block lg:col-start-2 lg:col-span-2">
