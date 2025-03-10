@@ -41,10 +41,8 @@ const Layout = () => {
 
   useEffect(() => {
     if (hideFooter) {
-      console.log("hidden")
       document.body.style.overflow = "hidden";
     } else {
-      console.log("visible")
       document.body.style.overflow = "auto";
     }
 
