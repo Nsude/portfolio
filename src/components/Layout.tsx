@@ -1,6 +1,6 @@
 import { Outlet, useLocation } from 'react-router-dom';
 import Footer from './global/Footer';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import useCustomEffect from './hooks/useCustomEffect';
 import gsap from 'gsap';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -15,9 +15,8 @@ import { usePreloaderContext } from './contexts/PreloaderContext';
 gsap.registerPlugin(ScrollTrigger);
 
 const Layout = () => {
-  const routesToHideFooter = "/";
   const location = useLocation();
-  const [hideFooter, setHideFooter] = useState(false);
+  const hideFooter = useMemo(() => location.pathname === "/", [location.pathname]);
   const footerRef = useRef(null);
   const lenisRef = useRef<any>(null);
   const device = useDevice();
@@ -52,10 +51,6 @@ const Layout = () => {
     lenis?.scrollTo(0, {duration: 1, offset: 0})
   }, [location])
 
-  useCustomEffect(() => {
-    setHideFooter(routesToHideFooter.endsWith(location.pathname));
-  }, [location])
-
   const [darkBg, setDarkBg] = useState(false);
   useEffect(() => {
     lenis?.resize();
@@ -83,12 +78,15 @@ const Layout = () => {
           : (
             <div className={`${darkBg ? 'bg-myblack' : 'bg-myGray-100'} hide-scroll`}>
               <Outlet />
-              <div
-                ref={footerRef}
-                className={`w-full h-fit relative z-[5]`}
-              >
-                {!hideFooter && <Footer />}
-              </div>
+              {
+                !hideFooter &&
+                <div
+                  ref={footerRef}
+                  className={`w-full h-fit relative z-[5]`}
+                >
+                  <Footer />
+                </div>
+              }
             </div>
           )
         }
