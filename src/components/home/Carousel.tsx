@@ -31,7 +31,7 @@ const Carousel = () => {
       className='relative w-full h-full min-w[350px] max-w-[350px] sm:min-w-[420px] sm:max-w-[450px]'
     >
       {/* First Featured Card */}
-      <div className='hidden absolute z-[4] -right-[50%] top-[50%] -translate-y-[50%] -translate-x-[50%] lg:inline-block'>
+      <div className='hidden absolute z-[4] -right-[50%] top-[50%] -translate-y-[50%] -translate-x-[50%] lg:block'>
         <FeaturedCardOne />
       </div>
 

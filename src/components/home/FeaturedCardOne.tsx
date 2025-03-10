@@ -15,7 +15,7 @@ const FeaturedCardOne = () => {
         <p className="row-start-11 col-start-6 flex justify-end">@M-N</p>
       </div>
 
-      <div className="w-full h-full">
+      <div className="hidden lg:block w-full h-full">
         <VideoReveal selected={selected} />
       </div>
       

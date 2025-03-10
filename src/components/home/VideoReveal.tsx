@@ -64,11 +64,9 @@ const VideoReveal = ({ selected, delay = 0 }: Props) => {
   }, [selected, delay]);
 
   return (
-    <div className="relative overflow-hidden w-full h-full bg-myGray-100">
+    <div className="hidden lg:block relative overflow-hidden w-full h-full bg-myGray-100">
       <video
         ref={currentVideoRef}
-        onClick={(e) => e.preventDefault()}
-        tabIndex={-1}
         className="absolute top-0 left-0 h-full z-[1] w-full object-cover"
         src={prevVideo}
         muted
@@ -78,8 +76,6 @@ const VideoReveal = ({ selected, delay = 0 }: Props) => {
       {selected?.video && (
         <video
           ref={newVideoRef}
-          onClick={(e) => e.preventDefault()}
-          tabIndex={-1}
           className="absolute top-0 left-0 h-full w-full z-[2] object-cover"
           src={selected.video}
           muted
