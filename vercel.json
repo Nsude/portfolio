@@ -2,10 +2,8 @@
   "rewrites": [{ "source": "/(.*)", "destination": "/" }],
   "headers": [
     {
-      "source": "/videos/(.*)",
-      "headers": [
-        { "key": "Cache-Control", "value": "no-store, no-cache, must-revalidate, proxy-revalidate" }
-      ]
+      "source": "/assets/videos/(.*)",
+      "headers": [{ "key": "Content-Type", "value": "video/mp4" }]
     }
   ]
 }
