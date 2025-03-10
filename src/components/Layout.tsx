@@ -39,13 +39,13 @@ const Layout = () => {
     }
   }, [])
 
-  useCustomEffect(() => {
+  useEffect(() => {
     if (hideFooter) {
+      console.log("hidden")
       document.body.style.overflow = "hidden";
-      document.body.style.maxHeight = '100vh';
     } else {
+      console.log("visible")
       document.body.style.overflow = "auto";
-      document.body.style.maxHeight = '100%';
     }
 
   }, [hideFooter])
