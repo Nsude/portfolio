@@ -41,7 +41,7 @@ const pages: Page[] = [
     name: 'Index',
     index: '001',
     image: '/assets/images/index-image.webp',
-    video: '/assets/videos/index.mp4',
+    video: '/index.mp4',
     title: 'the projects',
     description: 'Here’s where the magic happens. From e-commerce brilliance to immersive digital experiences.',
     cheekyLine: "There's no place like home",
@@ -53,7 +53,7 @@ const pages: Page[] = [
     name: 'Projects',
     index: '002',
     image: '/assets/images/projects-image.webp',
-    video: '/assets/videos/projects.mp4',
+    video: '/projects.mp4',
     title: 'the projects',
     description: 'Here’s where the magic happens. From e-commerce brilliance to immersive digital experiences.',
     cheekyLine: 'Where ideas go to get built (and occasionally break)',
@@ -65,7 +65,7 @@ const pages: Page[] = [
     name: 'About me',
     index: '003',
     image: '/assets/images/headshot.webp',
-    video: '/assets/videos/about-poster.mp4',
+    video: '/about-poster.mp4',
     title: 'About lil ol me',
     description: `This isn’t just a portfolio—it’s a statement. Scroll, click, explore. 
 
@@ -93,7 +93,7 @@ const pages: Page[] = [
     name: 'Junk lab',
     index: '005',
     image: '/assets/images/junklab-image.webp',
-    video: '/assets/videos/junk-lab.mp4',
+    video: '/junk-lab.mp4',
     title: 'The junk lab',
     description: `Step into the chaos. This isn’t design—it’s anarchy on a canvas. A no-rules, all-guts curation of my wildest poster layouts. 
 
