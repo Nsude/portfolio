@@ -42,8 +42,10 @@ const Layout = () => {
   useCustomEffect(() => {
     if (hideFooter) {
       document.body.style.overflow = "hidden";
+      document.body.style.maxHeight = '100vh';
     } else {
       document.body.style.overflow = "auto";
+      document.body.style.maxHeight = '100%';
     }
 
   }, [hideFooter])
