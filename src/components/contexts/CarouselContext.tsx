@@ -17,7 +17,7 @@ export const useCarouselContext = () => {
 }
 
 const CarouselContextProvider:React.FC<{children: ReactNode}> = ({children}) => {
-  const [selected, setSelected] = useState<Page>(pages[0]);
+  const [selected, setSelected] = useState<Page>(pages[2]);
 
   return (
     <CarouselContext.Provider value={{
