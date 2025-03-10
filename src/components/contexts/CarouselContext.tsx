@@ -1,9 +1,9 @@
 import { createContext, ReactNode, useContext, useState } from "react";
-import { Page } from "./NavContext";
+import { Page, pages } from "./NavContext";
 
 interface Props {
-  selected: Page | null,
-  setSelected: React.Dispatch<React.SetStateAction<Page | null>>
+  selected: Page,
+  setSelected: React.Dispatch<React.SetStateAction<Page>>
 }
 
 const CarouselContext = createContext<Props | null>(null);
@@ -17,7 +17,7 @@ export const useCarouselContext = () => {
 }
 
 const CarouselContextProvider:React.FC<{children: ReactNode}> = ({children}) => {
-  const [selected, setSelected] = useState<Page | null>(null);
+  const [selected, setSelected] = useState<Page>(pages[0]);
 
   return (
     <CarouselContext.Provider value={{

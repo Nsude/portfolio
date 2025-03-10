@@ -36,7 +36,7 @@ export const useNavContext = () => {
   return context;
 }
 
-const pages: Page[] = [
+export const pages: Page[] = [
   {
     name: 'Index',
     index: '001',
