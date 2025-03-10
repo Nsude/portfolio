@@ -28,7 +28,7 @@ const NavMenu = () => {
       gsap.set(innerCon.current, { yPercent: 0}); //reset inner con
 
       gsap.to(container.current, {
-        clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+        clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
         duration,
         ease
       });
@@ -37,7 +37,7 @@ const NavMenu = () => {
       
     } else {
       gsap.to(container.current, {
-        clipPath: "polygon(0 0, 100% 0, 100% 0%, 0 0%)",
+        clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
         duration,
         ease
       });
