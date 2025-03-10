@@ -11,18 +11,18 @@ const Preloader = () => {
 
   // Handle on complete
   useEffect(() => {
-    const handleLoad = () => {
-      setStartAnimation(true);
-    }
-
-    if (document.readyState === "complete") {
-      handleLoad();
-    } else {
-      window.addEventListener("load", handleLoad);
-    }
+    // only start animation when the UI is ready
+    Promise.all([
+      document.fonts.ready, 
+      new Promise((res) => window.addEventListener("load", res))
+    ]).then(() => {
+      setTimeout(() => {
+        setStartAnimation(true);
+      }, 500);
+    });
 
     return () => {
-      window.removeEventListener("load", handleLoad)
+      window.removeEventListener("load", () => {})
     };
 
   }, [])
