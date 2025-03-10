@@ -24,7 +24,13 @@ const NavMenu = () => {
     gsap.killTweensOf([container.current, innerCon.current]);
 
     if (open) {
-      gsap.set(container.current, {opacity: 1, pointerEvents: 'all'});
+       // Ensure initial state is set before animation
+       gsap.set(container.current, {
+        clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
+        opacity: 1,
+        pointerEvents: "all"
+      });
+
       gsap.set(innerCon.current, { yPercent: 0}); //reset inner con
 
       gsap.to(container.current, {

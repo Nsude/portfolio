@@ -110,15 +110,14 @@ const socialLinks = [
   {
     name: 'LinkedIn',
     link: 'https://www.linkedin.com/in/nsude-meshach/'
-  },
-  {
-    name: 'Twitter',
-    link: 'https://x.com/meshach_nsude'
-  },
-  {
+  }, {
     name: 'Email',
     link: 'mailto:meshachnsd@gmail.com'
-  }];
+  }, {
+    name: 'YouTube',
+    link: 'http://www.youtube.com/@meshach_nsude'
+  },
+];
 
 const NavContextProvider:React.FC<{children: ReactNode}> = ({children}) => {
   const [open, setOpen] = useState(false);
