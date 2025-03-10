@@ -10,6 +10,7 @@ import ProjectContextProvider from './contexts/ProjectsContext';
 import StatusBar from './global/StatusBar';
 import Preloader from './global/Preloader';
 import { usePreloaderContext } from './contexts/PreloaderContext';
+import { useUnmountEffect } from 'motion/react';
 
 // Register once globally
 gsap.registerPlugin(ScrollTrigger);
@@ -38,6 +39,15 @@ const Layout = () => {
      
     }
   }, [])
+
+  useEffect(() => {
+    if (hideFooter) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+  }, [hideFooter])
 
   // ==== RESET ANIMATIONS ON RESIZE ====
   useCustomEffect(() => {
