@@ -79,7 +79,7 @@ const pages: Page[] = [
     name: 'User interfaces',
     index: '004',
     image: '/assets/images/interfaces-image.webp',
-    video: '/assets/videos/interfaces.mp4',
+    video: '/interfaces.mp4',
     title: 'The interfaces',
     description: `This is where ideas meet design. A showcase of interfaces that blur the line between functional and beautiful. 
     
