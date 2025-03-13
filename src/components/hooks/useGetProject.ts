@@ -8,6 +8,10 @@ const useGetProject = (title: string) => {
   const { projects } = useProjectContext();
 
   useCustomEffect(() => {
+    if (title) {
+      console.log("title is working: ", title );
+    }
+
     if (!title.trim()) {
       setError("Invalid Project Title");
       return;
