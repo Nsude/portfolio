@@ -9,7 +9,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 const ProjectView = () => {
   const {title} = useParams();
   if (title) console.log("title is undefined");
-  const {data: selectedProject} = useGetProject(title || "");
+  const {data: selectedProject} = useGetProject(title || "Harlow");
   const projectLayoutRef = useRef(null);
   const heroRef = useRef(null);
   const [showLayout, setShowLayout] = useState(true);
