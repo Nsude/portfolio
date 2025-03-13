@@ -14,6 +14,7 @@ const ProjectGrid = ({project}: Props) => {
       return navigate("/projects/ui-layouts");
     }
 
+    console.log(project.title)
     navigate(`/projects/${project.title}`);
   }
 
