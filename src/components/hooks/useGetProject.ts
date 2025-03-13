@@ -1,23 +1,37 @@
-import { useState } from "react"
+import { useState } from "react";
 import useCustomEffect from "./useCustomEffect";
 import { Project, useProjectContext } from "../contexts/ProjectsContext";
 
-
 const useGetProject = (title: string) => {
-  const [data, setData] = useState<Project>();
-  const {projects} = useProjectContext();
+  const [data, setData] = useState<Project | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const { projects } = useProjectContext();
 
   useCustomEffect(() => {
-    if (title.trim() === '') throw new Error("Invalid Project Title");
+    if (!title.trim()) {
+      setError("Invalid Project Title");
+      return;
+    }
 
-    const matchedProject = projects.find((item) => item.title.toLowerCase() === title.toLowerCase());
+    if (!projects || projects.length === 0) {
+      setError("Projects data is not available yet");
+      return;
+    }
 
-    if (!matchedProject) throw new Error("Can't find matching project");
+    const matchedProject = projects.find(
+      (item) => item.title.toLowerCase() === title.toLowerCase()
+    );
+
+    if (!matchedProject) {
+      setError("Can't find matching project");
+      return;
+    }
+
+    setError(null);
     setData(matchedProject);
+  }, [title, projects]);
 
-  }, [title])
-
-  return { data };
-}
+  return { data, error };
+};
 
 export default useGetProject;
