@@ -14,7 +14,8 @@ const useGetProject = (title: string) => {
 
     if (!title.trim()) {
       setError("Invalid Project Title");
-      return;
+      console.log("iya nwam")
+      throw new Error("Invalid project title")
     }
 
     if (!projects || projects.length === 0) {
