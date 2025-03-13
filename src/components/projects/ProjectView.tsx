@@ -95,7 +95,7 @@ const ProjectView = () => {
         </div>
         </>
 
-        ) : ''
+        ) : <div className="text-[150px]"> Project is undefined </div>
       }
     </div>
   )
