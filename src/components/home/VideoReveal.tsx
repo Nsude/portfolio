@@ -64,7 +64,7 @@ const VideoReveal = ({ selected, delay = 0 }: Props) => {
   }, [selected, delay]);
 
   return (
-    <div className="hidden lg:block relative overflow-hidden w-full h-full bg-myGray-100">
+    <div className="relative overflow-hidden w-full h-full bg-myGray-100">
       <video
         ref={currentVideoRef}
         className="absolute top-0 left-0 h-full z-[1] w-full object-cover"
