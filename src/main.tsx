@@ -13,6 +13,7 @@ import { AnimatePresence, motion as m } from 'motion/react'
 import NavBar from './components/global/NavBar.tsx'
 import NavContextProvider from './components/contexts/NavContext.tsx'
 import PreloaderContextProvider from './components/contexts/PreloaderContext.tsx'
+import ProjectContextProvider from './components/contexts/ProjectsContext.tsx'
 
 
 const AnimatedRoutes = () => {
@@ -131,8 +132,10 @@ createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
       <PreloaderContextProvider>
         <NavContextProvider>
-          <NavBar />
-          <AnimatedRoutes />
+          <ProjectContextProvider>
+            <NavBar />
+            <AnimatedRoutes />
+          </ProjectContextProvider>
         </NavContextProvider>
       </PreloaderContextProvider>
     </BrowserRouter>

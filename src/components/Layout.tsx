@@ -6,7 +6,6 @@ import gsap from 'gsap';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ReactLenis, useLenis } from 'lenis/react';
 import { useDevice } from './hooks/useDevice';
-import ProjectContextProvider from './contexts/ProjectsContext';
 import StatusBar from './global/StatusBar';
 import Preloader from './global/Preloader';
 import { usePreloaderContext } from './contexts/PreloaderContext';
@@ -77,29 +76,27 @@ const Layout = () => {
       }} 
       ref={lenisRef}
     >
-      <ProjectContextProvider>
-        <StatusBar />
-        {
-          isLoading ? 
-          (
-            <Preloader />
-          )
-          : (
-            <div className={`${darkBg ? 'bg-myblack' : 'bg-myGray-100'} hide-scroll`}>
-              <Outlet />
-              {
-                !hideFooter &&
-                <div
-                  ref={footerRef}
-                  className={`w-full h-fit relative z-[5]`}
-                >
-                  <Footer />
-                </div>
-              }
-            </div>
-          )
-        }
-      </ProjectContextProvider>
+      <StatusBar />
+      {
+        isLoading ? 
+        (
+          <Preloader />
+        )
+        : (
+          <div className={`${darkBg ? 'bg-myblack' : 'bg-myGray-100'} hide-scroll`}>
+            <Outlet />
+            {
+              !hideFooter &&
+              <div
+                ref={footerRef}
+                className={`w-full h-fit relative z-[5]`}
+              >
+                <Footer />
+              </div>
+            }
+          </div>
+        )
+      }
     </ReactLenis>
   );
 }
