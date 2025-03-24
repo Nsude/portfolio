@@ -18,7 +18,7 @@ const Projects = () => {
         `}>
         {
           projects.map((project, i) => (
-            <div key={project.title} className={`cursor-pointer ${(i + 1) === 3 && device.width > 1023 ? 'w-[50%] h-[100vh]' : device.width < 1024 ? 'w-[49%] h-[60vh]' : 'w-[24%] h-[60vh]'}`}>
+            <div key={project.title} className={`cursor-pointer ${(i + 1) === 3 && device.width > 1023 ? 'w-[50%] h-[100vh]' : device.width < 1024 ? 'w-full h-[60vh]' : 'w-[24%] h-[60vh]'}`}>
               <ProjectGrid project={project} index={i} />
             </div>
           ))
