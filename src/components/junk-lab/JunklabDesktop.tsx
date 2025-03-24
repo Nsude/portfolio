@@ -1,7 +1,6 @@
 import { useMemo, useState } from "react";
 import PostersMenu from "./PostersMenu";
 import GridPosterLayout from "./GridPosterLayout";
-import ExplorePosterLayout from "./ExplorePosterLayout";
 import ListPosterLayout from "./ListPosterLayout";
 import { posters } from "../contexts/ProjectsContext";
 
@@ -21,8 +20,8 @@ const JunklabDesktop = () => {
       <div className="w-full">
         <div key={menuIndex}>
           {menuIndex === "0" && <GridPosterLayout posters={posterList} />}
-          {menuIndex === "1" && <ExplorePosterLayout posters={posterList} />}
-          {menuIndex === "2" && <ListPosterLayout posters={posterList} />}
+          {/* {menuIndex === "1" && <ExplorePosterLayout posters={posterList} />} */}
+          {menuIndex === "1" && <ListPosterLayout posters={posterList} />}
         </div>
       </div>
 

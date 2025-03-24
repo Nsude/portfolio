@@ -1,19 +1,17 @@
 import { SetStateAction, useRef } from "react";
 import gsap from "gsap";
 import useCustomEffect from "../hooks/useCustomEffect";
-import { useLenis } from "lenis/react";
 
 interface Props {
   setMenuIndex: React.Dispatch<SetStateAction<string>>
 }
 
-const menuItems = ["Grid", "Explore", "List"];
+const menuItems = ["Grid", "List"];
 
 const PostersMenu = ({setMenuIndex}: Props) => {
   const selectorRef = useRef(null);
   const buttonsRef = useRef<(HTMLButtonElement | null)[]>([]);
   const initialRender = useRef(true);
-  const lenis = useLenis();
 
   const moveSelector = (target: HTMLElement, index: string) => {
     const parentLeft = target.parentElement?.getBoundingClientRect().left || 0;
@@ -35,9 +33,6 @@ const PostersMenu = ({setMenuIndex}: Props) => {
   };
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>, index: string) => {
-    // scroll to top
-    lenis?.scrollTo(0, {offset: 0, duration: 1})
-
     moveSelector(e.currentTarget, index);
 
     // save selected index on local storage
