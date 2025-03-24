@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Project, useProjectContext } from "../contexts/ProjectsContext";
+import LazyLoadImage from "../utils/LazyLoadImage";
 
 interface Props {
   project: Project;
@@ -36,7 +37,9 @@ const ProjectGrid = ({project}: Props) => {
       onClick={handleClick} 
       className={`w-full h-full flex flex-col gap-y-[15px]`}>
       <div className="w-full h-[85%] overflow-hidden">
-        <img className="w-full h-full object-cover hover:scale-[1.15] transition-all duration-[600ms]" src={`${project.thumbnail}`} />
+        <div className="w-full h-full object-cover hover:scale-[1.15] transition-all duration-[600ms]">
+          <LazyLoadImage src={project.thumbnail} />
+        </div>
       </div>
 
       <div>

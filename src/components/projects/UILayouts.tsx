@@ -1,4 +1,5 @@
 import { useDevice } from "../hooks/useDevice";
+import LazyLoadImage from "../utils/LazyLoadImage";
 
 const layouts = [
   "/assets/images/UI-layouts/Page-1.png",
@@ -31,7 +32,9 @@ const UILayouts = () => {
           ${(i + 1) % 3 === 0 || device.width < 1024 ? "w-full" : "w-[50%]"} 
           h-[50vh] xl:h-screen lg:h-[60vh] bg-myGray-300 border-myGray-100 border-2 flex justify-center items-center
           `}>
-            <img src={layout} className={`${(i + 1) % 3 === 0 ? "w-[75%] lg:w-1/2" : "w-[75%] lg:w-[75%]"} md:w-[55%]`}/>
+            <div className={`${(i + 1) % 3 === 0 ? "w-[75%] lg:w-1/2" : "w-[75%] lg:w-[75%]"} md:w-[55%]`}>
+              <LazyLoadImage src={layout} />
+            </div>
           </div>
         ))
       }

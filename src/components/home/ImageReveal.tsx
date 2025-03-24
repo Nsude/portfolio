@@ -2,6 +2,7 @@ import { useRef, useState } from 'react'
 import useCustomEffect from '../hooks/useCustomEffect';
 import gsap from 'gsap';
 import { Page, useNavContext } from '../contexts/NavContext';
+import LazyLoadImage from '../utils/LazyLoadImage';
 
 interface Props {
   page: Page | null;
@@ -60,16 +61,14 @@ const ImageReveal = ({page, delay, fullHeight, featured}: Props) => {
 
   return (
     <div className={`relative overflow-hidden w-full bg-myGray-100 ${!fullHeight ? 'h-[88%]' : 'h-full'} rounded-lg`}>
-      <img 
-        className="absolute left-0 top-0 w-full h-full object-cover"
-        src={prevImage || '/assets/images/index-image.webp'} 
-        alt="previous selected title image"/>
 
-      <img 
-        ref={newImageRef}
-        className="absolute left-0 top-0 w-full h-full object-cover"
-        src={page?.image || '/assets/images/index-image.webp'} 
-        alt="selected title image"/>
+      <div className="absolute left-0 top-0 w-full h-full object-cover">
+        <LazyLoadImage src={prevImage || '/assets/images/index-image.webp' } />
+      </div>
+        
+      <div className="absolute left-0 top-0 w-full h-full object-cover" ref={newImageRef}>
+        <LazyLoadImage src={page?.image || '/assets/images/index-image.webp'}  />
+      </div>
     </div>
   )
 }

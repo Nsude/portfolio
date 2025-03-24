@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import useCustomEffect from "../hooks/useCustomEffect";
 import gsap from "gsap";
+import LazyLoadImage from "../utils/LazyLoadImage";
 
 interface Props {
   image: string
@@ -34,16 +35,26 @@ const AboutImageReveal = ({image}: Props) => {
 
   return (
     <div className="relative w-full h-full">
-      <img 
+      {/* <img 
         className="absolute left-0 top-0 w-full h-full object-cover"
         src={prevImage || 'assets/images/default.png'} 
-        alt="previous selected title image"/>
+        alt="previous selected title image"/> */}
 
-      <img 
+      <div className="absolute left-0 top-0 w-full h-full object-cover">
+        <LazyLoadImage src={prevImage || 'assets/images/default.png'} />
+      </div>
+
+      {/* <img 
         ref={newImageRef}
         className="absolute left-0 top-0 w-full h-full object-cover"
         src={image || 'assets/images/default.png'} 
-        alt="selected title image"/>
+        alt="selected title image"/> */}
+
+      <div 
+        ref={newImageRef}
+        className="absolute left-0 top-0 w-full h-full object-cover">
+          <LazyLoadImage src={image || 'assets/images/default.png'} />
+      </div>
     </div>
   )
 }
