@@ -25,6 +25,7 @@ const NavMenu = () => {
 
     if (open) {
        // Ensure initial state is set before animation
+       gsap.set(container.current, {opacity: 1})
        gsap.set(container.current, {
         clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
         opacity: 1,
@@ -46,6 +47,9 @@ const NavMenu = () => {
         clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
         duration,
         ease
+      }).then(() => {
+        // hide to prevent menu showing when zoomed on mobile
+        gsap.set(container.current, {opacity: 0})
       });
 
       // move innercon on close
