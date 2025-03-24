@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import useCustomEffect from '../hooks/useCustomEffect';
 import { PosterLayout } from '../models';
 import gsap from 'gsap';
+import LazyLoadImage from '../utils/LazyLoadImage';
 
 const GridPosterLayout = ({posters}: PosterLayout) => {
   const postersRef = useRef<(HTMLDivElement | null)[]>([]);
@@ -87,9 +88,7 @@ const GridPosterLayout = ({posters}: PosterLayout) => {
             key={poster.name} 
             ref={(el) => postersRef.current[i] = el}
             className='w-[15%] relative'>
-            <img 
-              src={poster.path} 
-              alt={`poster image ${i}`} />
+            <LazyLoadImage src={poster.path} />
 
              {/* Poster Details */}
             <div className='absolute leading-[1] flex flex-col items-center capitalize top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] gap-y-0.5 text-nowrap'>

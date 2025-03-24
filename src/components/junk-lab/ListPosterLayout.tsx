@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import useCustomEffect from "../hooks/useCustomEffect";
 import { PosterLayout } from "../models";
 import gsap from "gsap";
+import LazyLoadImage from "../utils/LazyLoadImage";
 
 
 const ListPosterLayout = ({posters}: PosterLayout) => {
@@ -143,13 +144,11 @@ const ListPosterLayout = ({posters}: PosterLayout) => {
                 onClick={(e) => handlePreviewClick(e.currentTarget, i)}
                 data-index={i}
                 className={`relative transition-all duration-[600ms] w-[150px] aspect-[3/2] overflow-hidden`}>
-                <img 
-                  src={poster.path} 
-                  className={`
-                    object-cover w-full h-full transition-all duration-[600ms]
+                <div className={`transition-all duration-[600ms]
                     ${selectedIndex === i ? 'opacity-100' : 'opacity-30'}
-                  `} 
-                />
+                  `} >
+                    <LazyLoadImage src={poster.path} />
+                </div>
               </div>
             ))
           }
@@ -178,9 +177,7 @@ const ListPosterLayout = ({posters}: PosterLayout) => {
         </div>
         <div className="absolute -translate-y-[50%] aspect-[4/5]"
           style={{ top: offset.top, right: offset.right, height: posterH }}>
-          <img 
-            className={`w-full h-full`}
-            src={posters[selectedIndex].path} alt={`selected poster, poster-${selectedIndex}`} />
+          <LazyLoadImage src={posters[selectedIndex].path} />
         </div>
       </div>
     </div>

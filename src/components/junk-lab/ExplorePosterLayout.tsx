@@ -3,6 +3,7 @@ import { PosterLayout } from "../models";
 import useCustomEffect from "../hooks/useCustomEffect";
 import { useRef, useState } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import LazyLoadImage from "../utils/LazyLoadImage";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -136,12 +137,9 @@ const ExplorePosterLayout = ({posters}: PosterLayout) => {
               onMouseEnter={handlePosterHover} 
               onMouseLeave={handlePosterHoverBlur}
               style={style} className="absolute h-60 aspect-[4/5]">
-              <img
-                key={poster.name}
-                src={poster.path}
-                className="object-cover w-full h-full"
-                style={style}
-              />
+              <div key={poster.name} style={style}>
+                <LazyLoadImage src={poster.path} />
+              </div>
             </div>
           );
         })}

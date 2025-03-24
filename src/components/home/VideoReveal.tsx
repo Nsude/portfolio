@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import gsap from 'gsap';
 import { Page } from '../contexts/NavContext';
 import useCustomEffect from '../hooks/useCustomEffect';
@@ -12,18 +12,38 @@ const VideoReveal = ({ selected, delay = 0 }: Props) => {
   const [prevVideo, setPrevVideo] = useState('assets/videos/default.mp4');
   const currentVideoRef = useRef<HTMLVideoElement>(null);
   const newVideoRef = useRef<HTMLVideoElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check if device is mobile on component mount and window resize
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024); // Match your lg breakpoint
+    };
+    
+    // Check on mount
+    checkMobile();
+    
+    // Add event listener for resize
+    window.addEventListener('resize', checkMobile);
+    
+    // Cleanup
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useCustomEffect(() => {
+    // Don't play videos on mobile
+    if (isMobile) return;
+    
     // Ensure current video plays on mount
     if (currentVideoRef.current) {
       currentVideoRef.current.play().catch((err) =>
         console.error('Error playing current video:', err)
       );
     }
-  }, [prevVideo]);
+  }, [prevVideo, isMobile]);
 
   useCustomEffect(() => {
-    if (!selected?.video || !newVideoRef.current || !currentVideoRef.current) return;
+    if (isMobile || !selected?.video || !newVideoRef.current || !currentVideoRef.current) return;
 
     const duration = 1;
     const ease = 'power2.out';
@@ -61,7 +81,12 @@ const VideoReveal = ({ selected, delay = 0 }: Props) => {
       duration,
       ease,
     }, '<');
-  }, [selected, delay]);
+  }, [selected, delay, isMobile]);
+
+  // Don't render video elements at all on mobile
+  if (isMobile) {
+    return <div className="relative overflow-hidden w-full h-full bg-myGray-100"></div>;
+  }
 
   return (
     <div className="relative overflow-hidden w-full h-full bg-myGray-100">
@@ -72,6 +97,7 @@ const VideoReveal = ({ selected, delay = 0 }: Props) => {
         muted
         loop
         autoPlay
+        playsInline // Add playsInline to prevent fullscreen on iOS
       />
       {selected?.video && (
         <video
@@ -81,6 +107,7 @@ const VideoReveal = ({ selected, delay = 0 }: Props) => {
           muted
           loop
           autoPlay
+          playsInline // Add playsInline to prevent fullscreen on iOS
         />
       )}
     </div>

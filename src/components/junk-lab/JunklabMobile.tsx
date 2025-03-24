@@ -1,4 +1,5 @@
 import { posters } from "../contexts/ProjectsContext"
+import LazyLoadImage from "../utils/LazyLoadImage";
 
 const JunklabMobile = () => {
   return (
@@ -15,11 +16,7 @@ const JunklabMobile = () => {
         {posters.map((poster, i) => {
           return (
             <div key={i} className={`w-[22%]`}>
-              <img 
-                className="w-full h-full object-cover"
-                src={poster.path} 
-                alt={`poster-image-${i}`} 
-              />
+              <LazyLoadImage src={poster.path} />
             </div>
           );
         })}
