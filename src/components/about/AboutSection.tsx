@@ -105,7 +105,7 @@ const AboutSection = () => {
         </div>
         <div 
           onMouseLeave={() => handleMouseLeave()}
-          className="mb-[150px]">
+          className="mb-[80px] md:mb-[150px]">
           {
             titles.map((item, i) => (
               <div 
