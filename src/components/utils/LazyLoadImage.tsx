@@ -19,7 +19,7 @@ const LazyLoadImage = ({ src, alt = "", className = "w-full h-full object-cover"
           observer.disconnect();
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.1 }
     );
 
     if (imageRef.current) {
