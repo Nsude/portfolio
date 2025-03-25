@@ -13,7 +13,7 @@ const Preloader = () => {
   const calculateProgress = () => {
     const resources = performance.getEntriesByType("resource");
     const total = resources.length;
-    const loaded = resources.filter((res) => res.responseEnd > 0).length;
+    const loaded = resources.filter((res:any) => res.responseEnd > 0).length;
 
     return total > 0 ? Math.floor((loaded / total) * 100) : 0;
   };
