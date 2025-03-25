@@ -9,23 +9,35 @@ const Preloader = () => {
   const counterRef = useRef(null);
   const {isLoading, setIsLoading} = usePreloaderContext();
 
+  // Function to calculate loading progress
+  const calculateProgress = () => {
+    const resources = performance.getEntriesByType("resource");
+    const total = resources.length;
+    const loaded = resources.filter((res) => res.responseEnd > 0).length;
+
+    return total > 0 ? Math.floor((loaded / total) * 100) : 0;
+  };
+  
+
   // Handle on complete
   useEffect(() => {
-    // only start animation when the UI is ready
-    Promise.all([
-      document.fonts.ready, 
-      new Promise((res) => window.addEventListener("load", res))
-    ]).then(() => {
-      setTimeout(() => {
-        setStartAnimation(true);
-      }, 500);
-    });
-
-    return () => {
-      window.removeEventListener("load", () => {})
+    let animationFrame: any;
+    
+    const loadedAssetsProgress = () => {
+      const currentProgress = calculateProgress();
+      
+      if (currentProgress < 100) {
+        animationFrame = requestAnimationFrame(loadedAssetsProgress);
+      } else {
+        setTimeout(() => setStartAnimation(true), 500);
+      }
     };
 
-  }, [])
+    animationFrame = requestAnimationFrame(loadedAssetsProgress);
+
+    // Cleanup animation frame
+    return () => cancelAnimationFrame(animationFrame);
+  }, []);
 
   useEffect(() => {
     if (!startAnimation) return;
