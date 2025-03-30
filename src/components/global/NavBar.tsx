@@ -1,6 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Hamburger from "../../assets/icons/Hamburger";
-import useCustomEffect from "../hooks/useCustomEffect";
 import NavMenu from "./NavMenu";
 import DarkOverlay from "../animation-helpers/DarkOverlay";
 import { useNavContext } from "../contexts/NavContext";
@@ -12,19 +11,26 @@ const NavBar = () => {
   const { open } = useNavContext();
   const navigate = useNavigate();
 
-  useCustomEffect(() => {
+  useEffect(() => {
+    console.log('Effect is running');
+    
     const interval = setInterval(() => {
+      console.log('Updating time');
       const time = new Date().toLocaleTimeString('en-US', {
         hour: '2-digit',
         minute: '2-digit',
         hour12: true
       });
-      
+  
       setTime(time);
     }, 1000);
-
-    return () => clearInterval(interval);
+  
+    return () => {
+      console.log('Cleaning up interval');
+      clearInterval(interval);
+    };
   }, []);
+  
 
   const handleNavigation = () => {
     navigate("/");
