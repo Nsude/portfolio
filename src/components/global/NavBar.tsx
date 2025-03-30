@@ -12,25 +12,18 @@ const NavBar = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log('Effect is running');
-    
     const interval = setInterval(() => {
-      console.log('Updating time');
       const time = new Date().toLocaleTimeString('en-US', {
         hour: '2-digit',
         minute: '2-digit',
         hour12: true
       });
-  
+      
       setTime(time);
     }, 1000);
-  
-    return () => {
-      console.log('Cleaning up interval');
-      clearInterval(interval);
-    };
+
+    return () => clearInterval(interval);
   }, []);
-  
 
   const handleNavigation = () => {
     navigate("/");
