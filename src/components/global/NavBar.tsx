@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import Hamburger from "../../assets/icons/Hamburger";
 import NavMenu from "./NavMenu";
 import DarkOverlay from "../animation-helpers/DarkOverlay";
 import { useNavContext } from "../contexts/NavContext";
 import { useNavigate } from "react-router-dom";
+import useCustomEffect from "../hooks/useCustomEffect";
 
 
 const NavBar = () => {
@@ -11,7 +12,7 @@ const NavBar = () => {
   const { open } = useNavContext();
   const navigate = useNavigate();
 
-  useEffect(() => {
+  useCustomEffect(() => {
     const interval = setInterval(() => {
       const time = new Date().toLocaleTimeString('en-US', {
         hour: '2-digit',

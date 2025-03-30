@@ -1,14 +1,13 @@
 import { useEffect, useRef } from 'react'
 
 const useCustomEffect = (callback: () => void, dependencies?: any[]) => {
-  const runRef = useRef(false);
+  const hasMounted = useRef(false);
   useEffect(() => {
-    if (runRef.current) {
+    if (hasMounted.current) {
       callback();
+    } else {
+      hasMounted.current = true;
     }
-
-    if (runRef.current) return;
-    return () => { runRef.current = true };
 
   }, dependencies || []);
 }
