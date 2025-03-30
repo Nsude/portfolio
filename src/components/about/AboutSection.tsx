@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import AboutTitle from "./AboutTitle";
-import useCustomEffect from "../hooks/useCustomEffect";
 import gsap from "gsap";
 import { useDevice } from "../hooks/useDevice";
 import AboutImageReveal from "./AboutImageReveal";
@@ -45,8 +44,8 @@ const AboutSection = () => {
   const device = useDevice();
 
   // ===== ANIMATE STORY ON CHANGE =====
-  useCustomEffect(() => {
-    if (!storyRef.current) return null;
+  useEffect(() => {
+    if (!storyRef.current) return;
 
     gsap.killTweensOf(storyRef.current);
     
@@ -63,9 +62,9 @@ const AboutSection = () => {
       delay: .2
     })
     
-    return () => (
-      tl.kill()
-    )
+    return () => {
+      tl.kill();
+    }
 
   }, [story])
 

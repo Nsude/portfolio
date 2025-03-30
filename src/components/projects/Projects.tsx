@@ -7,14 +7,14 @@ const Projects = () => {
   const device = useDevice();
 
   return (
-    <div className="min-h-screen h-full w-full pt-[150px] flex flex-col items-center gap-y-[150px] px-[20px]">
+    <div className="min-h-screen h-full w-full pt-[150px] flex flex-col items-center gap-y-[150px] px-[20px] mb-[100px]">
       <h2 className="font-appleG text-[25px] leading-[1] w-[80%] sm:w-[65%] lg:text-[40px] 2xl:w-[48%] text-center">
         Here’s where the <span className="font-serif">magic</span> happens. From e-commerce brilliance to immersive <span className="font-serif">digital experiences</span>.
       </h2>
 
       <div className={`
         flex flex-wrap w-full gap-x-[5px] 
-        ${device.width < 1024 ? 'justify-start gap-y-[15px]' : 'justify-center'}
+        ${device.width < 1024 ? 'justify-start gap-y-[20px]' : 'justify-center'}
         `}>
         {
           projects.map((project, i) => (
