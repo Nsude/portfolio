@@ -2,7 +2,6 @@ import { useRef } from "react";
 import { useCarouselContext } from "../contexts/CarouselContext";
 import useCustomEffect from "../hooks/useCustomEffect";
 import Carousel from "./Carousel";
-import FeaturedCardTwo from "./FeaturedCardTwo";
 import { addElem } from "../utils/utilityFunctions";
 import gsap from "gsap";
 import { useNavigate } from "react-router-dom";
@@ -49,12 +48,6 @@ const Homepage = () => {
         onClick={(e) => e.stopPropagation()}
         className="relative z-[3] row-start-3 row-span-5 flex justify-center lg:inline-block lg:col-start-2 lg:col-span-2">
         <Carousel />
-      </div>
-
-      {/* Second Featured Card */}
-      <div onClick={(e) => e.stopPropagation()} 
-        className='hidden relative z-[4] row-start-2 row-span-2 justify-center col-start-4 col-span-2 lg:flex'>
-        <FeaturedCardTwo />
       </div>
 
       <div ref={(el) => addElem(el, fadeInElems.current)} 
