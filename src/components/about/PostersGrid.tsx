@@ -39,6 +39,7 @@ const PostersGrid = () => {
   const device = useDevice();
 
   useCustomEffect(() => {
+    console.log("running posters grid")
     if (device.width < 768) return null;
 
     gsap.killTweensOf(imagesRef.current);
