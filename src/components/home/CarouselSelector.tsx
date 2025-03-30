@@ -90,12 +90,10 @@ const CarouselSelector = () => {
   // ===== HANDLE SCROLL NAVIGATION =====
   const triggered = useRef(false);
   useEffect(() => {
-    console.log("scroll navigation initialised")
     let scrollTimeout: any;
     const scrollThreshold = 0; // Minimum scroll delta to trigger navigation
 
     const handleScroll = (e: WheelEvent) => {
-      console.log("triggered scroll")
       // Clear previous timeout to prevent multiple triggers
       if (scrollTimeout) {
         clearTimeout(scrollTimeout);
