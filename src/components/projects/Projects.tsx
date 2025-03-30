@@ -14,7 +14,7 @@ const Projects = () => {
 
       <div className={`
         flex flex-wrap w-full gap-x-[5px] 
-        ${device.width < 1024 ? 'justify-start' : 'justify-center'}
+        ${device.width < 1024 ? 'justify-start gap-y-[15px]' : 'justify-center'}
         `}>
         {
           projects.map((project, i) => (

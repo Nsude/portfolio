@@ -35,7 +35,7 @@ const ProjectGrid = ({project}: Props) => {
   return (
     <div
       onClick={handleClick} 
-      className={`w-full h-full flex flex-col gap-y-[15px]`}>
+      className={`w-full h-full flex flex-col gap-y-[10px]`}>
       <div className="w-full h-[85%] overflow-hidden">
         <div className="w-full h-full object-cover hover:scale-[1.15] transition-all duration-[600ms]">
           <LazyLoadImage src={project.thumbnail} />

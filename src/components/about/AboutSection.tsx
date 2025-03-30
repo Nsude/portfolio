@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import AboutTitle from "./AboutTitle";
 import useCustomEffect from "../hooks/useCustomEffect";
 import gsap from "gsap";
@@ -70,7 +70,7 @@ const AboutSection = () => {
   }, [story])
 
   // ===== RESET ST0RY =====
-  useCustomEffect(() => {
+  useEffect(() => {
 
     const handleReset = () => {
       setStory('');
