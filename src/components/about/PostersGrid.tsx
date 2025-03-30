@@ -1,8 +1,7 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { addElem } from "../utils/utilityFunctions";
-import useCustomEffect from "../hooks/useCustomEffect";
 import { useDevice } from "../hooks/useDevice";
 
 const posters = [
@@ -38,9 +37,12 @@ const PostersGrid = () => {
   const gridCon = useRef(null);
   const device = useDevice();
 
-  useCustomEffect(() => {
-    console.log("running posters grid")
-    if (device.width < 768) return null;
+  useEffect(() => {
+
+  }, [])
+
+  useEffect(() => {
+    if (device.width < 768) return;
 
     gsap.killTweensOf(imagesRef.current);
     ScrollTrigger.killAll();
@@ -64,10 +66,10 @@ const PostersGrid = () => {
       y: gsap.utils.random(window.innerHeight, (window.innerHeight * 2.8))
     })
 
-    return () => (
-      tl.kill()
-    )
-
+    return () =>  {
+      tl.kill();
+    }
+    
   }, [device])
 
   return (
