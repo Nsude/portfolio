@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useNavContext } from '../contexts/NavContext'
 import useCustomEffect from '../hooks/useCustomEffect';
 import gsap from 'gsap';
@@ -89,7 +89,7 @@ const CarouselSelector = () => {
 
   // ===== HANDLE SCROLL NAVIGATION =====
   const triggered = useRef(false);
-  useCustomEffect(() => {
+  useEffect(() => {
     console.log("scroll navigation initialised")
     let scrollTimeout: any;
     const scrollThreshold = 0; // Minimum scroll delta to trigger navigation
