@@ -81,7 +81,7 @@ const AboutSection = () => {
       window.removeEventListener("click", handleReset)
     )
 
-  })
+  }, [])
 
   const handleMouseEnter = (title: Title) => {
     setStory(title.story);
