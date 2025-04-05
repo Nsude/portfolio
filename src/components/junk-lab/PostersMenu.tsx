@@ -1,6 +1,5 @@
-import { SetStateAction, useRef } from "react";
+import { SetStateAction, useEffect, useRef } from "react";
 import gsap from "gsap";
-import useCustomEffect from "../hooks/useCustomEffect";
 
 interface Props {
   setMenuIndex: React.Dispatch<SetStateAction<string>>
@@ -42,7 +41,7 @@ const PostersMenu = ({setMenuIndex}: Props) => {
   };
 
   // Set initial position on mount
-  useCustomEffect(() => {
+  useEffect(() => {
     const prevSelected = localStorage.getItem("selectedMenuIndex");
     if (prevSelected) {
       const matchedBtn = buttonsRef.current.find((btn) => btn?.getAttribute("data-index") === prevSelected);
@@ -52,7 +51,7 @@ const PostersMenu = ({setMenuIndex}: Props) => {
       moveSelector(buttonsRef.current[0], "0");
     }
 
-    return () => initialRender.current = false;
+    return () => {initialRender.current = false}
   });
 
   return (

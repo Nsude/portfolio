@@ -1,5 +1,4 @@
-import { useRef, useState } from "react";
-import useCustomEffect from "../hooks/useCustomEffect";
+import { useEffect, useRef, useState } from "react";
 import { PosterLayout } from "../models";
 import gsap from "gsap";
 import LazyLoadImage from "../utils/LazyLoadImage";
@@ -15,7 +14,7 @@ const ListPosterLayout = ({posters}: PosterLayout) => {
   const addedScroll = 110;
   const timeLineRef = useRef<gsap.core.Timeline | null>(null);
 
-  useCustomEffect(() => {
+  useEffect(() => {
     if (!containerRef.current || !nameListRef.current || !previewRef.current) return;
     const names = nameListRef.current as HTMLDivElement;
     const container = containerRef.current as HTMLDivElement;
@@ -97,7 +96,7 @@ const ListPosterLayout = ({posters}: PosterLayout) => {
 
   };  
 
-  useCustomEffect(() => {
+  useEffect(() => {
     if (!previewRef.current || !nameListRef.current) return;
     const names = nameListRef.current as HTMLDivElement;
     const previews = previewRef.current as HTMLDivElement;
@@ -118,7 +117,8 @@ const ListPosterLayout = ({posters}: PosterLayout) => {
   // move large poster display
   const [offset, setOffset] = useState({top: "50%", right: "7%"});
   const [posterH, setPosterH] = useState("75vh");
-  useCustomEffect(() => {
+
+  useEffect(() => {
     const randomTopOffset = 50 + (Math.random() * 20 - 10); // ±20%
     const randomRightOffset = 7 + (Math.random() * 10 - 5); // ±2%
     const randomH = 75 + (Math.random() * 10 - 5);

@@ -1,13 +1,13 @@
 import { useDevice } from "../hooks/useDevice";
 import JunklabDesktop from "./JunklabDesktop";
 import JunklabMobile from "./JunklabMobile";
-import useCustomEffect from "../hooks/useCustomEffect";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect } from "react";
 
 const JunkLab = () => {
   const device = useDevice();
 
-  useCustomEffect(() => {
+  useEffect(() => {
     ScrollTrigger.killAll();
   })
   
