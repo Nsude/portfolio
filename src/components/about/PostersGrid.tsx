@@ -1,8 +1,9 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { addElem } from "../utils/utilityFunctions";
 import { useDevice } from "../hooks/useDevice";
+import { useGSAP } from "@gsap/react"; 
 
 const posters = [
   "/assets/images/posters/poster-image.webp",
@@ -37,13 +38,9 @@ const PostersGrid = () => {
   const gridCon = useRef(null);
   const device = useDevice();
 
-  useEffect(() => {
-
-  }, [])
-
-  useEffect(() => {
+  useGSAP(() => {
     if (device.width < 768) return;
-
+    
     gsap.killTweensOf(imagesRef.current);
     ScrollTrigger.killAll();
 
@@ -66,11 +63,18 @@ const PostersGrid = () => {
       y: gsap.utils.random(window.innerHeight, (window.innerHeight * 2.8))
     })
 
-    return () =>  {
+    return (() => {
       tl.kill();
-    }
-    
-  }, [device])
+    })
+
+  }, {scope: containerRef, dependencies: [device]})
+
+  const shouldHide = (i: number, width: number) => {
+    if (width < 768) return i > 5;
+    if (width < 1024) return i > 11;
+    if (width < 1536) return i > 17;
+    return false;
+  };
 
   return (
     <div ref={containerRef} className="px-2.5 md:px-0 md:bg-myblack min-h-[108dvh] lg:h-[100vh] w-full pb-[150px] md:pb-0 lg:flex lg:items-center overflow-hidden">
@@ -78,11 +82,7 @@ const PostersGrid = () => {
         {
           posters.map((image, i) => (
             <div ref={(el) => addElem(el, imagesRef.current)} key={i} 
-            className={`w-full h-fit
-            ${( device.width < 768 && i > 5 )? 'hidden' : 'inline-block'}
-            ${(device.width < 1024 && i > 11) ? 'hidden' : 'inline-block'}
-            ${(device.width < 1536 && i > 17) ? 'hidden' : 'inline-block'}
-            `}>
+            className={`w-full h-fit ${shouldHide(i, device.width) ? 'hidden' : 'inline-block'}`}>
               <img className="w-full h-full overflow-hidden object-cover" src={image} alt="poster image" />
             </div>
           ))
