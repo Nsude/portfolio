@@ -65,6 +65,7 @@ const PostersGrid = () => {
 
     return (() => {
       tl.kill();
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     })
 
   }, {scope: containerRef, dependencies: [device]})
