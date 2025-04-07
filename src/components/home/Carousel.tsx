@@ -44,10 +44,10 @@ const Carousel = () => {
             <div className='absolute left-5 bottom-5 w-full z-[2]'>
               <p ref={(el) => addElem(el)} className='text-[10px] opacity-50 mb-[4px]'>PAGE</p>
               <h3 ref={(el) => addElem(el)} className='text-[30px] -tracking-[0.03ch]'>{selected?.name || 'Index'}</h3>
-              <div className='mt-3 flex gap-x-2'>
+              <div className='mt-[15px] flex gap-x-2'>
                 {
                   selected?.tags.map((tag, i) => (
-                    <div ref={(el) => addElem(el)} key={i} className='text-[14px] opacity-40 w-fit rounded-3xl'>
+                    <div ref={(el) => addElem(el)} key={i} className='text-[14px] px-[20px] py-[5px] bg-white bg-opacity-15 opacity-40 w-fit rounded-3xl'>
                       <p>{tag}</p>
                     </div>
                   ))
