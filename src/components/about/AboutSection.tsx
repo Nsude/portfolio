@@ -83,7 +83,8 @@ const AboutSection = () => {
 
   }, [])
 
-  const handleMouseEnter = (title: Title) => {
+  const handleMouseEnter = (e:React.MouseEvent | React.TouchEvent, title: Title) => {
+    e.stopPropagation();
     setStory(title.story);
     setDisplayImage(title.image);
     setOverlayText(title.textOvelay);
@@ -109,8 +110,8 @@ const AboutSection = () => {
             titles.map((item, i) => (
               <div 
                 key={i}
-                onClick={(e) => {e.stopPropagation(); setStory(item.story)}} 
-                onMouseEnter={() => handleMouseEnter(item)}
+                onClick={(e) => handleMouseEnter(e, item)} 
+                onMouseEnter={(e) => handleMouseEnter(e, item)}
                 className="mb-[25px] last:mb-0 w-fit">
                 <AboutTitle title={item.value} index={item.index} />
               </div>
