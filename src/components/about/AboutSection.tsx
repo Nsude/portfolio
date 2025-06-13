@@ -51,6 +51,8 @@ const AboutSection = () => {
     
     const tl = gsap.timeline();
 
+    tl.to(storyRef.current, {opacity: 0, duration: .2});
+
     tl.fromTo(storyRef.current, {
       y: 40,
       opacity: 0,
