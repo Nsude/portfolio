@@ -3,13 +3,14 @@ import Hamburger from "../../assets/icons/Hamburger";
 import NavMenu from "./NavMenu";
 import DarkOverlay from "../animation-helpers/DarkOverlay";
 import { useNavContext } from "../contexts/NavContext";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 
 const NavBar = () => {
   const [time, setTime] = useState('00:00');
   const { open } = useNavContext();
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -46,7 +47,13 @@ const NavBar = () => {
       </div>
 
       <div className="hidden lg:block uppercase w-fit col-start-6"> 
-        <p className={`transition-opacity duration-[400ms] text-nowrap ${open ? 'opacity-40' : 'duration-[800ms] opacity-100'}`}>Scroll To Navigate Carousel</p> 
+        <p 
+          className={`transition-opacity duration-[400ms] text-nowrap ${open ? 'opacity-40' : 'duration-[800ms] opacity-100'}`}>
+            {
+              location.pathname === "/" ? 
+              <span>Scroll To Navigate Carousel</span> : null
+            }
+          </p> 
       </div>
 
       <div className="w-fit col-start-9">
