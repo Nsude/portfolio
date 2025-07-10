@@ -16,6 +16,7 @@ const NavBar = () => {
       const time = new Date().toLocaleTimeString('en-US', {
         hour: '2-digit',
         minute: '2-digit',
+        timeZone: "Africa/Lagos",
         hour12: true
       });
       
@@ -45,7 +46,7 @@ const NavBar = () => {
       </div>
 
       <div className="hidden lg:block uppercase w-fit col-start-6"> 
-        <p className={`transition-opacity duration-[400ms] ${open ? 'opacity-40' : 'duration-[800ms] opacity-100'}`}>Scroll</p> 
+        <p className={`transition-opacity duration-[400ms] text-nowrap ${open ? 'opacity-40' : 'duration-[800ms] opacity-100'}`}>Scroll To Navigate Carousel</p> 
       </div>
 
       <div className="w-fit col-start-9">
