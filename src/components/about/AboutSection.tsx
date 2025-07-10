@@ -99,7 +99,7 @@ const AboutSection = () => {
   }
 
   return (
-    <div className="text-base px-5 min-h-[100dvh] w-full sm:h-full lg:min-h-[100vh] max-h-[100vh] lg:py-[100px] md:mt-[120px] lg:mt-[200px] lg:flex lg:justify-between lg:gap-x-5">
+    <div className="text-base px-5 min-h-[100dvh] w-full max-w-[100vw] sm:h-full lg:min-h-[100vh] max-h-[100vh] lg:py-[100px] md:mt-[120px] lg:mt-[200px] lg:flex lg:justify-between lg:gap-x-5">
       <div className="lg:w-[50%]">
         <div className={`w-full flex gap-2`}>
           <h4 className="uppercase mb-[55px]">About me</h4>
