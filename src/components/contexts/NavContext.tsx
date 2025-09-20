@@ -115,8 +115,11 @@ const socialLinks = [
     link: 'mailto:meshachnsd@gmail.com'
   }, {
     name: 'YouTube',
-    link: 'http://www.youtube.com/@meshach_nsude'
-  },
+    link: 'https://www.youtube.com/@meshach_nsude'
+  }, {
+    name: "Github",
+    link: "https://www.github.com/Nsude"
+  }
 ];
 
 const NavContextProvider:React.FC<{children: ReactNode}> = ({children}) => {
